@@ -1,0 +1,53 @@
+{
+    "CR": {
+        "category": "Text classification/regression (CR)",
+        "description": "The task of text classification is to take a piece of text and assign it to one or more pre-defined categories. This can be done for a variety of purposes, such as sorting documents into different folders based on their topic, or automatically tagging them with relevant keywords. Text regression is a similar task, but instead of assigning the text to a category, the model predicts a numerical value based on the content of the text. For example, this could be used to predict the star rating of a hotel review, or the number of sales that a product will generate.",
+        "tasks": {
+            "SNLI": "The SNLI (Stanford Natural Language Inference) dataset is a collection of English sentence pairs labeled as entailing, contradictory, or neutral.",
+            "MNLI": "The MNLI (Multi-Genre Natural Language Inference) dataset is a collection of English sentence pairs labeled as entailing, contradictory, or neutral, drawn from ten different genres.",
+            "QQP": "The QQP (Quora Question Pairs) dataset is a collection of English question pairs labeled as duplicate or not.",
+            "QNLI": "The QNLI (Question Natural Language Inference) dataset is a collection of English question-sentence pairs labeled as entailing, contradictory, or neutral.",
+            "SST-2": "The SST-2 (Stanford Sentiment Treebank) dataset is a collection of English sentences labeled as positive or negative.",
+            "SciTail": "The SciTail dataset is a collection of English sentence pairs labeled as entailing or not, drawn from the abstracts of scientific papers.",
+            "CoLA": "The CoLA (Corpus of Linguistic Acceptability) dataset is a collection of English sentences labeled as acceptable or not.",
+            "STS": "The STS (Semantic Textual Similarity) dataset is a collection of English sentence pairs labeled for semantic similarity.",
+            "MRPC": "The MRPC (Microsoft Research Paraphrase Corpus) dataset is a collection of English sentence pairs labeled as paraphrases or not.",
+            "RTE": "The RTE (Recognizing Textual Entailment) dataset is a collection of English sentence pairs labeled as entailing, contradictory, or unknown.",
+            "WNLI": "The WNLI (Winograd Natural Language Inference) dataset is a collection of English sentence pairs labeled as entailing or not."
+        }
+    },
+    "QA": {
+        "category": "Question answering (QA)",
+        "description": "The task of question answering is to take a question and find the answer within a given text. This can be done in a number of ways, but the most common approach is to find the section of text that contains the answer, and then extract the relevant information from that section. This task is often used in customer service applications, where a customer service agent will need to be able to find the answer to a customer's question quickly and efficiently.",
+        "tasks": {
+            "SQuAD-2": "A QA dataset that is used to train and evaluate models for reading comprehension and question answering.",
+            "NewsQA": "A QA dataset that is used to train and evaluate models for question answering on news articles.",
+            "HotpotQA": "A QA dataset that is used to train and evaluate models for question answering on a variety of topics.",
+            "SQuAD-1": "A QA dataset that is used to train and evaluate models for reading comprehension and question answering.",
+            "DuoRC-p": "A QA dataset that is used to train and evaluate models for reading comprehension and question answering on paired passages.",
+            "DuoRC": "A QA dataset that is used to train and evaluate models for reading comprehension and question answering on a single passage.",
+            "DROP": "A QA dataset that is used to train and evaluate models for reading comprehension and question answering on a set of questions based on a single passage.",
+            "WikiHop": "A QA dataset that is used to train and evaluate models for reading comprehension and question answering on a set of questions based on Wikipedia articles.",
+            "BoolQ": "A QA dataset that is used to train and evaluate models for question answering on a set of boolean questions.",
+            "ComQA": "A QA dataset that is used to train and evaluate models for question answering on a set of questions based on a set of passages.",
+            "CQ": "A QA dataset that is used to train and evaluate models for question answering on a set of questions based on a set of passages."
+        }
+    },
+    "SL": {
+        "category": "Sequence labeling (SL)",
+        "description": "The task of sequence labeling is to take a sequence of items and assign a label to each item in the sequence. This can be used for a variety of tasks, such as part of speech tagging, Named Entity Recognition, and so on. The labels can be pre-defined or predicted by the model, depending on the task.",
+        "tasks": {
+            "ST": "Semantic Textual Similarity is a task to determine the similarity of two sentences.",
+            "CCG": "Combinatory Categorial Grammar is a task to generate the correct syntactic parse of a sentence.",
+            "Parent": "A task to determine the parent of a given word in a sentence.",
+            "GParent": "The grandparent of a word is the word two places before it in the sentence.",
+            "GGParent": "The great-grandparent of a word is the word three places before it in the sentence.",
+            "POS-PTB": "POS-EWT is part of the Penn Treebank tag set and is used to label the part of speech of a word.",
+            "GED": "The GED is a general English dictionary that can be used to look up the meaning of a word.",
+            "NER": "NER is a tag set that is used to label named entities such as people, places, and organizations.",
+            "POS-EWT": "POS-EWT is the part of the Penn Treebank tag set that is used to label the part of speech of a word.",
+            "Conj": "A conjunction is a word that is used to connect two clauses or phrases.",
+            "Chunk": "A chunk is a group of words that are grammatically linked together."
+        }
+    }
+}

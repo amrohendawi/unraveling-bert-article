@@ -1,0 +1,10 @@
+sourceTask,destinationTask,value
+CR,CR,56.9
+CR,QA,44.3
+CR,SL,45.6
+QA,CR,36.8
+QA,QA,63.3
+QA,SL,39.2
+SL,CR,2.0
+SL,QA,5.3
+SL,SL,20.9

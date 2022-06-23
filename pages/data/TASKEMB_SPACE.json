@@ -1,0 +1,551 @@
+{
+  "nodes": [
+    {
+      "group": "CR",
+      "index": 0,
+      "name": "STS-B"
+    },
+    {
+      "group": "CR",
+      "index": 1,
+      "name": "MRPC"
+    },
+    {
+      "group": "CR",
+      "index": 2,
+      "name": "QNLI"
+    },
+    {
+      "group": "CR",
+      "index": 3,
+      "name": "QQP"
+    },
+    {
+      "group": "CR",
+      "index": 4,
+      "name": "MNLI"
+    },
+    {
+      "group": "CR",
+      "index": 5,
+      "name": "SNLI"
+    },
+    {
+      "group": "CR",
+      "index": 6,
+      "name": "WNLI"
+    },
+    {
+      "group": "CR",
+      "index": 7,
+      "name": "RTE"
+    },
+    {
+      "group": "CR",
+      "index": 8,
+      "name": "SciTail"
+    },
+    {
+      "group": "CR",
+      "index": 9,
+      "name": "SST-2"
+    },
+    {
+      "group": "CR",
+      "index": 10,
+      "name": "CoLA"
+    },
+    {
+      "group": "QA",
+      "index": 11,
+      "name": "ComQA"
+    },
+    {
+      "group": "QA",
+      "index": 12,
+      "name": "CQ"
+    },
+    {
+      "group": "QA",
+      "index": 13,
+      "name": "BoolQ"
+    },
+    {
+      "group": "QA",
+      "index": 14,
+      "name": "DuoRC-p"
+    },
+    {
+      "group": "QA",
+      "index": 15,
+      "name": "DuoRC-s"
+    },
+    {
+      "group": "QA",
+      "index": 16,
+      "name": "WikiHop"
+    },
+    {
+      "group": "QA",
+      "index": 17,
+      "name": "SQuAD-2.0"
+    },
+    {
+      "group": "QA",
+      "index": 18,
+      "name": "NewsQA"
+    },
+    {
+      "group": "QA",
+      "index": 19,
+      "name": "SQuAD-1.1"
+    },
+    {
+      "group": "QA",
+      "index": 20,
+      "name": "DROP"
+    },
+    {
+      "group": "QA",
+      "index": 21,
+      "name": "HotpotQA"
+    },
+    {
+      "group": "SL",
+      "index": 22,
+      "name": "Chunk"
+    },
+    {
+      "group": "SL",
+      "index": 23,
+      "name": "Conj"
+    },
+    {
+      "group": "SL",
+      "index": 24,
+      "name": "Parent"
+    },
+    {
+      "group": "SL",
+      "index": 25,
+      "name": "CCG"
+    },
+    {
+      "group": "SL",
+      "index": 26,
+      "name": "GParent"
+    },
+    {
+      "group": "SL",
+      "index": 27,
+      "name": "GGParent"
+    },
+    {
+      "group": "SL",
+      "index": 28,
+      "name": "GED"
+    },
+    {
+      "group": "SL",
+      "index": 29,
+      "name": "ST"
+    },
+    {
+      "group": "SL",
+      "index": 30,
+      "name": "NER"
+    },
+    {
+      "group": "SL",
+      "index": 31,
+      "name": "POS-PTB"
+    },
+    {
+      "group": "SL",
+      "index": 32,
+      "name": "POS-EWT"
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1,
+      "value": 1.4
+    },
+    {
+      "source": 0,
+      "target": 2,
+      "value": 0.18
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "value": 0.2
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "value": 0.25
+    },
+    {
+      "source": 2,
+      "target": 4,
+      "value": 0.2
+    },
+    {
+      "source": 2,
+      "target": 5,
+      "value": 0.2
+    },
+    {
+      "source": 3,
+      "target": 4,
+      "value": 0.15
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "value": 0.8
+    },
+    {
+      "source": 4,
+      "target": 8,
+      "value": 0.7
+    },
+    {
+      "source": 4,
+      "target": 9,
+      "value": 0.2
+    },
+    {
+      "source": 4,
+      "target": 5,
+      "value": 1.4
+    },
+    {
+      "source": 5,
+      "target": 8,
+      "value": 0.2
+    },
+    {
+      "source": 5,
+      "target": 9,
+      "value": 0.7
+    },
+    {
+      "source": 5,
+      "target": 7,
+      "value": 0.2
+    },
+    {
+      "source": 5,
+      "target": 6,
+      "value": 0.18
+    },
+    {
+      "source": 6,
+      "target": 7,
+      "value": 0.8
+    },
+    {
+      "source": 4,
+      "target": 7,
+      "value": 0.7
+    },
+    {
+      "source": 10,
+      "target": 28,
+      "value": 0.7
+    },
+    {
+      "source": 10,
+      "target": 27,
+      "value": 0.18
+    },
+    {
+      "source": 29,
+      "target": 32,
+      "value": 0.2
+    },
+    {
+      "source": 28,
+      "target": 18,
+      "value": 0.2
+    },
+    {
+      "source": 29,
+      "target": 30,
+      "value": 0.7
+    },
+    {
+      "source": 29,
+      "target": 31,
+      "value": 1.06
+    },
+    {
+      "source": 30,
+      "target": 32,
+      "value": 0.15
+    },
+    {
+      "source": 30,
+      "target": 31,
+      "value": 0.2
+    },
+    {
+      "source": 31,
+      "target": 32,
+      "value": 1.4
+    },
+    {
+      "source": 25,
+      "target": 31,
+      "value": 0.15
+    },
+    {
+      "source": 25,
+      "target": 29,
+      "value": 0.2
+    },
+    {
+      "source": 19,
+      "target": 29,
+      "value": 0.15
+    },
+    {
+      "source": 19,
+      "target": 28,
+      "value": 0.7
+    },
+    {
+      "source": 19,
+      "target": 23,
+      "value": 0.7
+    },
+    {
+      "source": 25,
+      "target": 22,
+      "value": 0.2
+    },
+    {
+      "source": 25,
+      "target": 23,
+      "value": 0.2
+    },
+    {
+      "source": 11,
+      "target": 19,
+      "value": 0.2
+    },
+    {
+      "source": 11,
+      "target": 18,
+      "value": 0.7
+    },
+    {
+      "source": 15,
+      "target": 14,
+      "value": 0.9
+    },
+    {
+      "source": 19,
+      "target": 22,
+      "value": 0.7
+    },
+    {
+      "source": 24,
+      "target": 27,
+      "value": 0.18
+    },
+    {
+      "source": 5,
+      "target": 18,
+      "value": 0.2
+    },
+    {
+      "source": 4,
+      "target": 19,
+      "value": 0.15
+    },
+    {
+      "source": 4,
+      "target": 18,
+      "value": 0.2
+    },
+    {
+      "source": 17,
+      "target": 21,
+      "value": 0.15
+    },
+    {
+      "source": 27,
+      "target": 25,
+      "value": 1.06
+    },
+    {
+      "source": 19,
+      "target": 24,
+      "value": 0.2
+    },
+    {
+      "source": 24,
+      "target": 25,
+      "value": 0.9
+    },
+    {
+      "source": 27,
+      "target": 26,
+      "value": 1.4
+    },
+    {
+      "source": 26,
+      "target": 25,
+      "value": 0.35
+    },
+    {
+      "source": 19,
+      "target": 27,
+      "value": 0.15
+    },
+    {
+      "source": 19,
+      "target": 26,
+      "value": 0.15
+    },
+    {
+      "source": 19,
+      "target": 25,
+      "value": 0.15
+    },
+    {
+      "source": 19,
+      "target": 13,
+      "value": 0.7
+    },
+    {
+      "source": 18,
+      "target": 13,
+      "value": 0.18
+    },
+    {
+      "source": 15,
+      "target": 19,
+      "value": 0.18
+    },
+    {
+      "source": 19,
+      "target": 12,
+      "value": 0.7
+    },
+    {
+      "source": 2,
+      "target": 18,
+      "value": 0.2
+    },
+    {
+      "source": 2,
+      "target": 17,
+      "value": 0.8
+    },
+    {
+      "source": 15,
+      "target": 17,
+      "value": 0.2
+    },
+    {
+      "source": 18,
+      "target": 12,
+      "value": 0.2
+    },
+    {
+      "source": 21,
+      "target": 20,
+      "value": 0.18
+    },
+    {
+      "source": 17,
+      "target": 20,
+      "value": 0.2
+    },
+    {
+      "source": 17,
+      "target": 18,
+      "value": 0.25
+    },
+    {
+      "source": 17,
+      "target": 19,
+      "value": 0.9
+    },
+    {
+      "source": 19,
+      "target": 21,
+      "value": 0.25
+    },
+    {
+      "source": 19,
+      "target": 20,
+      "value": 1.4
+    },
+    {
+      "source": 18,
+      "target": 20,
+      "value": 0.3
+    },
+    {
+      "source": 18,
+      "target": 21,
+      "value": 1.06
+    },
+    {
+      "source": 16,
+      "target": 21,
+      "value": 0.15
+    },
+    {
+      "source": 16,
+      "target": 19,
+      "value": 0.18
+    },
+    {
+      "source": 18,
+      "target": 14,
+      "value": 0.25
+    },
+    {
+      "source": 15,
+      "target": 19,
+      "value": 0.9
+    },
+    {
+      "source": 15,
+      "target": 18,
+      "value": 0.25
+    },
+    {
+      "source": 18,
+      "target": 19,
+      "value": 1.06
+    },
+    {
+      "source": 14,
+      "target": 19,
+      "value": 0.18
+    },
+    {
+      "source": 16,
+      "target": 14,
+      "value": 0.18
+    },
+    {
+      "source": 16,
+      "target": 18,
+      "value": 0.8
+    },
+    {
+      "source": 15,
+      "target": 16,
+      "value": 1
+    }
+  ]
+}
