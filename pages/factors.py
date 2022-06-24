@@ -87,10 +87,15 @@ def get_cytoscope_graph():
     return nodes
 
 
+network_graph_data = {
+    "taskemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TASKEMB_SPACE.json'))),
+    "textemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TEXTEMB_SPACE.json'))),
+}
+
+
 def get_network_graph():
     # read local json file TASKEMB_SPACE.json
-    data = json.load(open(DATA_PATH.joinpath('TASKEMB_SPACE.json')))
-
+    data = network_graph_data['textemb']
     Edges, labels, group, layt, Xn, Yn, Zn = process_graph_data(data)
     Xe = []
     Ye = []
@@ -235,7 +240,7 @@ layer_epoch_effect = html.Div([dcc.Markdown(
         Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
             """.replace(
         "  ", ""
-    ),
+    ), className="text-box card-component"
 ),
     dcc.Dropdown(
     id="dropdown-dataset",
@@ -280,7 +285,7 @@ layer_epoch_effect = html.Div([dcc.Markdown(
     )],
     className="text-box card-component"),
 ],
-    className="text-box card-component")
+)
 
 dataset_section = html.Div([dcc.Markdown(
     """
@@ -392,19 +397,37 @@ task_similarity_section = html.Div([
 ],
 )
 
+network_graph = dbc.Row(
+    [
+        dbc.Col(
+            dcc.Loading(
+                dcc.Graph(figure=get_network_graph(),
+                          id="network-graph", className="card-component",)
+            ),
+            width=6),
+        dbc.Col(
+            html.Div(
+                id="task_desc",
+                className="text-box card-component",
+            ), width=6,
+        ),
+    ],
+)
+
 embeddings_quality_section = html.Div([dcc.Markdown(
     """
             # Embeddings Quality
-            When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
-            This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
-            There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
-            For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
-            However, it is not clear how much of an improvement fine-tuning provides in this case.
+            The quality of the learned embeddings is an important factor in the performance of downstream tasks. If the embeddings are of poor quality, the downstream task will likely suffer.
+            There are a few ways to measure the quality of learned embeddings. One is to evaluate the performance of a model that is trained on a supervised task using the learned embeddings as features. Another is to evaluate the performance of a model that is trained on a unsupervised task using the learned embeddings as features.
+            BERT models have been shown to produce high-quality embeddings. For example, a study found that a BERT model trained on a large corpus of English text produced embeddings that were better at capturing syntactic and semantic information than word2vec embeddings.
             """.replace(
         "  ", ""
     ),
-)],
-    className="text-box card-component")
+    className="text-box card-component"
+),
+    network_graph,
+],
+)
 
 gen_avg_trans_learning = dbc.Row(
     [
@@ -455,23 +478,6 @@ gen_avg_trans_learning = dbc.Row(
     ]
 )
 
-network_graph = dbc.Row(
-    [
-        dbc.Col(
-            dcc.Loading(
-                dcc.Graph(figure=get_network_graph(),
-                          id="network-graph", className="card-component",)
-            ),
-            width=6),
-        dbc.Col(
-            html.Div(
-                id="task_desc",
-                className="text-box card-component",
-            ), width=6,
-        ),
-    ],
-)
-
 layout = html.Div([
     html.Div(
         [
@@ -481,7 +487,7 @@ layout = html.Div([
             dataset_section,
             gen_avg_trans_learning,
             task_similarity_section,
-            network_graph,
+            embeddings_quality_section,
             # html.Div([
             #     cyto.Cytoscape(
             #         id='cytoscape-elements-basic',
@@ -490,7 +496,6 @@ layout = html.Div([
             #         elements=get_cytoscope_graph()
             #     )
             # ]),
-            embeddings_quality_section,
         ],
         id="page",
         className="row",
