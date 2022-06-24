@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & SQuAD-1 & SQuAD-2 & NewsQA & HotpotQA & BoolQ & DROP & WikiHop & DuoRC-p & DuoRC-s & CQ & ComQA \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{87.9} & \textcolor{orange}{71.9} & \textcolor{orange}{64.1} & \textcolor{orange}{67.9} & \textcolor{orange}{65.7} & \textcolor{orange}{22.4} & \textcolor{orange}{62.8} & \textcolor{orange}{50.6} & \textcolor{orange}{63.3} & \textcolor{orange}{30.5} & \textcolor{orange}{63.2}\\
+CoLA & 87.8 & 70.1 & \textcolor{blue}{64.6} & \textcolor{blue}{68.2} & 64.9 & 22.3 & \textcolor{blue}{62.9} & \textcolor{blue}{51.0} & \textbf{\textcolor{blue}{63.8}} & 30.0 & 62.7\\
+SST-2 & 87.7 & 71.3 & \textcolor{blue}{64.9} & \textcolor{blue}{68.3} & \textcolor{blue}{68.0} & 22.2 & \textcolor{blue}{63.1} & \textbf{\textcolor{blue}{51.1}} & 63.2 & 28.1 & 62.2\\
+MRPC & 87.8 & 67.7 & 63.8 & 66.4 & \textcolor{blue}{66.4} & 22.4 & 62.5 & \textcolor{blue}{51.0} & 63.1 & 26.9 & 62.5\\
+STS-B & 87.9 & 70.1 & 64.0 & 66.2 & 64.9 & 22.1 & \textbf{\textcolor{blue}{63.4}} & \textcolor{blue}{51.0} & 62.4 & 29.7 & 62.9\\
+QQP & 87.9 & 71.5 & 64.0 & \textcolor{blue}{68.8} & 64.9 & 22.1 & \textcolor{blue}{63.2} & 50.5 & 62.0 & \textcolor{blue}{33.2} & 61.4\\
+MNLI & 87.4 & \textcolor{blue}{72.8} & \textcolor{blue}{64.9} & \textcolor{blue}{68.7} & \textbf{\textcolor{blue}{69.8}} & \textcolor{blue}{22.7} & \textcolor{blue}{63.3} & \textcolor{blue}{50.7} & 62.6 & \textbf{\textcolor{blue}{35.5}} & 61.6\\
+QNLI & \textbf{\textcolor{blue}{88.2}} & \textcolor{blue}{73.4} & \textcolor{blue}{64.7} & \textcolor{blue}{69.0} & \textcolor{blue}{66.9} & \textcolor{blue}{22.5} & \textcolor{blue}{63.3} & 50.5 & 62.8 & \textcolor{blue}{33.6} & 62.0\\
+RTE & 87.9 & 71.4 & 64.0 & \textcolor{blue}{68.1} & 64.2 & \textbf{\textcolor{blue}{22.8}} & \textcolor{blue}{63.1} & \textcolor{blue}{50.8} & \textcolor{blue}{63.7} & \textcolor{blue}{31.7} & 62.6\\
+WNLI & 87.9 & 70.3 & \textcolor{blue}{64.3} & 67.9 & 65.3 & 22.3 & 62.3 & \textcolor{blue}{50.7} & \textcolor{blue}{63.7} & \textcolor{blue}{32.5} & 61.9\\
+SNLI & \textcolor{blue}{88.0} & \textbf{\textcolor{blue}{74.3}} & \textbf{\textcolor{blue}{65.1}} & \textcolor{blue}{68.7} & \textcolor{blue}{68.2} & 22.4 & 62.8 & \textcolor{blue}{50.9} & 62.9 & 28.8 & 62.1\\
+SciTail & 87.9 & 71.3 & \textcolor{blue}{64.5} & \textbf{\textcolor{blue}{69.4}} & \textcolor{blue}{68.3} & \textcolor{blue}{22.7} & \textcolor{blue}{63.3} & \textcolor{blue}{51.0} & 63.0 & \textcolor{blue}{33.0} & 61.6\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from classification/regression tasks to question answering tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla9a}
+\end{table}
+\end{landscape}

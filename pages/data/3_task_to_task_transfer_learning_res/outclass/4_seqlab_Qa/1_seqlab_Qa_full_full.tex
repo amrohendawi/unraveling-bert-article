@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & SQuAD-1 & SQuAD-2 & NewsQA & HotpotQA & BoolQ & DROP & WikiHop & DuoRC-p & DuoRC-s & CQ & ComQA \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{87.9} & \textcolor{orange}{71.9} & \textcolor{orange}{64.1} & \textcolor{orange}{67.9} & \textcolor{orange}{65.7} & \textcolor{orange}{22.4} & \textcolor{orange}{62.8} & \textcolor{orange}{50.6} & \textcolor{orange}{63.3} & \textcolor{orange}{30.5} & \textcolor{orange}{63.2}\\
+CCG & 87.0 & 68.1 & 63.8 & 66.3 & 65.5 & 22.0 & 62.2 & 49.7 & 62.1 & 30.5 & 61.1\\
+POS-PTB & 87.4 & 70.2 & 62.2 & 65.8 & 64.7 & 21.6 & 62.2 & 49.7 & \textcolor{blue}{63.5} & 28.4 & 62.8\\
+POS-EWT & 85.9 & 66.7 & 62.6 & 66.2 & 65.4 & 22.0 & 62.6 & 50.2 & \textbf{\textcolor{blue}{63.8}} & \textcolor{blue}{33.7} & 61.5\\
+Parent & 87.4 & 69.5 & \textcolor{blue}{64.4} & 67.9 & \textcolor{blue}{66.4} & 21.9 & \textcolor{blue}{63.1} & \textbf{\textcolor{blue}{51.3}} & 63.3 & \textcolor{blue}{34.3} & 62.3\\
+GParent & 87.6 & 70.2 & 64.1 & 67.9 & \textcolor{blue}{65.8} & \textbf{\textcolor{blue}{22.7}} & 61.9 & 50.5 & 62.8 & \textbf{\textcolor{blue}{35.1}} & 62.2\\
+GGParent & 87.7 & 71.0 & \textcolor{blue}{64.8} & 67.1 & \textbf{\textcolor{blue}{67.0}} & 21.8 & 62.1 & 50.6 & 61.8 & 28.8 & 63.1\\
+ST & 87.6 & 70.7 & 62.6 & \textcolor{blue}{68.0} & 63.7 & 21.9 & 61.7 & 50.3 & 63.2 & 30.2 & 61.6\\
+Chunk & 87.8 & 69.1 & 62.3 & 66.4 & 65.6 & \textcolor{blue}{22.5} & 62.6 & \textcolor{blue}{51.2} & 62.9 & 30.0 & 61.1\\
+NER & \textbf{\textcolor{blue}{88.1}} & 70.0 & 63.7 & 67.0 & \textcolor{blue}{66.6} & \textcolor{blue}{22.5} & 62.6 & \textcolor{blue}{51.1} & \textcolor{blue}{63.6} & \textcolor{blue}{34.6} & 62.6\\
+GED & 87.5 & 69.7 & \textbf{\textcolor{blue}{65.0}} & 67.8 & 65.2 & 22.3 & \textcolor{blue}{63.0} & \textcolor{blue}{50.7} & 62.4 & 30.5 & 62.3\\
+Conj & 87.8 & 70.6 & \textcolor{blue}{64.7} & \textbf{\textcolor{blue}{68.3}} & \textcolor{blue}{66.3} & 21.8 & \textbf{\textcolor{blue}{63.2}} & 50.6 & 61.8 & \textcolor{blue}{30.7} & \textbf{\textcolor{blue}{64.3}}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from sequence labeling tasks to question answering tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla10a}
+\end{table}
+\end{landscape}

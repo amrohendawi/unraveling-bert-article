@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CCG & POS-PTB & POS-EWT & Parent & GParent & GGParent & ST & Chunk & NER & GED & Conj \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{95.6} & \textcolor{orange}{96.7} & \textcolor{orange}{96.6} & \textcolor{orange}{95.4} & \textcolor{orange}{91.9} & \textcolor{orange}{89.5} & \textcolor{orange}{95.8} & \textcolor{orange}{97.1} & \textcolor{orange}{94.7} & \textcolor{orange}{46.6} & \textcolor{orange}{89.4}\\
+CoLA & 95.5 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.2 & 91.8 & 89.4 & 95.8 & 97.0 & 94.6 & 46.6 & \textcolor{blue}{89.8}\\
+SST-2 & 95.6 & 96.7 & 96.6 & 95.3 & 91.8 & 89.4 & 95.8 & 97.0 & 94.6 & \textcolor{blue}{47.0} & \textcolor{blue}{89.9}\\
+MRPC & 95.6 & 96.6 & 96.6 & 95.2 & 91.9 & 89.4 & 95.8 & 97.0 & 94.5 & \textcolor{blue}{47.0} & \textcolor{blue}{90.3}\\
+STS-B & 95.4 & 96.7 & 96.6 & 95.2 & 91.4 & 89.2 & 95.8 & 97.0 & 94.3 & 46.5 & \textcolor{blue}{89.8}\\
+QQP & 95.5 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.1 & 91.7 & 89.3 & 95.8 & 97.1 & 94.6 & 46.4 & \textbf{\textcolor{blue}{90.4}}\\
+MNLI & 95.4 & 96.7 & 96.6 & 95.1 & 91.9 & 89.0 & 95.7 & 97.1 & 94.6 & 46.6 & \textbf{\textcolor{blue}{90.4}}\\
+QNLI & 95.5 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.3 & 91.8 & \textbf{\textcolor{blue}{89.6}} & 95.8 & 97.0 & 94.7 & \textcolor{blue}{46.9} & \textcolor{blue}{89.5}\\
+RTE & 95.5 & 96.7 & 96.6 & 95.3 & \textbf{\textcolor{blue}{92.0}} & 89.5 & 95.8 & 96.9 & 94.7 & \textbf{\textcolor{blue}{47.4}} & \textcolor{blue}{89.7}\\
+WNLI & 95.5 & 96.7 & 96.5 & 95.4 & 91.8 & 89.5 & 95.8 & 97.0 & 94.5 & 46.3 & 89.4\\
+SNLI & 95.5 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.2 & 91.8 & 89.3 & 95.8 & 97.0 & 94.3 & 46.3 & \textcolor{blue}{89.7}\\
+SciTail & 95.5 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.2 & \textbf{\textcolor{blue}{92.0}} & 89.4 & 95.8 & 97.0 & 94.5 & 46.2 & \textcolor{blue}{89.5}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from classification/regression tasks to sequence labeling tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla11a}
+\end{table}
+\end{landscape}

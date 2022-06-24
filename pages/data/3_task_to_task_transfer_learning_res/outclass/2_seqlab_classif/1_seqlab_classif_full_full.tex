@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CoLA & SST-2 & MRPC & STS-B & QQP & MNLI & QNLI & RTE & WNLI & SNLI & SciTail \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{51.0} & \textcolor{orange}{91.9} & \textcolor{orange}{84.0} & \textcolor{orange}{85.9} & \textcolor{orange}{87.3} & \textcolor{orange}{84.2} & \textcolor{orange}{91.4} & \textcolor{orange}{60.6} & \textcolor{orange}{45.1} & \textcolor{orange}{90.7} & \textcolor{orange}{93.9}\\
+SQuAD-1 & \textcolor{blue}{52.4} & \textcolor{blue}{92.1} & \textcolor{blue}{87.0} & \textbf{\textcolor{blue}{88.5}} & 87.0 & 83.8 & 91.3 & \textcolor{blue}{64.6} & 39.4 & 90.7 & \textcolor{blue}{94.4}\\
+SQuAD-2 & 47.1 & 91.9 & \textcolor{blue}{87.4} & \textcolor{blue}{87.2} & 87.1 & \textbf{\textcolor{blue}{84.6}} & \textbf{\textcolor{blue}{91.7}} & \textcolor{blue}{67.9} & 45.1 & \textbf{\textcolor{blue}{90.9}} & \textcolor{blue}{94.7}\\
+NewsQA & 45.2 & 91.4 & \textcolor{blue}{86.9} & \textcolor{blue}{87.6} & 86.9 & 84.0 & 91.3 & \textcolor{blue}{63.2} & 36.6 & 90.4 & 93.9\\
+HotpotQA & 43.3 & \textcolor{blue}{92.1} & \textbf{\textcolor{blue}{88.6}} & \textcolor{blue}{86.9} & 86.8 & 83.8 & 91.1 & \textcolor{blue}{66.1} & 39.4 & \textcolor{blue}{90.8} & \textcolor{blue}{94.2}\\
+BoolQ & 51.0 & \textcolor{blue}{92.1} & \textcolor{blue}{86.3} & 85.8 & \textbf{\textcolor{blue}{87.4}} & 83.9 & 90.5 & 59.6 & 32.4 & 90.7 & 93.7\\
+DROP & \textbf{\textcolor{blue}{53.4}} & \textcolor{blue}{92.3} & \textcolor{blue}{87.0} & \textcolor{blue}{87.9} & 87.1 & \textcolor{blue}{84.3} & 91.1 & \textbf{\textcolor{blue}{70.4}} & 42.3 & 90.7 & \textbf{\textcolor{blue}{94.9}}\\
+WikiHop & 49.2 & 91.9 & \textcolor{blue}{84.6} & \textcolor{blue}{86.8} & 86.8 & 83.7 & 90.7 & \textcolor{blue}{66.1} & 38.0 & 90.7 & 93.5\\
+DuoRC-p & 42.4 & \textcolor{blue}{92.2} & \textcolor{blue}{86.3} & \textcolor{blue}{87.3} & 86.7 & 83.4 & 90.9 & \textcolor{blue}{62.8} & 36.6 & 90.5 & 92.5\\
+DuoRC-s & 48.8 & 91.5 & \textcolor{blue}{86.4} & \textcolor{blue}{87.9} & 87.1 & 83.6 & 90.8 & \textcolor{blue}{67.1} & 42.3 & 90.6 & 93.9\\
+CQ & \textcolor{blue}{52.1} & 91.9 & \textcolor{blue}{85.4} & \textcolor{blue}{86.9} & 86.9 & 84.0 & 90.6 & \textcolor{blue}{68.2} & 45.1 & \textcolor{blue}{90.8} & 93.6\\
+ComQA & 49.5 & \textbf{\textcolor{blue}{92.4}} & 83.9 & \textcolor{blue}{86.4} & 86.9 & 83.5 & 89.4 & \textcolor{blue}{63.5} & 33.8 & 90.6 & 92.6\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from question answering tasks to classification/regression tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla7a}
+\end{table}
+\end{landscape}

@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & SQuAD-1 & SQuAD-2 & NewsQA & HotpotQA & BoolQ & DROP & WikiHop & DuoRC-p & DuoRC-s & CQ & ComQA \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{26.8 $\pm$ 6.0} & \textcolor{orange}{50.1 $\pm$ 0.1} & \textcolor{orange}{28.8 $\pm$ 4.9} & \textcolor{orange}{23.3 $\pm$ 4.0} & \textcolor{orange}{62.2 $\pm$ 0.0} & \textcolor{orange}{19.4 $\pm$ 11.8} & \textcolor{orange}{25.5 $\pm$ 4.7} & \textcolor{orange}{41.6 $\pm$ 1.1} & \textcolor{orange}{38.9 $\pm$ 3.3} & \textcolor{orange}{30.7 $\pm$ 2.5} & \textcolor{orange}{39.1 $\pm$ 1.2}\\
+CCG & 15.0 $\pm$ 0.9 & 50.1 $\pm$ 0.0 & 19.9 $\pm$ 2.5 & 19.9 $\pm$ 1.8 & 62.2 $\pm$ 0.0 & \textcolor{blue}{59.7 $\pm$ 5.4} & 16.4 $\pm$ 1.7 & 36.0 $\pm$ 1.5 & 26.1 $\pm$ 7.7 & \textcolor{blue}{31.1 $\pm$ 2.9} & 37.8 $\pm$ 1.7\\
+POS-PTB & 14.7 $\pm$ 0.8 & 50.1 $\pm$ 0.0 & 15.7 $\pm$ 2.5 & 15.4 $\pm$ 2.2 & 62.2 $\pm$ 0.0 & \textcolor{blue}{59.5 $\pm$ 3.4} & 17.8 $\pm$ 1.7 & 35.9 $\pm$ 2.0 & 16.6 $\pm$ 7.6 & 29.9 $\pm$ 2.0 & 37.2 $\pm$ 1.2\\
+POS-EWT & 14.2 $\pm$ 1.1 & 50.1 $\pm$ 0.0 & 16.9 $\pm$ 2.4 & 17.2 $\pm$ 2.5 & 62.2 $\pm$ 0.0 & \textbf{\textcolor{blue}{60.0 $\pm$ 4.0}} & 22.9 $\pm$ 2.0 & 36.7 $\pm$ 2.5 & 20.4 $\pm$ 9.7 & \textcolor{blue}{32.2 $\pm$ 2.1} & 38.2 $\pm$ 1.4\\
+Parent & 19.1 $\pm$ 3.8 & 50.1 $\pm$ 0.1 & 23.8 $\pm$ 1.7 & 22.5 $\pm$ 2.0 & 62.2 $\pm$ 0.0 & \textcolor{blue}{47.8 $\pm$ 14.9} & 22.2 $\pm$ 2.5 & 37.7 $\pm$ 1.7 & 29.8 $\pm$ 3.8 & \textcolor{blue}{32.0 $\pm$ 2.4} & 38.7 $\pm$ 1.4\\
+GParent & 14.3 $\pm$ 0.7 & 50.1 $\pm$ 0.0 & 23.4 $\pm$ 2.2 & 19.6 $\pm$ 2.0 & 62.2 $\pm$ 0.0 & \textcolor{blue}{49.5 $\pm$ 19.0} & 19.0 $\pm$ 1.7 & 38.0 $\pm$ 2.0 & 26.1 $\pm$ 6.0 & \textcolor{blue}{31.6 $\pm$ 2.1} & 38.0 $\pm$ 1.1\\
+GGParent & 13.7 $\pm$ 0.4 & 50.1 $\pm$ 0.0 & 23.5 $\pm$ 2.7 & 17.9 $\pm$ 2.5 & 62.2 $\pm$ 0.0 & \textcolor{blue}{38.1 $\pm$ 17.1} & 17.1 $\pm$ 1.4 & 37.9 $\pm$ 2.2 & 27.0 $\pm$ 6.1 & \textcolor{blue}{32.0 $\pm$ 2.2} & 37.8 $\pm$ 1.7\\
+ST & 12.8 $\pm$ 0.6 & 50.1 $\pm$ 0.0 & 16.8 $\pm$ 3.3 & 15.5 $\pm$ 2.6 & 62.2 $\pm$ 0.0 & \textbf{\textcolor{blue}{60.0 $\pm$ 3.9}} & 16.7 $\pm$ 1.3 & 36.8 $\pm$ 1.6 & 16.6 $\pm$ 7.4 & 29.4 $\pm$ 2.2 & 36.8 $\pm$ 1.4\\
+Chunk & 20.8 $\pm$ 4.7 & 50.1 $\pm$ 0.0 & 22.5 $\pm$ 3.2 & 21.7 $\pm$ 4.1 & 62.2 $\pm$ 0.0 & \textcolor{blue}{52.5 $\pm$ 12.9} & 18.7 $\pm$ 3.5 & 37.5 $\pm$ 1.7 & 28.6 $\pm$ 6.6 & \textcolor{blue}{31.7 $\pm$ 2.3} & 38.7 $\pm$ 1.4\\
+NER & 14.8 $\pm$ 1.2 & 50.1 $\pm$ 0.0 & 26.0 $\pm$ 4.0 & 18.7 $\pm$ 2.5 & 62.2 $\pm$ 0.0 & \textcolor{blue}{25.4 $\pm$ 20.2} & 22.5 $\pm$ 4.9 & 38.5 $\pm$ 1.8 & 25.5 $\pm$ 9.8 & \textcolor{blue}{31.0 $\pm$ 2.5} & 37.8 $\pm$ 1.8\\
+GED & 24.1 $\pm$ 4.7 & 50.1 $\pm$ 0.0 & 27.3 $\pm$ 3.4 & \textcolor{blue}{24.0 $\pm$ 4.1} & 62.2 $\pm$ 0.0 & \textcolor{blue}{43.1 $\pm$ 14.6} & 23.8 $\pm$ 4.8 & 41.2 $\pm$ 1.7 & 37.6 $\pm$ 2.9 & \textcolor{blue}{31.8 $\pm$ 1.9} & 38.7 $\pm$ 1.7\\
+Conj & \textbf{\textcolor{blue}{29.0 $\pm$ 8.9}} & 50.0 $\pm$ 0.2 & 28.3 $\pm$ 3.8 & \textbf{\textcolor{blue}{25.7 $\pm$ 5.3}} & 62.2 $\pm$ 0.0 & \textcolor{blue}{20.7 $\pm$ 15.5} & \textbf{\textcolor{blue}{25.7 $\pm$ 3.4}} & 40.9 $\pm$ 2.0 & 38.8 $\pm$ 3.0 & \textbf{\textcolor{blue}{32.8 $\pm$ 2.2}} & 38.9 $\pm$ 1.5\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from sequence labeling tasks to question answering tasks in the \smallsc{Full $\rightarrow$ Limited} regime.}
+\label{tbla10b}
+\end{table}
+\end{landscape}

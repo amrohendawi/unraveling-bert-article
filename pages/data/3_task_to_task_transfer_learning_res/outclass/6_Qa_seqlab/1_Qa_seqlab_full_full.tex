@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CCG & POS-PTB & POS-EWT & Parent & GParent & GGParent & ST & Chunk & NER & GED & Conj \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{95.6} & \textcolor{orange}{96.7} & \textcolor{orange}{96.6} & \textcolor{orange}{95.4} & \textcolor{orange}{91.9} & \textcolor{orange}{89.5} & \textcolor{orange}{95.8} & \textcolor{orange}{97.1} & \textcolor{orange}{94.7} & \textcolor{orange}{46.6} & \textcolor{orange}{89.4}\\
+SQuAD-1 & 95.4 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.3 & 91.8 & 89.5 & 95.8 & 97.1 & \textcolor{blue}{94.8} & \textcolor{blue}{46.7} & \textbf{\textcolor{blue}{90.3}}\\
+SQuAD-2 & 95.4 & 96.7 & 96.6 & 95.3 & 91.8 & 89.4 & 95.8 & 97.1 & 94.5 & 46.4 & \textcolor{blue}{89.9}\\
+NewsQA & 95.5 & 96.7 & 96.4 & 95.3 & 91.6 & 89.2 & 95.8 & 97.0 & 94.4 & 45.6 & \textcolor{blue}{90.0}\\
+HotpotQA & 95.4 & 96.7 & 96.3 & 95.1 & 91.7 & 89.1 & 95.8 & 96.9 & 94.5 & 45.8 & \textcolor{blue}{90.0}\\
+BoolQ & 95.5 & 96.7 & 96.6 & 95.3 & 91.7 & 89.5 & 95.8 & 96.9 & 94.7 & \textbf{\textcolor{blue}{47.2}} & 89.4\\
+DROP & 95.5 & 96.7 & \textbf{\textcolor{blue}{96.7}} & 95.3 & 91.7 & 89.4 & 95.8 & 97.1 & 94.5 & \textcolor{blue}{47.1} & \textcolor{blue}{90.0}\\
+WikiHop & 95.5 & 96.7 & 96.2 & 95.2 & 91.5 & 89.0 & 95.8 & 96.8 & 94.5 & \textcolor{blue}{46.8} & 88.8\\
+DuoRC-p & 95.4 & 96.7 & 96.4 & 95.4 & 91.7 & 89.4 & 95.7 & 96.9 & 94.4 & 46.2 & \textcolor{blue}{89.7}\\
+DuoRC-s & 95.5 & 96.7 & 96.6 & 95.3 & 91.8 & 89.3 & 95.8 & 97.1 & \textbf{\textcolor{blue}{94.9}} & 46.5 & \textcolor{blue}{90.0}\\
+CQ & 95.4 & 96.7 & 96.6 & 95.3 & 91.6 & 89.3 & 95.8 & 96.9 & 94.5 & \textcolor{blue}{46.9} & \textcolor{blue}{89.7}\\
+ComQA & 95.5 & 96.7 & 96.5 & 95.1 & 91.7 & 89.3 & 95.7 & 96.8 & 94.1 & 46.6 & 89.2\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from question answering tasks to sequence labeling tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla12a}
+\end{table}
+\end{landscape}

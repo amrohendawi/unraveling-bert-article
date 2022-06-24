@@ -1,0 +1,27 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CCG & POS-PTB & POS-EWT & Parent & GParent & GGParent & ST & Chunk & NER & GED & Conj \\
+\midrule
+CCG & \textcolor{orange}{53.2 $\pm$ 1.6} & \textcolor{blue}{89.8 $\pm$ 0.8} & \textcolor{blue}{91.9 $\pm$ 0.2} & \textcolor{blue}{87.1 $\pm$ 1.3} & \textcolor{blue}{74.5 $\pm$ 0.5} & \textcolor{blue}{54.0 $\pm$ 1.3} & \textcolor{blue}{84.0 $\pm$ 0.8} & \textcolor{blue}{92.9 $\pm$ 0.1} & 67.9 $\pm$ 3.3 & 24.3 $\pm$ 1.4 & 73.2 $\pm$ 1.3\\
+POS-PTB & \textcolor{blue}{72.0 $\pm$ 0.5} & \textcolor{orange}{85.1 $\pm$ 0.9} & \textbf{\textcolor{blue}{93.9 $\pm$ 0.2}} & \textcolor{blue}{87.7 $\pm$ 0.7} & \textcolor{blue}{68.4 $\pm$ 1.0} & \textcolor{blue}{49.5 $\pm$ 1.1} & \textbf{\textcolor{blue}{86.3 $\pm$ 0.2}} & \textcolor{blue}{91.2 $\pm$ 0.5} & \textcolor{blue}{83.3 $\pm$ 1.2} & 28.8 $\pm$ 0.9 & 69.5 $\pm$ 2.0\\
+POS-EWT & \textcolor{blue}{68.2 $\pm$ 0.7} & \textcolor{blue}{88.5 $\pm$ 0.6} & \textcolor{orange}{89.3 $\pm$ 0.4} & \textcolor{blue}{86.4 $\pm$ 1.0} & \textcolor{blue}{66.2 $\pm$ 1.0} & \textcolor{blue}{47.5 $\pm$ 1.2} & \textcolor{blue}{83.4 $\pm$ 0.8} & \textcolor{blue}{91.8 $\pm$ 0.3} & \textcolor{blue}{81.3 $\pm$ 1.3} & 29.1 $\pm$ 0.9 & 70.9 $\pm$ 2.7\\
+Parent & \textcolor{blue}{66.2 $\pm$ 1.0} & \textcolor{blue}{88.5 $\pm$ 0.9} & \textcolor{blue}{92.6 $\pm$ 0.3} & \textcolor{orange}{81.9 $\pm$ 0.9} & \textcolor{blue}{75.8 $\pm$ 0.7} & \textcolor{blue}{55.4 $\pm$ 1.7} & \textcolor{blue}{82.4 $\pm$ 0.7} & \textbf{\textcolor{blue}{94.3 $\pm$ 0.3}} & \textcolor{blue}{78.3 $\pm$ 4.0} & 28.7 $\pm$ 0.9 & \textcolor{blue}{76.5 $\pm$ 3.8}\\
+GParent & \textcolor{blue}{64.5 $\pm$ 3.0} & \textcolor{blue}{87.2 $\pm$ 1.0} & \textcolor{blue}{90.8 $\pm$ 0.3} & \textbf{\textcolor{blue}{90.5 $\pm$ 0.2}} & \textcolor{orange}{62.8 $\pm$ 1.3} & \textbf{\textcolor{blue}{77.4 $\pm$ 0.6}} & \textcolor{blue}{81.6 $\pm$ 0.6} & \textcolor{blue}{92.0 $\pm$ 0.3} & 76.4 $\pm$ 1.9 & 24.2 $\pm$ 1.7 & \textcolor{blue}{83.4 $\pm$ 0.6}\\
+GGParent & \textcolor{blue}{59.7 $\pm$ 3.0} & 82.8 $\pm$ 1.7 & \textcolor{blue}{89.8 $\pm$ 0.3} & \textcolor{blue}{89.4 $\pm$ 0.4} & \textbf{\textcolor{blue}{88.2 $\pm$ 0.3}} & \textcolor{orange}{43.3 $\pm$ 1.7} & \textcolor{blue}{78.7 $\pm$ 1.1} & \textcolor{blue}{91.0 $\pm$ 0.4} & 76.8 $\pm$ 2.0 & 19.9 $\pm$ 1.0 & \textbf{\textcolor{blue}{85.1 $\pm$ 0.6}}\\
+ST & \textbf{\textcolor{blue}{72.4 $\pm$ 0.7}} & \textbf{\textcolor{blue}{92.6 $\pm$ 0.4}} & \textcolor{blue}{93.2 $\pm$ 0.2} & \textcolor{blue}{87.4 $\pm$ 0.3} & \textcolor{blue}{71.2 $\pm$ 0.7} & \textcolor{blue}{50.3 $\pm$ 1.2} & \textcolor{orange}{76.7 $\pm$ 0.9} & \textcolor{blue}{91.1 $\pm$ 0.3} & \textbf{\textcolor{blue}{87.0 $\pm$ 0.6}} & \textbf{\textcolor{blue}{29.7 $\pm$ 0.6}} & 66.6 $\pm$ 2.7\\
+Chunk & \textcolor{blue}{67.5 $\pm$ 1.0} & \textcolor{blue}{88.9 $\pm$ 0.6} & \textcolor{blue}{92.0 $\pm$ 0.3} & \textcolor{blue}{90.0 $\pm$ 0.2} & \textcolor{blue}{71.9 $\pm$ 0.8} & \textcolor{blue}{53.3 $\pm$ 1.2} & \textcolor{blue}{83.3 $\pm$ 0.8} & \textcolor{orange}{87.7 $\pm$ 0.5} & 76.1 $\pm$ 2.2 & 28.7 $\pm$ 1.9 & \textcolor{blue}{77.5 $\pm$ 0.9}\\
+NER & 47.2 $\pm$ 3.4 & 83.1 $\pm$ 1.3 & \textcolor{blue}{90.1 $\pm$ 0.6} & 79.0 $\pm$ 1.6 & 62.7 $\pm$ 1.7 & 42.0 $\pm$ 3.4 & \textcolor{blue}{78.0 $\pm$ 1.5} & 85.9 $\pm$ 1.0 & \textcolor{orange}{77.4 $\pm$ 1.5} & \textcolor{blue}{29.4 $\pm$ 0.8} & 72.6 $\pm$ 1.9\\
+GED & \textcolor{blue}{56.1 $\pm$ 1.6} & \textcolor{blue}{87.0 $\pm$ 0.7} & \textcolor{blue}{89.9 $\pm$ 0.4} & \textcolor{blue}{82.3 $\pm$ 0.8} & \textcolor{blue}{66.7 $\pm$ 1.1} & \textcolor{blue}{47.1 $\pm$ 1.6} & \textcolor{blue}{80.2 $\pm$ 0.7} & \textcolor{blue}{88.2 $\pm$ 0.4} & \textcolor{blue}{79.9 $\pm$ 1.5} & \textcolor{orange}{29.1 $\pm$ 1.3} & 70.6 $\pm$ 2.4\\
+Conj & 48.9 $\pm$ 4.0 & 84.3 $\pm$ 1.0 & 89.1 $\pm$ 0.6 & 79.5 $\pm$ 0.8 & \textcolor{blue}{67.9 $\pm$ 1.2} & \textcolor{blue}{49.1 $\pm$ 1.9} & 76.6 $\pm$ 1.4 & 87.4 $\pm$ 0.7 & 77.4 $\pm$ 3.6 & 28.1 $\pm$ 1.4 & \textcolor{orange}{73.3 $\pm$ 1.6}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{In-class transfer results for sequence labeling tasks in the \smallsc{Full $\rightarrow$ Limited} regime.}
+\label{tbla6b}
+\end{table}
+\end{landscape}

@@ -1,0 +1,27 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CCG & POS-PTB & POS-EWT & Parent & GParent & GGParent & ST & Chunk & NER & GED & Conj \\
+\midrule
+CCG & \textcolor{orange}{95.6} & 96.7 & 96.4 & 95.3 & 91.8 & \textcolor{blue}{89.6} & 95.8 & \textcolor{blue}{97.7} & 94.0 & 45.8 & \textcolor{blue}{90.3}\\
+POS-PTB & \textbf{\textcolor{blue}{95.7}} & \textcolor{orange}{96.7} & \textbf{\textcolor{blue}{96.7}} & 95.3 & 91.7 & 89.1 & 95.7 & 97.0 & 94.6 & 46.5 & \textcolor{blue}{90.2}\\
+POS-EWT & 95.6 & 96.7 & \textcolor{orange}{96.6} & \textbf{\textcolor{blue}{95.5}} & 91.9 & 89.3 & 95.8 & 97.0 & 94.6 & 46.1 & \textcolor{blue}{89.9}\\
+Parent & 95.6 & 96.7 & 96.6 & \textcolor{orange}{95.4} & 91.9 & \textcolor{blue}{89.8} & 95.8 & \textbf{\textcolor{blue}{98.0}} & 94.5 & 46.6 & \textcolor{blue}{90.3}\\
+GParent & 95.6 & 96.7 & 96.6 & 95.1 & \textcolor{orange}{91.9} & \textbf{\textcolor{blue}{90.0}} & 95.8 & \textcolor{blue}{97.6} & 94.6 & 46.5 & \textbf{\textcolor{blue}{91.0}}\\
+GGParent & 95.5 & 96.6 & 96.5 & 95.4 & 91.9 & \textcolor{orange}{89.5} & 95.8 & \textcolor{blue}{97.5} & 94.5 & 46.5 & \textcolor{blue}{90.8}\\
+ST & 95.5 & 96.6 & 96.5 & 95.1 & 91.6 & 89.3 & \textcolor{orange}{95.8} & 96.9 & \textbf{\textcolor{blue}{94.9}} & 46.2 & 88.7\\
+Chunk & 95.6 & 96.7 & 96.5 & 95.2 & 91.8 & 89.5 & 95.7 & \textcolor{orange}{97.1} & 94.6 & 46.4 & \textcolor{blue}{89.7}\\
+NER & 95.4 & 96.7 & 96.6 & 95.2 & 91.7 & 89.1 & 95.8 & 97.0 & \textcolor{orange}{94.7} & \textbf{\textcolor{blue}{47.3}} & \textcolor{blue}{90.3}\\
+GED & 95.5 & 96.7 & 96.6 & 95.2 & 91.7 & 89.3 & 95.8 & 97.0 & 94.7 & \textcolor{orange}{46.6} & \textcolor{blue}{90.2}\\
+Conj & 95.4 & 96.7 & 96.6 & 95.4 & 91.9 & \textcolor{blue}{89.7} & 95.8 & 97.0 & 94.5 & 46.2 & \textcolor{orange}{89.4}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{In-class transfer results for sequence labeling tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla6a}
+\end{table}
+\end{landscape}

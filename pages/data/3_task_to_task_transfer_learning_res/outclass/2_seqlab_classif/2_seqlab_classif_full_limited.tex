@@ -1,0 +1,28 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CoLA & SST-2 & MRPC & STS-B & QQP & MNLI & QNLI & RTE & WNLI & SNLI & SciTail \\
+\midrule
+\emph{Baseline} & \textcolor{orange}{4.7 $\pm$ 8.2} & \textcolor{orange}{77.5 $\pm$ 6.3} & \textcolor{orange}{81.9 $\pm$ 0.7} & \textcolor{orange}{29.9 $\pm$ 10.5} & \textcolor{orange}{25.7 $\pm$ 25.1} & \textcolor{orange}{38.7 $\pm$ 3.2} & \textcolor{orange}{62.4 $\pm$ 9.5} & \textcolor{orange}{54.7 $\pm$ 3.2} & \textcolor{orange}{44.4 $\pm$ 6.3} & \textcolor{orange}{46.7 $\pm$ 4.5} & \textcolor{orange}{64.1 $\pm$ 13.6}\\
+SQuAD-1 & 3.3 $\pm$ 5.5 & \textcolor{blue}{83.3 $\pm$ 1.4} & \textcolor{blue}{83.4 $\pm$ 1.1} & \textbf{\textcolor{blue}{72.1 $\pm$ 7.0}} & \textcolor{blue}{47.8 $\pm$ 25.8} & \textcolor{blue}{49.4 $\pm$ 2.3} & \textbf{\textcolor{blue}{86.9 $\pm$ 0.6}} & \textcolor{blue}{63.1 $\pm$ 1.7} & 41.7 $\pm$ 7.4 & \textcolor{blue}{53.8 $\pm$ 2.1} & \textbf{\textcolor{blue}{86.6 $\pm$ 1.2}}\\
+SQuAD-2 & 2.9 $\pm$ 6.5 & \textbf{\textcolor{blue}{83.8 $\pm$ 1.6}} & \textcolor{blue}{82.1 $\pm$ 0.8} & \textcolor{blue}{65.0 $\pm$ 12.1} & \textcolor{blue}{42.1 $\pm$ 32.1} & \textbf{\textcolor{blue}{52.0 $\pm$ 6.4}} & \textcolor{blue}{83.6 $\pm$ 2.2} & \textcolor{blue}{61.6 $\pm$ 2.2} & 44.4 $\pm$ 7.0 & \textbf{\textcolor{blue}{55.3 $\pm$ 4.1}} & \textcolor{blue}{67.9 $\pm$ 16.9}\\
+NewsQA & 1.8 $\pm$ 3.8 & \textcolor{blue}{81.4 $\pm$ 3.1} & \textcolor{blue}{83.6 $\pm$ 1.3} & \textcolor{blue}{67.1 $\pm$ 6.4} & \textcolor{blue}{52.2 $\pm$ 25.1} & \textcolor{blue}{48.5 $\pm$ 3.2} & \textcolor{blue}{79.2 $\pm$ 6.0} & \textcolor{blue}{63.5 $\pm$ 3.0} & 43.5 $\pm$ 6.0 & \textcolor{blue}{54.3 $\pm$ 2.5} & \textcolor{blue}{83.0 $\pm$ 8.0}\\
+HotpotQA & 1.9 $\pm$ 4.3 & 72.4 $\pm$ 8.3 & \textbf{\textcolor{blue}{83.8 $\pm$ 1.4}} & \textcolor{blue}{49.7 $\pm$ 10.9} & \textcolor{blue}{34.1 $\pm$ 32.7} & \textcolor{blue}{41.9 $\pm$ 2.8} & \textcolor{blue}{73.8 $\pm$ 11.4} & \textcolor{blue}{58.7 $\pm$ 3.0} & \textcolor{blue}{45.3 $\pm$ 5.7} & \textcolor{blue}{51.6 $\pm$ 4.8} & \textcolor{blue}{74.4 $\pm$ 13.2}\\
+BoolQ & \textbf{\textcolor{blue}{7.7 $\pm$ 9.3}} & 76.5 $\pm$ 4.6 & 81.7 $\pm$ 0.6 & \textcolor{blue}{49.4 $\pm$ 18.0} & \textcolor{blue}{46.0 $\pm$ 25.3} & \textcolor{blue}{42.0 $\pm$ 2.1} & \textcolor{blue}{72.3 $\pm$ 2.4} & \textcolor{blue}{57.6 $\pm$ 2.5} & 39.9 $\pm$ 6.7 & \textcolor{blue}{47.8 $\pm$ 4.3} & \textcolor{blue}{72.4 $\pm$ 11.7}\\
+DROP & \textcolor{blue}{6.0 $\pm$ 8.8} & \textcolor{blue}{81.8 $\pm$ 1.9} & \textcolor{blue}{82.4 $\pm$ 0.7} & \textcolor{blue}{64.5 $\pm$ 10.4} & \textcolor{blue}{49.7 $\pm$ 26.2} & \textcolor{blue}{45.6 $\pm$ 1.8} & \textcolor{blue}{78.9 $\pm$ 1.2} & \textbf{\textcolor{blue}{63.6 $\pm$ 1.9}} & 43.5 $\pm$ 7.8 & \textcolor{blue}{52.7 $\pm$ 2.5} & \textcolor{blue}{82.0 $\pm$ 8.1}\\
+WikiHop & 0.3 $\pm$ 2.3 & 69.9 $\pm$ 9.1 & \textcolor{blue}{82.3 $\pm$ 0.7} & \textcolor{blue}{63.1 $\pm$ 5.7} & \textcolor{blue}{57.5 $\pm$ 20.4} & \textcolor{blue}{44.5 $\pm$ 1.5} & \textcolor{blue}{71.9 $\pm$ 1.8} & \textcolor{blue}{62.1 $\pm$ 2.2} & 41.5 $\pm$ 6.3 & \textcolor{blue}{53.2 $\pm$ 1.8} & \textcolor{blue}{83.0 $\pm$ 1.4}\\
+DuoRC-p & 0.9 $\pm$ 3.0 & 74.1 $\pm$ 5.2 & \textcolor{blue}{83.2 $\pm$ 1.3} & \textcolor{blue}{71.0 $\pm$ 6.5} & \textcolor{blue}{41.3 $\pm$ 30.6} & \textcolor{blue}{44.1 $\pm$ 2.3} & \textcolor{blue}{79.3 $\pm$ 4.4} & \textcolor{blue}{60.3 $\pm$ 3.3} & \textbf{\textcolor{blue}{45.4 $\pm$ 6.0}} & \textcolor{blue}{52.0 $\pm$ 2.6} & \textcolor{blue}{69.7 $\pm$ 14.8}\\
+DuoRC-s & 3.2 $\pm$ 5.6 & \textcolor{blue}{78.5 $\pm$ 4.6} & \textcolor{blue}{83.5 $\pm$ 1.5} & \textcolor{blue}{66.7 $\pm$ 5.8} & \textcolor{blue}{44.5 $\pm$ 29.6} & \textcolor{blue}{45.7 $\pm$ 2.4} & \textcolor{blue}{82.5 $\pm$ 1.4} & \textcolor{blue}{61.1 $\pm$ 2.2} & 42.9 $\pm$ 6.6 & \textcolor{blue}{52.9 $\pm$ 2.7} & \textcolor{blue}{72.6 $\pm$ 14.3}\\
+CQ & \textcolor{blue}{5.6 $\pm$ 7.3} & 74.7 $\pm$ 7.6 & 81.8 $\pm$ 0.7 & \textcolor{blue}{61.6 $\pm$ 9.3} & \textcolor{blue}{42.6 $\pm$ 30.6} & \textcolor{blue}{44.8 $\pm$ 2.1} & \textcolor{blue}{71.8 $\pm$ 1.6} & \textcolor{blue}{61.3 $\pm$ 2.7} & 39.6 $\pm$ 5.5 & \textcolor{blue}{53.5 $\pm$ 2.8} & \textcolor{blue}{78.2 $\pm$ 11.1}\\
+ComQA & 1.2 $\pm$ 3.0 & 72.1 $\pm$ 6.8 & 81.7 $\pm$ 0.4 & \textcolor{blue}{51.5 $\pm$ 19.1} & \textbf{\textcolor{blue}{58.3 $\pm$ 13.9}} & \textcolor{blue}{41.4 $\pm$ 2.3} & \textcolor{blue}{68.1 $\pm$ 2.2} & \textcolor{blue}{59.0 $\pm$ 1.9} & 39.6 $\pm$ 8.1 & \textcolor{blue}{51.9 $\pm$ 1.7} & \textcolor{blue}{80.9 $\pm$ 8.5}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Out-of-class transfer results from question answering tasks to classification/regression tasks in the \smallsc{Full $\rightarrow$ Limited} regime.}
+\label{tbla7b}
+\end{table}
+\end{landscape}

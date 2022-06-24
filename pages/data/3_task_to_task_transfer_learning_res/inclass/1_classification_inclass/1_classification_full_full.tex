@@ -1,0 +1,27 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l  l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CoLA & SST-2 & MRPC & STS-B & QQP & MNLI & QNLI & RTE & WNLI & SNLI & SciTail \\
+\midrule
+CoLA & \textcolor{orange}{51.0} & \textcolor{blue}{92.2} & \textcolor{blue}{86.6} & \textcolor{blue}{86.4} & \textbf{\textcolor{blue}{87.5}} & 84.2 & 91.4 & 60.3 & \textbf{\textcolor{blue}{54.9}} & 90.5 & 93.8\\
+SST-2 & \textcolor{blue}{54.2} & \textcolor{orange}{91.9} & \textcolor{blue}{84.2} & \textcolor{blue}{86.9} & 87.0 & 84.1 & 91.3 & 56.0 & \textcolor{blue}{53.5} & \textcolor{blue}{90.9} & 93.5\\
+MRPC & 51.0 & \textcolor{blue}{92.3} & \textcolor{orange}{84.0} & \textcolor{blue}{87.1} & 87.1 & \textcolor{blue}{84.4} & 91.3 & \textcolor{blue}{61.7} & \textcolor{blue}{47.9} & \textcolor{blue}{90.9} & 93.5\\
+STS-B & 48.8 & 91.9 & \textcolor{blue}{87.3} & \textcolor{orange}{85.9} & 86.4 & 84.0 & 90.4 & \textcolor{blue}{65.0} & 35.2 & \textcolor{blue}{90.9} & 92.1\\
+QQP & 49.4 & \textcolor{blue}{92.0} & \textbf{\textcolor{blue}{87.7}} & \textcolor{blue}{88.5} & \textcolor{orange}{87.3} & 84.2 & 90.7 & \textcolor{blue}{61.7} & 36.6 & \textcolor{blue}{90.9} & 92.9\\
+MNLI & 50.0 & \textbf{\textcolor{blue}{93.5}} & \textcolor{blue}{87.6} & \textcolor{blue}{87.0} & 87.1 & \textcolor{orange}{84.2} & \textbf{\textcolor{blue}{91.5}} & \textbf{\textcolor{blue}{77.6}} & 40.8 & \textbf{\textcolor{blue}{91.2}} & \textbf{\textcolor{blue}{95.6}}\\
+QNLI & 49.9 & \textcolor{blue}{92.5} & \textcolor{blue}{86.6} & \textbf{\textcolor{blue}{88.6}} & 86.6 & \textcolor{blue}{84.4} & \textcolor{orange}{91.4} & \textcolor{blue}{70.4} & 38.0 & \textcolor{blue}{91.1} & \textcolor{blue}{94.5}\\
+RTE & \textcolor{blue}{52.1} & \textcolor{blue}{92.1} & 83.9 & \textcolor{blue}{87.0} & 86.8 & \textcolor{blue}{84.4} & 91.3 & \textcolor{orange}{60.6} & \textcolor{blue}{50.7} & \textcolor{blue}{91.0} & 93.5\\
+WNLI & \textbf{\textcolor{blue}{54.5}} & 91.7 & \textcolor{blue}{84.2} & 84.8 & 87.0 & 84.2 & 91.4 & 60.6 & \textcolor{orange}{45.1} & \textcolor{blue}{90.9} & 93.6\\
+SNLI & \textcolor{blue}{54.2} & \textcolor{blue}{93.1} & \textcolor{blue}{86.8} & \textcolor{blue}{87.5} & 86.9 & \textbf{\textcolor{blue}{84.6}} & 90.4 & \textbf{\textcolor{blue}{77.6}} & 39.4 & \textcolor{orange}{90.7} & \textcolor{blue}{95.2}\\
+SciTail & 50.8 & 91.9 & 82.2 & \textcolor{blue}{88.1} & 86.6 & \textcolor{blue}{84.3} & 91.0 & \textcolor{blue}{69.3} & \textcolor{blue}{46.5} & \textcolor{blue}{91.0} & \textcolor{orange}{93.9}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{In-class transfer results for classification/regression tasks in the \smallsc{Full $\rightarrow$ Full} regime.}
+\label{tbla4a}
+\end{table}
+\end{landscape}

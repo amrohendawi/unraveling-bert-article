@@ -23,6 +23,7 @@ tsne_dict = {
     "tsne_sentiment_multi": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_sentiment_multi.csv")),
 }
 
+
 def df_to_matrix(df):
     df_matrix = pd.DataFrame(columns=df['sourceTask'].unique())
     for _, row in df.iterrows():
@@ -30,7 +31,26 @@ def df_to_matrix(df):
     return df_matrix
 
 
-transfer_learning_dict = {
+# Convert the content of 3_task_to_task_transfer_learning_res folder to a json file with nested structure
+# recursive function
+def get_task_list(folder):
+    new_dict = {}
+    for dir in DATA_PATH.joinpath(folder).iterdir():
+        # if the directory is a directory, call the function again
+        if dir.is_dir():
+            new_dict[dir.name] = get_task_list(folder + "/" + dir.name)
+        # if the directory is a csv file, read the file and add the content to the dictionary
+        if dir.is_file() and dir.suffix == ".csv":
+            # read csv an convert it to json
+            df = df_to_matrix(pd.read_csv(dir))
+            new_dict[dir.name] = df
+    return new_dict
+
+
+task_to_task_transfer_learning_res = get_task_list(
+    "3_task_to_task_transfer_learning_res")
+
+gen_avg_trans_learn_dict = {
     "full-full": df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_full.csv"))),
     "full-limited": df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_limited.csv"))),
     "limited-limited": df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_limited_limited.csv"))),
@@ -95,7 +115,7 @@ def get_network_graph():
                           mode='markers',
                           name='actors',
                           marker=dict(symbol='circle',
-                                      size=6,
+                                      size=8,
                                       color=group,
                                       colorscale='Viridis',
                                       line=dict(
@@ -247,7 +267,7 @@ embeddings_quality_section = html.Div([dcc.Markdown(
 )],
     className="text-box card-component")
 
-task_to_task_transferability = dbc.Row(
+gen_avg_trans_learning = dbc.Row(
     [
         dbc.Col(
             [
@@ -292,6 +312,68 @@ task_to_task_transferability = dbc.Row(
                 id="source_target_task_desc",
                 className="text-box card-component",
             ), width=8
+        ),
+    ]
+)
+task_to_task_trans_learning = dbc.Row(
+    [
+        dbc.Col(
+            [
+                dcc.Dropdown(
+                    id="dropdown-class",
+                    searchable=False,
+                    clearable=False,
+                    # the keys from task_to_task_trans_learning_res
+                    options=[
+                        {"label": k, "value": k}
+                        for k in task_to_task_transfer_learning_res.keys()],
+                    placeholder="Select a class",
+                    value=list(task_to_task_transfer_learning_res.keys())[0],
+                    className="drop-down-component"
+                ),
+                dcc.Dropdown(
+                    id="dropdown-task-category",
+                    searchable=False,
+                    clearable=False,
+                    # the keys from task_to_task_trans_learning_res
+                    options=[
+                        {"label": k, "value": k}
+                        for k in task_to_task_transfer_learning_res['inclass'].keys()],
+                    placeholder="Select a task category",
+                    value=list(task_to_task_transfer_learning_res['inclass'].keys())[0],
+                    className="drop-down-component"
+                ),
+                dcc.Dropdown(
+                    id="dropdown-dataset-size",
+                    searchable=False,
+                    clearable=False,
+                    # the keys from task_to_task_trans_learning_res
+                    options=[
+                        {"label": k, "value": k}
+                        for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
+                    placeholder="Select a dataset size",
+                    value=list(task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
+                    className="drop-down-component"
+                ),
+                html.Div(
+                    dcc.Loading(
+                        dcc.Graph(
+                            id="clickable-heatmap2",
+                            hoverData={"points": [
+                                {"pointNumber": 0}]},
+                            config={"displayModeBar": False},
+                            style={"padding": "5px 10px"},
+                        )
+                    ), className="card-component"
+                )
+            ], width=6,
+        ),
+        # A text box to show the current task description
+        dbc.Col(
+            html.Div(
+                id="source_target_task_desc2",
+                className="text-box card-component",
+            ), width=6
         ),
     ]
 )
@@ -362,8 +444,9 @@ layout = html.Div([
             )],
                 className="text-box card-component"),
             dataset_section,
-            task_to_task_transferability,
+            gen_avg_trans_learning,
             task_similarity_section,
+            task_to_task_trans_learning,
             network_graph,
             # html.Div([
             #     cyto.Cytoscape(
@@ -403,7 +486,7 @@ def update_figure(dataset):
     Output('clickable-heatmap', 'figure'),
     Input("dropdown-task", "value"))
 def update_figure(experiment):
-    fig = px.imshow(transfer_learning_dict[experiment],
+    fig = px.imshow(gen_avg_trans_learn_dict[experiment],
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
@@ -411,7 +494,30 @@ def update_figure(experiment):
     fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
-            'text': "Transfer learning results on <br> " + experiment,
+            'text': "General average transfer learning results on <br> " + experiment,
+            'font_size': 15,
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center'})
+    return fig
+
+@ app.callback(
+    Output('clickable-heatmap2', 'figure'),
+    [
+        Input("dropdown-class", "value"),
+        Input("dropdown-task-category", "value"),
+        Input("dropdown-dataset-size", "value"),
+    ])
+def update_figure(task_class, task_category, dataset_size):
+    fig = px.imshow(task_to_task_transfer_learning_res[task_class][task_category][dataset_size],
+                    labels={"x": "Target Task", "y": "Source Task"},
+                    )
+    fig.update_coloraxes(colorbar_orientation="h")
+    fig.update_layout(coloraxis_colorbar_y=-0.001)
+    fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
+    fig.update_layout(
+        title={
+            'text': "Task to Task transfer learning results",
             'font_size': 15,
             'y': 0.9,
             'x': 0.5,
@@ -464,4 +570,28 @@ def task_info_on_hover(hoverData):
 
     except Exception as error:
         # print(error)
+        raise PreventUpdate
+
+@ app.callback(
+    Output("source_target_task_desc2", "children"),
+    Input("clickable-heatmap2", "hoverData")
+)
+def task_info_on_hover(hoverData):
+    if hoverData is None:
+        raise PreventUpdate
+    try:
+        source_id = hoverData["points"][0]["x"]
+        target_id = hoverData["points"][0]["y"]
+        src_desc = tasks_description[source_id]
+        target_desc = tasks_description[target_id]
+
+        return html.Div([
+            html.H4(source_id),
+            html.P(src_desc),
+            html.H4(target_id) if source_id != target_id else "",
+            html.P(target_desc) if source_id != target_id else "",
+        ])
+
+    except Exception as error:
+        print(error)
         raise PreventUpdate

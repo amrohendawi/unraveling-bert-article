@@ -1,0 +1,27 @@
+\global\pdfpageattr\expandafter{\the\pdfpageattr/Rotate 90}
+\begin{landscape}
+\begin{table}[t]
+\centering
+\begin{adjustbox}{max width=2\textwidth}
+\begin{tabular}{ l l l l l  l l l l  l l l }
+\toprule
+\textbf{Task} & CoLA & SST-2 & MRPC & STS-B & QQP & MNLI & QNLI & RTE & WNLI & SNLI & SciTail \\
+\midrule
+CoLA & \textcolor{orange}{4.7 $\pm$ 8.2} & 74.8 $\pm$ 6.1 & 81.9 $\pm$ 0.7 & 24.1 $\pm$ 10.3 & \textcolor{blue}{28.0 $\pm$ 27.3} & 38.4 $\pm$ 3.2 & 62.3 $\pm$ 9.5 & \textcolor{blue}{54.8 $\pm$ 3.0} & 43.7 $\pm$ 6.4 & \textcolor{blue}{47.1 $\pm$ 3.9} & \textcolor{blue}{65.2 $\pm$ 13.6}\\
+SST-2 & 4.2 $\pm$ 7.3 & \textcolor{orange}{77.5 $\pm$ 6.3} & 81.9 $\pm$ 0.7 & 27.9 $\pm$ 10.8 & \textcolor{blue}{33.4 $\pm$ 26.5} & \textcolor{blue}{39.1 $\pm$ 3.4} & \textcolor{blue}{63.8 $\pm$ 8.9} & \textcolor{blue}{55.9 $\pm$ 3.5} & 43.9 $\pm$ 6.4 & \textcolor{blue}{47.8 $\pm$ 3.6} & \textcolor{blue}{65.3 $\pm$ 13.9}\\
+MRPC & 2.5 $\pm$ 5.2 & 75.2 $\pm$ 8.1 & \textcolor{orange}{81.9 $\pm$ 0.7} & \textcolor{blue}{45.2 $\pm$ 11.8} & \textcolor{blue}{40.0 $\pm$ 28.3} & \textcolor{blue}{41.2 $\pm$ 3.8} & \textcolor{blue}{68.8 $\pm$ 5.8} & \textcolor{blue}{57.2 $\pm$ 3.9} & 41.7 $\pm$ 7.9 & \textcolor{blue}{51.3 $\pm$ 2.7} & \textcolor{blue}{73.1 $\pm$ 14.8}\\
+STS-B & \textbf{\textcolor{blue}{6.7 $\pm$ 8.1}} & 76.7 $\pm$ 6.8 & \textcolor{blue}{82.0 $\pm$ 0.7} & \textcolor{orange}{29.9 $\pm$ 10.5} & \textbf{\textcolor{blue}{43.8 $\pm$ 23.2}} & \textbf{\textcolor{blue}{43.9 $\pm$ 2.2}} & \textbf{\textcolor{blue}{73.2 $\pm$ 1.1}} & \textcolor{blue}{58.6 $\pm$ 2.6} & 39.2 $\pm$ 6.1 & \textbf{\textcolor{blue}{51.8 $\pm$ 2.7}} & \textbf{\textcolor{blue}{79.3 $\pm$ 6.6}}\\
+QQP & 3.2 $\pm$ 5.4 & 76.6 $\pm$ 8.3 & \textcolor{blue}{82.1 $\pm$ 0.8} & \textcolor{blue}{35.7 $\pm$ 12.1} & \textcolor{orange}{25.7 $\pm$ 25.1} & \textcolor{blue}{40.4 $\pm$ 4.1} & \textcolor{blue}{65.5 $\pm$ 8.1} & \textcolor{blue}{55.5 $\pm$ 3.9} & 39.7 $\pm$ 8.6 & \textcolor{blue}{49.8 $\pm$ 2.7} & \textcolor{blue}{69.3 $\pm$ 16.2}\\
+MNLI & 3.7 $\pm$ 5.5 & 75.3 $\pm$ 9.6 & \textcolor{blue}{82.1 $\pm$ 0.7} & \textcolor{blue}{35.7 $\pm$ 12.6} & \textcolor{blue}{33.6 $\pm$ 30.0} & \textcolor{orange}{38.7 $\pm$ 3.2} & \textcolor{blue}{64.9 $\pm$ 9.9} & \textcolor{blue}{55.5 $\pm$ 3.5} & \textbf{\textcolor{blue}{46.3 $\pm$ 8.1}} & \textcolor{blue}{49.3 $\pm$ 2.9} & \textcolor{blue}{69.8 $\pm$ 14.8}\\
+QNLI & \textcolor{blue}{4.9 $\pm$ 8.7} & \textbf{\textcolor{blue}{78.3 $\pm$ 6.9}} & 81.8 $\pm$ 0.8 & \textcolor{blue}{33.2 $\pm$ 14.8} & \textcolor{blue}{35.4 $\pm$ 28.0} & \textcolor{blue}{40.4 $\pm$ 4.2} & \textcolor{orange}{62.4 $\pm$ 9.5} & \textcolor{blue}{55.7 $\pm$ 4.2} & 43.1 $\pm$ 6.4 & \textcolor{blue}{48.3 $\pm$ 3.6} & \textcolor{blue}{71.6 $\pm$ 14.3}\\
+RTE & \textcolor{blue}{5.0 $\pm$ 8.2} & 77.4 $\pm$ 6.1 & \textcolor{blue}{82.1 $\pm$ 0.8} & \textcolor{blue}{32.9 $\pm$ 14.1} & \textcolor{blue}{35.5 $\pm$ 28.8} & \textcolor{blue}{40.4 $\pm$ 4.3} & \textcolor{blue}{65.1 $\pm$ 8.3} & \textcolor{orange}{54.7 $\pm$ 3.2} & 43.0 $\pm$ 7.4 & \textcolor{blue}{48.2 $\pm$ 3.0} & \textcolor{blue}{67.6 $\pm$ 14.8}\\
+WNLI & 3.8 $\pm$ 5.8 & 74.9 $\pm$ 8.5 & 81.9 $\pm$ 0.6 & \textbf{\textcolor{blue}{49.9 $\pm$ 11.7}} & \textcolor{blue}{40.2 $\pm$ 24.2} & \textcolor{blue}{42.6 $\pm$ 2.3} & \textcolor{blue}{70.2 $\pm$ 2.6} & \textcolor{blue}{57.9 $\pm$ 1.5} & \textcolor{orange}{44.4 $\pm$ 6.3} & \textcolor{blue}{51.6 $\pm$ 3.0} & \textcolor{blue}{78.5 $\pm$ 9.1}\\
+SNLI & 4.6 $\pm$ 7.8 & 74.9 $\pm$ 9.5 & 81.8 $\pm$ 0.5 & \textcolor{blue}{44.6 $\pm$ 18.2} & \textcolor{blue}{39.7 $\pm$ 25.7} & \textcolor{blue}{42.9 $\pm$ 2.8} & \textcolor{blue}{68.6 $\pm$ 3.3} & \textbf{\textcolor{blue}{59.6 $\pm$ 2.8}} & 39.4 $\pm$ 7.1 & \textcolor{orange}{46.7 $\pm$ 4.5} & \textcolor{blue}{77.9 $\pm$ 9.2}\\
+SciTail & \textcolor{blue}{5.8 $\pm$ 9.8} & 77.5 $\pm$ 5.3 & \textbf{\textcolor{blue}{82.2 $\pm$ 0.9}} & 26.0 $\pm$ 11.8 & \textcolor{blue}{33.8 $\pm$ 32.4} & \textcolor{blue}{40.2 $\pm$ 4.9} & \textcolor{blue}{64.8 $\pm$ 8.6} & 54.5 $\pm$ 2.8 & \textcolor{blue}{44.9 $\pm$ 6.9} & \textcolor{blue}{47.2 $\pm$ 2.6} & \textcolor{orange}{64.1 $\pm$ 13.6}\\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{In-class transfer results for classification/regression tasks in the \smallsc{Limited $\rightarrow$ Limited} regime.}
+\label{tbla4c}
+\end{table}
+\end{landscape}
