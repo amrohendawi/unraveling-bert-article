@@ -11,7 +11,7 @@ layout = html.Div(
                 "  ", ""
             ),
         )],
-            className="text-box"),
+            className="text-box card-component"),
     ],
     id="page",
     className="row",

@@ -26,8 +26,10 @@ Clone the git repo, then install the requirements with pip
 
 ```
 
-git clone https://github.com/plotly/dash-sample-apps
-cd dash-sample-apps/apps/dash-yield-curve
+git clone https://github.com/amrohendawi/unraveling-bert-article
+cd cd unraveling-bert-article
+python -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
 ```

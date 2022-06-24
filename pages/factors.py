@@ -183,7 +183,7 @@ factors_section = html.Div([dcc.Markdown(
         "  ", ""
     )
 )],
-    className="text-box")
+    className="text-box card-component")
 fine_tuning_section = html.Div([dcc.Markdown(
     """
             # Fine-tuning
@@ -197,7 +197,7 @@ fine_tuning_section = html.Div([dcc.Markdown(
         "  ", ""
     ),
 )],
-    className="text-box")
+    className="text-box card-component")
 layer_epoch_effect = html.Div([dcc.Markdown(
     """
                 # BERT contextual sequence embeddings visualization
@@ -208,7 +208,7 @@ layer_epoch_effect = html.Div([dcc.Markdown(
         "  ", ""
     ),
 )],
-    className="text-box")
+    className="text-box card-component")
 dataset_section = html.Div([dcc.Markdown(
     """
             # Dataset
@@ -221,7 +221,7 @@ dataset_section = html.Div([dcc.Markdown(
         "  ", ""
     ),
 )],
-    className="text-box")
+    className="text-box card-component")
 task_similarity_section = html.Div([dcc.Markdown(
     """
             # Task Similarity
@@ -234,7 +234,7 @@ task_similarity_section = html.Div([dcc.Markdown(
         "  ", ""
     ),
 )],
-    className="text-box")
+    className="text-box card-component")
 embeddings_quality_section = html.Div([dcc.Markdown(
     """
             # Embeddings Quality
@@ -247,7 +247,7 @@ embeddings_quality_section = html.Div([dcc.Markdown(
         "  ", ""
     ),
 )],
-    className="text-box")
+    className="text-box card-component")
 
 task_to_task_transferability = dbc.Row(
     [
@@ -275,45 +275,45 @@ task_to_task_transferability = dbc.Row(
                     value="full-full",
                 ),
                 html.Div(
-                    [
-                        dcc.Loading(
-                            dcc.Graph(
-                                id="clickable-heatmap",
-                                hoverData={"points": [
-                                    {"pointNumber": 0}]},
-                                config={"displayModeBar": False}
-                            )),
-                    ],
-                ),
+                    dcc.Loading(
+                        dcc.Graph(
+                            id="clickable-heatmap",
+                            hoverData={"points": [
+                                {"pointNumber": 0}]},
+                            config={"displayModeBar": False},
+                            style={"padding": "0px 10px"},
+                        )
+                    ), className="card-component"
+                )
             ], width=4,
         ),
         # A text box to show the current task description
         dbc.Col(
             html.Div(
                 id="source_target_task_desc",
-                className="text-box",
-            ), width=8,
+                className="text-box card-component",
+            ), width=8
         ),
     ]
 )
 
 network_graph = dbc.Row(
-                [
-                    dbc.Col(
-                        dcc.Loading(
-                            dcc.Graph(figure=get_network_graph(),
-                                      id="network-graph")
-                        ),
-                        width=6),
-                    dbc.Col(
-                        html.Div(
-                            id="task_desc",
-                            className="text-box",
-                        ), width=6,
-                    ),
-                ],
-            )
-    
+    [
+        dbc.Col(
+            dcc.Loading(
+                dcc.Graph(figure=get_network_graph(),
+                          id="network-graph", className="card-component",)
+            ),
+            width=6),
+        dbc.Col(
+            html.Div(
+                id="task_desc",
+                className="text-box card-component",
+            ), width=6,
+        ),
+    ],
+)
+
 layout = html.Div([
     html.Div(
         [
@@ -360,7 +360,7 @@ layout = html.Div([
                     "  ", ""
                 ),
             )],
-                className="text-box"),
+                className="text-box card-component"),
             dataset_section,
             task_to_task_transferability,
             task_similarity_section,
@@ -392,10 +392,12 @@ def update_figure(dataset):
     fig.update_xaxes(visible=False, showticklabels=False)
     fig.update_yaxes(visible=False, showticklabels=False,
                      scaleanchor="x", scaleratio=1)
+    # fig.update_layout(paper_bgcolor='#f8f9fa')
 
     fig.update_coloraxes(showscale=False)
 
     return fig
+
 
 @ app.callback(
     Output('clickable-heatmap', 'figure'),
@@ -415,6 +417,7 @@ def update_figure(experiment):
             'x': 0.6,
             'xanchor': 'center'})
     return fig
+
 
 @ app.callback(
     Output("source_target_task_desc", "children"),
@@ -442,6 +445,7 @@ def task_group_info_on_hover(hoverData):
         print(error)
         raise PreventUpdate
 
+
 @ app.callback(
     Output("task_desc", "children"),
     Input("network-graph", "hoverData")
@@ -459,5 +463,5 @@ def task_info_on_hover(hoverData):
         ])
 
     except Exception as error:
-        print(error)
+        # print(error)
         raise PreventUpdate
