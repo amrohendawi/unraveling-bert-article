@@ -425,6 +425,18 @@ embeddings_quality_section = html.Div([dcc.Markdown(
     ),
     className="text-box card-component"
 ),
+    dcc.Dropdown(
+    id="dropdown-graph-type",
+    searchable=False,
+    clearable=False,
+    # the keys from task_to_task_trans_learning_res
+    options=[
+        {"label": k, "value": k}
+        for k in network_graph_data.keys()],
+    placeholder="Select an embedding extraction method",
+    value=list(network_graph_data.keys())[0],
+    className="drop-down-component"
+),
     network_graph,
 ],
 )
@@ -514,8 +526,6 @@ def update_figure(dataset):
     fig.update_xaxes(visible=False, showticklabels=False)
     fig.update_yaxes(visible=False, showticklabels=False,
                      scaleanchor="x", scaleratio=1)
-    # fig.update_layout(paper_bgcolor='#f8f9fa')
-
     fig.update_coloraxes(showscale=False)
 
     return fig
@@ -553,7 +563,7 @@ def update_figure(task_class, task_category, dataset_size):
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    fig.update_layout(coloraxis_colorbar_y=-0.2)
+    fig.update_layout(coloraxis_colorbar_y=-0.001)
     # fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
