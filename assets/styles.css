@@ -28,19 +28,22 @@ body {
   padding: "2rem 1rem";
   background-color: "#dde1e7";
 }
+.drop-down-component {
+  padding: 0px 0px 10px 0px;
+}
 
 div {
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .card-component {
   box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.3);
 }
-
+/* 
 .card-component:hover {
   transform: translateY(-5px);
   box-shadow: -5px -10px 18px rgba(255,255,255,0.45), 5px 10px 18px rgba(94,104,121,0.15);
-}
+} */
 
 h5 {
   font-weight: 500 !important;
@@ -67,7 +70,8 @@ h5 {
   padding: 15px 35px;
 }
 .text-box {
-  margin: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 #text {
   padding: 50px;

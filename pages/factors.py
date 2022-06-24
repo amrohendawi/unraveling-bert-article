@@ -1,3 +1,4 @@
+from pydoc import classname
 from appServer import app
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
@@ -21,9 +22,6 @@ tsne_dict = {
     "tsne_offensive": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_offensive.csv")),
     "tsne_sentiment_multi": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_sentiment_multi.csv")),
 }
-
-# convert loaded dataframes to matrix shape
-
 
 def df_to_matrix(df):
     df_matrix = pd.DataFrame(columns=df['sourceTask'].unique())
@@ -273,6 +271,7 @@ task_to_task_transferability = dbc.Row(
                     ],
                     placeholder="Select an experiment",
                     value="full-full",
+                    className="drop-down-component"
                 ),
                 html.Div(
                     dcc.Loading(
@@ -281,7 +280,7 @@ task_to_task_transferability = dbc.Row(
                             hoverData={"points": [
                                 {"pointNumber": 0}]},
                             config={"displayModeBar": False},
-                            style={"padding": "0px 10px"},
+                            style={"padding": "5px 10px"},
                         )
                     ), className="card-component"
                 )
@@ -340,12 +339,13 @@ layout = html.Div([
                 ],
                 placeholder="Select a dataset",
                 value="tsne_sentiment_multi",
+                className="drop-down-component",
             ),
             html.Div(
                 [
                     dcc.Loading(
                         dcc.Graph(id='scatter-with-slider', style={'width': '100vh', 'height': '100vh'})),
-                ],
+                ], className="card-component",
             ),
             html.Div([dcc.Markdown(
                 """
@@ -414,7 +414,7 @@ def update_figure(experiment):
             'text': "Transfer learning results on <br> " + experiment,
             'font_size': 15,
             'y': 0.9,
-            'x': 0.6,
+            'x': 0.5,
             'xanchor': 'center'})
     return fig
 
