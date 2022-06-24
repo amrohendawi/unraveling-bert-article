@@ -202,8 +202,9 @@ factors_section = html.Div([dcc.Markdown(
     )
 )],
     className="text-box card-component")
-fine_tuning_section = html.Div([dcc.Markdown(
-    """
+fine_tuning_section = html.Div([
+    dcc.Markdown(
+        """
             # Fine-tuning
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
@@ -212,21 +213,75 @@ fine_tuning_section = html.Div([dcc.Markdown(
             For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
             However, it is not clear how much of an improvement fine-tuning provides in this case.
             """.replace(
-        "  ", ""
+            "  ", ""
+        ),
     ),
-)],
+],
     className="text-box card-component")
+
 layer_epoch_effect = html.Div([dcc.Markdown(
     """
-                # BERT contextual sequence embeddings visualization
-                Transformer models are preeminent due to their potential to incorporate context during learning, primarily attributable to self-attention coupled with high-dimensional vectors reflecting multiple degrees of information abstraction embedded within the model's layers. Moreover, high-dimensional vectors cannot be inspected or analyzed to validate the learning process and the type of captured information. However, utilizing nonlinear dimensionality reduction techniques, the dimensionality of the embeddings can be projected onto a lower-dimensional space, thereby reducing the embeddings to an interpretable human subspace (two or three-dimensional cartesian coordinate system). One prominent method is t-distributed stochastic neighbor embedding (t-SNE), which projects nearby points in a high-dimensional manifold closer together in a lower-dimensional space than non-neighboring points. t-SNE consists of two phases to achieve its objectives.
-                The first step includes assigning pairs of similar high-dimensional points with a higher probability than non-similar pairings. The second step is identical to the first only for lower-dimensional points, and then the Kullback–Leibler divergence between the two computed probability distributions is minimized to maintain the structure as much as possible with a low projection error rate. The resulting projections can vary depending on the starting parameters of t-SNE. By projecting the contextualized embeddings of each layer of a given transformer using t-SNE, the following component illustrates each layer's ability to uncover patterns and discrimination boundaries on a given dataset for a particular task along with the progression of training epochs. Additionally, the component is modular to cover all changeable components and inputs, such as the model, task, dataset, number of training epochs, various hyperparameters, and layers to inspect.
-                The following example applies the tool to the sequence classification domain by fine-tuning the pre-trained Bert-base-uncased model on binary and multi-class text classification tasks taken from the TweetEval dataset (hate, offensive, and sentiment). Moreover, around 2000 training samples are taken from each dataset and then preprocessed initially by encoding noise-generating factors such as URLs, hashtags, usernames, and emojis, removing extra spaces and lowering the text. The preprocessed text is then tokenized by Bert's fast tokenizer provided by the hugging face framework and loaded in a batch sampler to feed the model throughout the training process dynamically. The model is trained for four epochs using a batch size of 16 and a learning rate of 1e-5, and leveraging the maximum sequence length of 512, shorter or longer input samples are padded or truncated, respectively. Furthermore, openTSNE is deployed and used for the dimensionality reduction phase due to its highly efficient and parallel implementation. Additionally, t-SNE is initialized with a perplexity of 500, which preserve the distance between each point and its 500 closest neighbors. A higher number of maintained neighbors allows covering the global structure reasonably. t-SNE also provides the possibility of applying PCA to the input samples as an initial reduction technique followed by the actual procedure. At the completion of each training epoch, the initialized t-SNE function is then applied to the averaged embedding from across all non-masked tokens in the sequence of each training sample along each model layer resulting in a (5, 12, 2000, 2) matrix containing all 2d projections for each layer across each training epoch. Each layer is then depicted in a different figure, and each data sample is mapped to a specific color corresponding to the respective class.
+        # Layer and epoch effect on transferability
+        As observed in different studies, the middle layers of BERT models tend to contain the most syntactic information.
+        This is likely due to the fact that these layers are the most transferable across tasks.
+        Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the
+        middle layers. Additionally, the number of epochs also seems to have an effect on the performance of BERT models.
+        
+        In general, the more epochs, the better the performance. However, this is not always the case, and it is important
+        to experiment with different numbers of epochs to find the best results.
+
+        Jawahar et al. (2019) found that the lower layers of BERT are more sensitive to lexical information, while the higher layers are more sensitive to syntactic information.
+        Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).
+        Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
             """.replace(
         "  ", ""
     ),
-)],
+),
+    dcc.Dropdown(
+    id="dropdown-dataset",
+    searchable=False,
+    clearable=False,
+    options=[
+        {
+            "label": "BERT base cased hate",
+            "value": "tsne_hate",
+        },
+        {
+            "label": "BERT base cased offensive",
+            "value": "tsne_offensive",
+        },
+        {
+            "label": "BERT base cased sentiment",
+            "value": "tsne_sentiment_multi",
+        },
+    ],
+    placeholder="Select a dataset",
+    value="tsne_sentiment_multi",
+    className="drop-down-component",
+),
+    html.Div(
+    [
+        dcc.Loading(
+            dcc.Graph(id='scatter-with-slider', style={'width': '100vh', 'height': '100vh'})),
+    ], className="card-component",
+),
+    html.Div([dcc.Markdown(
+        """
+                The results of the following visualization hold two main observations:
+
+                1. The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers.
+                2. The pattern and clustering of the different classes are primarily evident in higher layers of the model.
+
+                The previous observations show that the pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively. Furthermore, the observation shows which layers learn and hold the most discriminating features.
+
+            """.replace(
+            "  ", ""
+        ),
+    )],
+    className="text-box card-component"),
+],
     className="text-box card-component")
+
 dataset_section = html.Div([dcc.Markdown(
     """
             # Dataset
@@ -240,8 +295,75 @@ dataset_section = html.Div([dcc.Markdown(
     ),
 )],
     className="text-box card-component")
-task_similarity_section = html.Div([dcc.Markdown(
-    """
+
+task_to_task_trans_learning = dbc.Row(
+    [
+        dbc.Col(
+            [
+                dcc.Dropdown(
+                    id="dropdown-class",
+                    searchable=False,
+                    clearable=False,
+                    # the keys from task_to_task_trans_learning_res
+                    options=[
+                        {"label": k, "value": k}
+                        for k in task_to_task_transfer_learning_res.keys()],
+                    placeholder="Select a class",
+                    value=list(task_to_task_transfer_learning_res.keys())[0],
+                    className="drop-down-component"
+                ),
+                dcc.Dropdown(
+                    id="dropdown-task-category",
+                    searchable=False,
+                    clearable=False,
+                    # the keys from task_to_task_trans_learning_res
+                    options=[
+                        {"label": k, "value": k}
+                        for k in task_to_task_transfer_learning_res['inclass'].keys()],
+                    placeholder="Select a task category",
+                    value=list(
+                        task_to_task_transfer_learning_res['inclass'].keys())[0],
+                    className="drop-down-component"
+                ),
+                dcc.Dropdown(
+                    id="dropdown-dataset-size",
+                    searchable=False,
+                    clearable=False,
+                    # the keys from task_to_task_trans_learning_res
+                    options=[
+                        {"label": k, "value": k}
+                        for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
+                    placeholder="Select a dataset size",
+                    value=list(
+                        task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
+                    className="drop-down-component"
+                ),
+                html.Div(
+                    dcc.Loading(
+                        dcc.Graph(
+                            id="clickable-heatmap2",
+                            hoverData={"points": [
+                                {"pointNumber": 0}]},
+                            config={"displayModeBar": False},
+                            style={"padding": "5px 10px"},
+                        )
+                    ), className="card-component"
+                )
+            ], width=6,
+        ),
+        # A text box to show the current task description
+        dbc.Col(
+            html.Div(
+                id="source_target_task_desc2",
+                className="text-box card-component",
+            ), width=6
+        ),
+    ]
+)
+
+task_similarity_section = html.Div([
+    dcc.Markdown(
+        """
             # Task Similarity
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
@@ -249,10 +371,27 @@ task_similarity_section = html.Div([dcc.Markdown(
             For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
             However, it is not clear how much of an improvement fine-tuning provides in this case.
             """.replace(
-        "  ", ""
+            "  ", ""
+        ), className="text-box card-component"
     ),
-)],
-    className="text-box card-component")
+    task_to_task_trans_learning,
+    dcc.Markdown(
+        """
+            It has been shown that fine-tuning a model on a specific task can improve its transferability to other tasks.
+            This is because the model has been specifically optimized for the task at hand and is better able to generalize to other tasks.
+            There is also some evidence that fine-tuning can improve a model's ability to transfer to other domains. For example, a model
+            that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
+            
+            In the limited setting, the mean and standard deviation across 20 random restarts are reported.
+            In the out-of-class transfer results, the orange-colored row Baseline shows the results of fine-tuning BERT on target tasks without any intermediate fine-tuning.
+            Positive transfers are shown in blue and the best results are highlighted in bold (blue). These results suggest that fine-tuning can improve a model's ability to transfer to other tasks and domains.
+            """.replace(
+            "  ", ""
+        ), className="text-box card-component"
+    ),
+],
+)
+
 embeddings_quality_section = html.Div([dcc.Markdown(
     """
             # Embeddings Quality
@@ -315,68 +454,6 @@ gen_avg_trans_learning = dbc.Row(
         ),
     ]
 )
-task_to_task_trans_learning = dbc.Row(
-    [
-        dbc.Col(
-            [
-                dcc.Dropdown(
-                    id="dropdown-class",
-                    searchable=False,
-                    clearable=False,
-                    # the keys from task_to_task_trans_learning_res
-                    options=[
-                        {"label": k, "value": k}
-                        for k in task_to_task_transfer_learning_res.keys()],
-                    placeholder="Select a class",
-                    value=list(task_to_task_transfer_learning_res.keys())[0],
-                    className="drop-down-component"
-                ),
-                dcc.Dropdown(
-                    id="dropdown-task-category",
-                    searchable=False,
-                    clearable=False,
-                    # the keys from task_to_task_trans_learning_res
-                    options=[
-                        {"label": k, "value": k}
-                        for k in task_to_task_transfer_learning_res['inclass'].keys()],
-                    placeholder="Select a task category",
-                    value=list(task_to_task_transfer_learning_res['inclass'].keys())[0],
-                    className="drop-down-component"
-                ),
-                dcc.Dropdown(
-                    id="dropdown-dataset-size",
-                    searchable=False,
-                    clearable=False,
-                    # the keys from task_to_task_trans_learning_res
-                    options=[
-                        {"label": k, "value": k}
-                        for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
-                    placeholder="Select a dataset size",
-                    value=list(task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
-                    className="drop-down-component"
-                ),
-                html.Div(
-                    dcc.Loading(
-                        dcc.Graph(
-                            id="clickable-heatmap2",
-                            hoverData={"points": [
-                                {"pointNumber": 0}]},
-                            config={"displayModeBar": False},
-                            style={"padding": "5px 10px"},
-                        )
-                    ), className="card-component"
-                )
-            ], width=6,
-        ),
-        # A text box to show the current task description
-        dbc.Col(
-            html.Div(
-                id="source_target_task_desc2",
-                className="text-box card-component",
-            ), width=6
-        ),
-    ]
-)
 
 network_graph = dbc.Row(
     [
@@ -401,52 +478,9 @@ layout = html.Div([
             factors_section,
             fine_tuning_section,
             layer_epoch_effect,
-            dcc.Dropdown(
-                id="dropdown-dataset",
-                searchable=False,
-                clearable=False,
-                options=[
-                    {
-                        "label": "BERT base cased hate",
-                        "value": "tsne_hate",
-                    },
-                    {
-                        "label": "BERT base cased offensive",
-                        "value": "tsne_offensive",
-                    },
-                    {
-                        "label": "BERT base cased sentiment",
-                        "value": "tsne_sentiment_multi",
-                    },
-                ],
-                placeholder="Select a dataset",
-                value="tsne_sentiment_multi",
-                className="drop-down-component",
-            ),
-            html.Div(
-                [
-                    dcc.Loading(
-                        dcc.Graph(id='scatter-with-slider', style={'width': '100vh', 'height': '100vh'})),
-                ], className="card-component",
-            ),
-            html.Div([dcc.Markdown(
-                """
-                The results of the following visualization hold two main observations:
-
-                1. The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers.
-                2. The pattern and clustering of the different classes are primarily evident in higher layers of the model.
-
-                The previous observations show that the pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively. Furthermore, the observation shows which layers learn and hold the most discriminating features.
-
-            """.replace(
-                    "  ", ""
-                ),
-            )],
-                className="text-box card-component"),
             dataset_section,
             gen_avg_trans_learning,
             task_similarity_section,
-            task_to_task_trans_learning,
             network_graph,
             # html.Div([
             #     cyto.Cytoscape(
@@ -501,6 +535,7 @@ def update_figure(experiment):
             'xanchor': 'center'})
     return fig
 
+
 @ app.callback(
     Output('clickable-heatmap2', 'figure'),
     [
@@ -513,8 +548,8 @@ def update_figure(task_class, task_category, dataset_size):
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    fig.update_layout(coloraxis_colorbar_y=-0.001)
-    fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
+    fig.update_layout(coloraxis_colorbar_y=-0.2)
+    # fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
             'text': "Task to Task transfer learning results",
@@ -571,6 +606,7 @@ def task_info_on_hover(hoverData):
     except Exception as error:
         # print(error)
         raise PreventUpdate
+
 
 @ app.callback(
     Output("source_target_task_desc2", "children"),

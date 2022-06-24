@@ -1,0 +1,508 @@
+{
+  "nodes": [
+    {
+      "group": "QA",
+      "index": 0,
+      "name": "CQ"
+    },
+    {
+      "group": "QA",
+      "index": 1,
+      "name": "SQuAD-2"
+    },
+    {
+      "group": "QA",
+      "index": 2,
+      "name": "SQuAD-1"
+    },
+    {
+      "group": "QA",
+      "index": 3,
+      "name": "ComQA"
+    },
+    {
+      "group": "QA",
+      "index": 4,
+      "name": "BoolQ"
+    },
+    {
+      "group": "QA",
+      "index": 5,
+      "name": "WikiHop"
+    },
+    {
+      "group": "QA",
+      "index": 6,
+      "name": "HotpotQA"
+    },
+    {
+      "group": "QA",
+      "index": 7,
+      "name": "NewsQA"
+    },
+    {
+      "group": "QA",
+      "index": 8,
+      "name": "DROP"
+    },
+    {
+      "group": "QA",
+      "index": 9,
+      "name": "DuoRC-p"
+    },
+    {
+      "group": "QA",
+      "index": 10,
+      "name": "DuoRC-s"
+    },
+    {
+      "group": "CR",
+      "index": 11,
+      "name": "SciTail"
+    },
+    {
+      "group": "CR",
+      "index": 12,
+      "name": "QQP"
+    },
+    {
+      "group": "CR",
+      "index": 13,
+      "name": "SNLI"
+    },
+    {
+      "group": "CR",
+      "index": 14,
+      "name": "WNLI"
+    },
+    {
+      "group": "CR",
+      "index": 15,
+      "name": "QNLI"
+    },
+    {
+      "group": "CR",
+      "index": 16,
+      "name": "MNLI"
+    },
+    {
+      "group": "CR",
+      "index": 17,
+      "name": "STS-B"
+    },
+    {
+      "group": "CR",
+      "index": 18,
+      "name": "MRPC"
+    },
+    {
+      "group": "CR",
+      "index": 19,
+      "name": "RTE"
+    },
+    {
+      "group": "CR",
+      "index": 20,
+      "name": "CoLA"
+    },
+    {
+      "group": "CR",
+      "index": 21,
+      "name": "SST-2"
+    },
+    {
+      "group": "SL",
+      "index": 22,
+      "name": "GED"
+    },
+    {
+      "group": "SL",
+      "index": 23,
+      "name": "POS-EWT"
+    },
+    {
+      "group": "SL",
+      "index": 24,
+      "name": "NER"
+    },
+    {
+      "group": "SL",
+      "index": 25,
+      "name": "CCG"
+    },
+    {
+      "group": "SL",
+      "index": 26,
+      "name": "POS-PTB"
+    },
+    {
+      "group": "SL",
+      "index": 27,
+      "name": "ST"
+    },
+    {
+      "group": "SL",
+      "index": 28,
+      "name": "GParent"
+    },
+    {
+      "group": "SL",
+      "index": 29,
+      "name": "GGParent"
+    },
+    {
+      "group": "SL",
+      "index": 30,
+      "name": "Conj"
+    },
+    {
+      "group": "SL",
+      "index": 31,
+      "name": "Parent"
+    },
+    {
+      "group": "SL",
+      "index": 32,
+      "name": "Chunk"
+    }
+  ],
+  "links": [
+    {
+        "source": 0,
+        "target": 3,
+        "value": 0.80
+      },{
+        "source": 0,
+        "target": 1,
+        "value": 0.18 
+      },{
+        "source": 3,
+        "target": 6,
+        "value": 0.80
+      },{
+        "source": 6,
+        "target": 8,
+        "value": 0.80
+      },{
+        "source": 9,
+        "target": 10,
+        "value": 1.40
+      },{
+        "source": 7,
+        "target": 10,
+        "value": 0.20
+      },{
+        "source": 6,
+        "target": 10,
+        "value": 0.15
+      },{
+        "source": 8,
+        "target": 7,
+        "value": 0.20
+      },{
+        "source": 9,
+        "target": 9,
+        "value": 0.18
+      },{
+        "source": 7,
+        "target": 9,
+        "value": 0.25
+      },{
+        "source": 1,
+        "target": 15,
+        "value":0.30
+      },{
+        "source": 2,
+        "target": 15,
+        "value":0.90
+      },{
+        "source": 4,
+        "target": 15,
+        "value":0.15
+      },{
+        "source": 1,
+        "target": 4,
+        "value":1.06
+      },{
+        "source": 1,
+        "target": 7,
+        "value": 0.25
+      },{
+        "source": 1,
+        "target": 2,
+        "value":1.40
+      },{
+        "source": 1,
+        "target": 5,
+        "value":0.25
+      },{
+        "source": 3,
+        "target": 4,
+        "value": 0.15
+      },{
+        "source": 1,
+        "target": 6,
+        "value":0.15
+      },{
+        "source": 3,
+        "target": 7,
+        "value":0.25
+      },{
+        "source": 2,
+        "target": 4,
+        "value":0.35
+      },{
+        "source": 2,
+        "target": 7,
+        "value":0.80
+      },{
+        "source": 2,
+        "target": 5,
+        "value":0.20
+      },{
+        "source": 2,
+        "target": 6,
+        "value":0.16
+      },{
+        "source": 4,
+        "target": 5,
+        "value":0.18
+      },{
+        "source": 4,
+        "target": 6,
+        "value":0.30
+      },{
+        "source": 4,
+        "target": 7,
+        "value":0.18
+      },{
+        "source": 6,
+        "target": 7,
+        "value":0.15
+      },{
+        "source": 7,
+        "target": 5,
+        "value":0.15
+      },{
+        "source": 5,
+        "target": 6,
+        "value":1.40
+      },{
+        "source": 11,
+        "target": 15,
+        "value": 0.80
+      },{
+        "source": 11,
+        "target": 16,
+        "value": 0.20
+      },{
+        "source": 12,
+        "target": 15,
+        "value":0.25
+      },{
+        "source": 12,
+        "target": 16,
+        "value":0.80
+      },{
+        "source": 12,
+        "target": 17,
+        "value":0.18
+      },{
+        "source": 13,
+        "target": 14,
+        "value":0.20
+      },{
+        "source": 13,
+        "target": 17,
+        "value":1.06
+      },{
+        "source": 14,
+        "target": 16,
+        "value":1.40
+      },{
+        "source": 14,
+        "target": 17,
+        "value":0.25
+      },{
+        "source": 14,
+        "target": 18,
+        "value":0.18
+      },{
+        "source": 15,
+        "target": 19,
+        "value":0.30
+      },{
+        "source": 15,
+        "target": 18,
+        "value":0.15
+      },{
+        "source": 15,
+        "target": 16,
+        "value":0.25
+      },{
+        "source": 16,
+        "target": 17,
+        "value":0.18
+      },{
+        "source": 16,
+        "target": 22,
+        "value":0.15
+      },{
+        "source": 16,
+        "target": 19,
+        "value":0.25
+      },{
+        "source": 16,
+        "target": 18,
+        "value":0.25
+      },{
+        "source": 16,
+        "target": 23,
+        "value":0.18
+      },{
+        "source": 19,
+        "target": 27,
+        "value":0.90
+      },{
+        "source": 19,
+        "target": 17,
+        "value":0.15
+      },{
+        "source": 19,
+        "target": 18,
+        "value":1.40
+      },{
+        "source": 18,
+        "target": 17,
+        "value":0.90
+      },{
+        "source": 22,
+        "target": 20,
+        "value":0.35
+      },{
+        "source": 22,
+        "target": 21,
+        "value":0.20
+      },{
+        "source": 22,
+        "target": 23,
+        "value":1.40
+      },{
+        "source": 20,
+        "target": 23,
+        "value":1.06
+      },{
+        "source": 20,
+        "target": 21,
+        "value":0.30
+      },{
+        "source": 21,
+        "target": 23,
+        "value":0.80
+      },{
+        "source": 23,
+        "target": 24,
+        "value":0.80
+      },{
+        "source": 24,
+        "target": 25,
+        "value":0.20
+      },{
+        "source": 25,
+        "target": 26,
+        "value":0.90
+      },{
+        "source": 25,
+        "target": 27,
+        "value":0.20
+      },{
+        "source": 26,
+        "target": 27,
+        "value":0.15
+      },{
+        "source": 26,
+        "target": 30,
+        "value":0.15
+      },{
+        "source": 30,
+        "target": 31,
+        "value":0.80
+      },{
+        "source": 26,
+        "target": 29,
+        "value":0.90
+      },{
+        "source": 31,
+        "target": 32,
+        "value":0.80
+      },{
+        "source": 31,
+        "target": 24,
+        "value":0.15
+      },{
+        "source": 26,
+        "target": 32,
+        "value":0.15
+      },{
+        "source": 26,
+        "target": 28,
+        "value":0.90
+      },{
+        "source": 25,
+        "target": 30,
+        "value":0.15
+      },{
+        "source": 25,
+        "target": 29,
+        "value":0.25
+      },{
+        "source": 25,
+        "target": 28,
+        "value":0.25
+      },{
+        "source": 28,
+        "target": 30,
+        "value":0.80
+      },{
+        "source": 29,
+        "target": 30,
+        "value":0.80
+      },{
+        "source": 29,
+        "target": 31,
+        "value":1.40
+      },{
+        "source": 29,
+        "target": 32,
+        "value":0.80
+      },{
+        "source": 26,
+        "target": 31,
+        "value":0.90
+      },{
+        "source": 29,
+        "target": 32,
+        "value":0.80
+      },{
+        "source": 25,
+        "target": 31,
+        "value":0.25
+      },{
+        "source": 29,
+        "target": 31,
+        "value":1.40
+      },{
+        "source": 24,
+        "target": 29,
+        "value":0.15
+      },{
+        "source": 24,
+        "target": 29,
+        "value":0.15
+      },{
+        "source": 28,
+        "target": 29,
+        "value":1.40
+      }
+  ]
+}
