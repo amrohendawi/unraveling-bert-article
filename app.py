@@ -33,7 +33,7 @@ HEADLINES = {
 
 sidebar = html.Div(
         [
-            html.H2("Content", className="display-4", style= {"font-style": "bold", "padding": "0rem 1rem 0rem 1rem"}),
+            html.H3("Content", className="display-4", style= {"font-style": "bold", "padding": "0rem 1rem 0rem 1rem"}),
             html.Hr(style={"margin": "0rem 1rem 0rem 1rem"}),
             html.Div(
                 [
@@ -45,7 +45,7 @@ sidebar = html.Div(
                                 value=0,
                                 step=1,
                                 marks={i: {'label': HEADLINES[i], 'style':{
-                                    'transform': 'scaleY(-1)', 'fontSize': '14px' if i % 10 == 0 else '12',
+                                    'transform': 'scaleY(-1)', 'fontSize': '12px' if i % 10 == 0 else '10',
                                     'font-weight': 'bold' if i % 10 == 0 else 'normal',
                                     'width': 'max-content'}} for i in HEADLINES.keys()},
                                 id="slider-vertical",

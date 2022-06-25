@@ -20,8 +20,18 @@ DATA_PATH = PATH.joinpath("data").resolve()
 tsne_dict = {
     "tsne_hate": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_hate.csv")),
     "tsne_offensive": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_offensive.csv")),
-    "tsne_sentiment_multi": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_sentiment_multi.csv")),
+    "tsne_sentiment": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_sentiment.csv")),
 }
+
+tsne_labels_dict = {
+    "tsne_hate": ["hate", "no hate"],
+    "tsne_offensive": ["offensive", "no offensive"],
+    "tsne_sentiment": ["positive", "neutral", "negative"],
+}
+
+# for each dataframe in tsne_dict, update the label column with the corresponding labels from tsne_labels_dict
+for key, value in tsne_dict.items():
+    value['label'] = value['label'].apply(lambda x: tsne_labels_dict[key][x])
 
 
 def df_to_matrix(df):
@@ -170,6 +180,7 @@ def get_network_graph():
     data = [trace1, trace2]
     return go.Figure(data=data, layout=layout)
 
+
 def process_graph_data(data):
     N = len(data['nodes'])
     L = len(data['links'])
@@ -231,13 +242,13 @@ layer_epoch_effect = html.Div([dcc.Markdown(
         This is likely due to the fact that these layers are the most transferable across tasks.
         Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the
         middle layers. Additionally, the number of epochs also seems to have an effect on the performance of BERT models.
-        
-        In general, the more epochs, the better the performance. However, this is not always the case, and it is important
-        to experiment with different numbers of epochs to find the best results.
 
         Jawahar et al. (2019) found that the lower layers of BERT are more sensitive to lexical information, while the higher layers are more sensitive to syntactic information.
         Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).
         Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
+        
+        In general, the more epochs, the better the performance. However, this is not always the case, and it is important
+        to experiment with different numbers of epochs to find the best results.
             """.replace(
         "  ", ""
     ), className="text-box card-component"
@@ -257,17 +268,17 @@ layer_epoch_effect = html.Div([dcc.Markdown(
         },
         {
             "label": "BERT base cased sentiment",
-            "value": "tsne_sentiment_multi",
+            "value": "tsne_sentiment",
         },
     ],
     placeholder="Select a dataset",
-    value="tsne_sentiment_multi",
+    value="tsne_sentiment",
     className="drop-down-component",
 ),
     html.Div(
     [
         dcc.Loading(
-            dcc.Graph(id='scatter-with-slider', style={'width': '100vh', 'height': '100vh'})),
+            dcc.Graph(id='scatter-with-slider')),
     ], className="card-component",
 ),
     html.Div([dcc.Markdown(
@@ -301,71 +312,86 @@ dataset_section = html.Div([dcc.Markdown(
 )],
     className="text-box card-component")
 
-task_to_task_trans_learning = dbc.Row(
+task_to_task_trans_learning = html.Div(
     [
+    dbc.Row(
+        [
         dbc.Col(
-            [
-                dcc.Dropdown(
-                    id="dropdown-class",
-                    searchable=False,
-                    clearable=False,
-                    # the keys from task_to_task_trans_learning_res
-                    options=[
-                        {"label": k, "value": k}
-                        for k in task_to_task_transfer_learning_res.keys()],
-                    placeholder="Select a class",
-                    value=list(task_to_task_transfer_learning_res.keys())[0],
-                    className="drop-down-component"
-                ),
-                dcc.Dropdown(
-                    id="dropdown-task-category",
-                    searchable=False,
-                    clearable=False,
-                    # the keys from task_to_task_trans_learning_res
-                    options=[
-                        {"label": k, "value": k}
-                        for k in task_to_task_transfer_learning_res['inclass'].keys()],
-                    placeholder="Select a task category",
-                    value=list(
-                        task_to_task_transfer_learning_res['inclass'].keys())[0],
-                    className="drop-down-component"
-                ),
-                dcc.Dropdown(
-                    id="dropdown-dataset-size",
-                    searchable=False,
-                    clearable=False,
-                    # the keys from task_to_task_trans_learning_res
-                    options=[
-                        {"label": k, "value": k}
-                        for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
-                    placeholder="Select a dataset size",
-                    value=list(
-                        task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
-                    className="drop-down-component"
-                ),
-                html.Div(
-                    dcc.Loading(
-                        dcc.Graph(
-                            id="clickable-heatmap2",
-                            hoverData={"points": [
-                                {"pointNumber": 0}]},
-                            config={"displayModeBar": False},
-                            style={"padding": "5px 10px"},
-                        )
-                    ), className="card-component"
-                )
-            ], width=6,
+            dcc.Dropdown(
+                id="dropdown-class",
+                searchable=False,
+                clearable=False,
+                # the keys from task_to_task_trans_learning_res
+                options=[
+                    {"label": k, "value": k}
+                    for k in task_to_task_transfer_learning_res.keys()],
+                placeholder="Select a class",
+                value=list(
+                    task_to_task_transfer_learning_res.keys())[0],
+                className="drop-down-component"
+            ),
         ),
-        # A text box to show the current task description
         dbc.Col(
-            html.Div(
-                id="source_target_task_desc2",
-                className="text-box card-component",
-            ), width=6
-        ),
-    ]
-)
+            dcc.Dropdown(
+                id="dropdown-task-category",
+                searchable=False,
+                clearable=False,
+                # the keys from task_to_task_trans_learning_res
+                options=[
+                    {"label": k, "value": k}
+                    for k in task_to_task_transfer_learning_res['inclass'].keys()],
+                placeholder="Select a task category",
+                value=list(
+                            task_to_task_transfer_learning_res['inclass'].keys())[0],
+                className="drop-down-component"
+            ),
 
+        ),
+        dbc.Col(
+            dcc.Dropdown(
+                id="dropdown-dataset-size",
+                searchable=False,
+                clearable=False,
+                # the keys from task_to_task_trans_learning_res
+                options=[
+                    {"label": k, "value": k}
+                    for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
+                placeholder="Select a dataset size",
+                value=list(
+                            task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
+                className="drop-down-component"
+            ),
+        ),
+        ]
+    ),
+    dbc.Row(
+        [
+            dbc.Col(
+                [
+                    html.Div(
+                        dcc.Loading(
+                            dcc.Graph(
+                                id="clickable-heatmap2",
+                                hoverData={"points": [
+                                    {"pointNumber": 0}]},
+                                config={"displayModeBar": False},
+                                style={"padding": "5px 10px"},
+                            )
+                        ), className="card-component"
+                    )
+                ], width=6,
+            ),
+            # A text box to show the current task description
+            dbc.Col(
+                html.Div(
+                    id="source_target_task_desc2",
+                    className="text-box card-component",
+                ), width=6
+            ),
+        ]
+    )
+]
+)
 task_similarity_section = html.Div([
     dcc.Markdown(
         """
@@ -521,13 +547,21 @@ layout = html.Div([
 def update_figure(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
                      animation_frame="epoch", animation_group="x",
-                     log_x=True, size_max=100, facet_col='layer', facet_col_wrap=4,
+                     facet_col='layer', facet_col_wrap=4,
+                     facet_col_spacing=0.01,
+                     width=800, height=800,
+                     #  log_x=True, log_y=True,
                      )
 
     fig.update_xaxes(visible=False, showticklabels=False)
     fig.update_yaxes(visible=False, showticklabels=False,
                      scaleanchor="x", scaleratio=1)
-    fig.update_coloraxes(showscale=False)
+    # fig.update_coloraxes(showscale=False)
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+        'autosize': True,
+    })
 
     return fig
 
@@ -549,7 +583,12 @@ def update_figure(experiment):
             'font_size': 15,
             'y': 0.9,
             'x': 0.5,
-            'xanchor': 'center'})
+            'xanchor': 'center',
+        })
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    })
     return fig
 
 
@@ -574,6 +613,10 @@ def update_figure(task_class, task_category, dataset_size):
             'y': 0.9,
             'x': 0.5,
             'xanchor': 'center'})
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    })
     return fig
 
 

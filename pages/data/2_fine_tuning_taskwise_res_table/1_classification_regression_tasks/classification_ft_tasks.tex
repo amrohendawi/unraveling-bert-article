@@ -1,0 +1,24 @@
+\begin{table*}[ht]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+ \begin{tabular}{ l  l l l | l l l | l l l}
+\toprule
+\textbf{Task} & FullFrozenT2 & FullFrozenT4 & FullFrozenT6 & FullUnfrozenT2 & FullUnfrozenT4 & FullUnfrozenT6 & LimitedUnfrozenT2 & LimitedUnfrozenT4 & LimitedUnfrozenT6 \\
+\midrule
+CoLA & 0.0 & 0.0 & 0.0 & 48.1 & 51.3 & 51.0 & 1.0 $\pm$ 2.3 & 4.0 $\pm$ 7.4 & 4.7 $\pm$ 8.2\\
+SST-2 & 51.0 & 51.5 & 51.9 & 91.4 & 92.1 & 91.9 & 61.5 $\pm$ 7.9 & 74.3 $\pm$ 8.2 & 77.5 $\pm$ 6.3\\
+MRPC & 81.2 & 81.2 & 81.2 & 81.2 & 82.4 & 84.0 & 70.4 $\pm$ 26.2 & 81.8 $\pm$ 0.6 & 81.9 $\pm$ 0.7\\
+STS-B & 68.0 & 68.3 & 68.4 & 76.7 & 85.4 & 85.9 & 3.6 $\pm$ 9.5 & 22.8 $\pm$ 10.5 & 29.9 $\pm$ 10.5\\
+QQP & 0.2 & 13.9 & 16.9 & 86.0 & 87.0 & 87.3 & 9.5 $\pm$ 15.5 & 12.1 $\pm$ 15.9 & 25.7 $\pm$ 25.1\\
+MNLI & 40.9 & 40.2 & 40.8 & 83.1 & 84.3 & 84.2 & 33.7 $\pm$ 3.1 & 37.5 $\pm$ 3.4 & 38.7 $\pm$ 3.2\\
+QNLI & 65.9 & 66.0 & 66.0 & 90.3 & 91.3 & 91.4 & 58.0 $\pm$ 9.4 & 61.0 $\pm$ 9.9 & 62.4 $\pm$ 9.5\\
+RTE & 53.8 & 53.1 & 51.3 & 56.0 & 58.1 & 60.6 & 50.7 $\pm$ 3.8 & 54.6 $\pm$ 3.4 & 54.7 $\pm$ 3.2\\
+WNLI & 56.3 & 56.3 & 56.3 & 52.1 & 46.5 & 45.1 & 47.9 $\pm$ 5.6 & 45.6 $\pm$ 6.0 & 44.4 $\pm$ 6.3\\
+SNLI & 42.2 & 43.4 & 44.9 & 90.3 & 90.8 & 90.7 & 40.2 $\pm$ 4.5 & 45.1 $\pm$ 4.9 & 46.7 $\pm$ 4.5\\
+SciTail & 49.6 & 49.6 & 49.6 & 92.3 & 93.7 & 93.9 & 52.5 $\pm$ 6.3 & 60.1 $\pm$ 12.5 & 64.1 $\pm$ 13.6\\
+\bottomrule
+ \end{tabular}
+ \end{adjustbox}
+  \caption{Fine-tuning results for classification/regression tasks.}
+  \label{tbla1}
+\end{table*}

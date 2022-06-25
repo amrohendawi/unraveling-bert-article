@@ -1,0 +1,25 @@
+
+\begin{table*}[t!]
+\centering
+\begin{adjustbox}{max width=\textwidth}
+ \begin{tabular}{ l  l l l | l l l | l l l}
+\toprule
+\textbf{Task} & FullFrozenT2 & FullFrozenT4 & FullFrozenT6 & FullUnfrozenT2 & FullUnfrozenT4 & FullUnfrozenT6 & LimitedUnfrozenT2 & LimitedUnfrozenT4 & LimitedUnfrozenT6 \\
+\midrule
+SQuAD-1 & 10.6 & 12.1 & 13.0 & 86.8 & 87.7 & 87.9 & 12.5 $\pm$ 1.0 & 20.8 $\pm$ 4.6 & 26.8 $\pm$ 6.0\\
+SQuAD-2 & 49.8 & 49.8 & 49.8 & 68.4 & 70.4 & 71.9 & 50.0 $\pm$ 0.1 & 50.0 $\pm$ 0.1 & 50.1 $\pm$ 0.1\\
+NewsQA & 9.4 & 10.4 & 10.6 & 64.7 & 64.9 & 64.1 & 15.6 $\pm$ 3.4 & 26.5 $\pm$ 4.7 & 28.8 $\pm$ 4.9\\
+HotpotQA & 5.9 & 6.8 & 7.0 & 66.1 & 68.2 & 67.9 & 12.8 $\pm$ 2.4 & 21.6 $\pm$ 3.9 & 23.3 $\pm$ 4.0\\
+BoolQ & 62.1 & 62.2 & 62.2 & 62.2 & 66.4 & 65.7 & 62.2 $\pm$ 0.0 & 62.2 $\pm$ 0.1 & 62.2 $\pm$ 0.0\\
+DROP & 42.9 & 51.7 & 54.1 & 22.4 & 21.5 & 22.4 & 6.8 $\pm$ 4.4 & 13.5 $\pm$ 10.0 & 19.4 $\pm$ 11.8\\
+WikiHop & 10.1 & 11.4 & 11.6 & 60.0 & 62.3 & 62.8 & 18.3 $\pm$ 4.0 & 24.8 $\pm$ 4.9 & 25.5 $\pm$ 4.7\\
+DuoRC-p & 42.1 & 42.1 & 42.1 & 50.3 & 50.3 & 50.6 & 42.1 $\pm$ 0.0 & 42.2 $\pm$ 0.2 & 41.6 $\pm$ 1.1\\
+DuoRC-s & 4.6 & 5.6 & 5.8 & 66.2 & 64.4 & 63.3 & 22.2 $\pm$ 11.0 & 37.5 $\pm$ 3.5 & 38.9 $\pm$ 3.3\\
+CQ & 15.4 & 15.4 & 15.9 & 26.3 & 25.0 & 30.5 & 28.0 $\pm$ 3.3 & 29.6 $\pm$ 2.1 & 30.7 $\pm$ 2.5\\
+ComQA & 20.5 & 20.5 & 20.5 & 53.3 & 61.6 & 63.2 & 33.0 $\pm$ 2.4 & 36.0 $\pm$ 1.8 & 39.1 $\pm$ 1.2\\
+\bottomrule
+ \end{tabular}
+ \end{adjustbox}
+  \caption{Fine-tuning results for question answering tasks.}
+  \label{tbla2}
+\end{table*}
