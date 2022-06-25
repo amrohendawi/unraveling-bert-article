@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 # Import required libraries
-import pathlib
-from pydoc import classname
 from dash.dependencies import Input, Output
 from dash import dcc, html, Input, Output
-# import dash_cytoscape as cyto
 import dash_bootstrap_components as dbc
+# import dash_cytoscape as cyto
 from appServer import app
 
-from pages import abstract, introduction, factors, directions, conclusion, references
+from pages import tldr, introduction, factors, directions, conclusion, references
 
 server = app.server
 
@@ -20,7 +18,7 @@ CONTENT_STYLE = {
 
 # dictionary for the headlines from TEXTS
 HEADLINES = {
-    0: "Abstract",
+    0: "TL;DR",
     10: "Introduction",
     20: "Factors",
     24: "Fine-tuning",
@@ -32,20 +30,11 @@ HEADLINES = {
     50: "Conclusion",
     60: "References",
 }
-# the style arguments for the sidebar. We use position:fixed and a fixed width
-SIDEBAR_STYLE = {
-    "position": "fixed",
-    "top": 0,
-    "left": 0,
-    "bottom": 0,
-    "width": "18rem",
-    "padding": "2rem 1rem",
-    "background-color": "#f8f9fa",
-}
-navBar = html.Div(
+
+sidebar = html.Div(
         [
-            html.H2("Content", className="display-4", style= {"font-style": "bold"}),
-            html.Hr(),
+            html.H2("Content", className="display-4", style= {"font-style": "bold", "padding": "0rem 1rem 0rem 1rem"}),
+            html.Hr(style={"margin": "0rem 1rem 0rem 1rem"}),
             html.Div(
                 [
                     html.Div(
@@ -56,7 +45,7 @@ navBar = html.Div(
                                 value=0,
                                 step=1,
                                 marks={i: {'label': HEADLINES[i], 'style':{
-                                    'transform': 'scaleY(-1)', 'fontSize': '16px' if i % 10 == 0 else '14',
+                                    'transform': 'scaleY(-1)', 'fontSize': '14px' if i % 10 == 0 else '12',
                                     'font-weight': 'bold' if i % 10 == 0 else 'normal',
                                     'width': 'max-content'}} for i in HEADLINES.keys()},
                                 id="slider-vertical",
@@ -70,7 +59,7 @@ navBar = html.Div(
                 style={"padding": "15px 15px 15px 15px"},
             )
         ],
-        style=SIDEBAR_STYLE, className="card-component",
+        className="sidebar card-component",
     )
 
 body = html.Div([
@@ -98,7 +87,7 @@ app.layout = html.Div(
         [
             dcc.Location(id="url"),
             dcc.Store(id="click-output"),
-            dbc.Col(navBar, width=3, style={
+            dbc.Col(sidebar, width=3, style={
                 "position": "fixed",
                 "z-index": "1",
                 "top": "0",
@@ -107,15 +96,18 @@ app.layout = html.Div(
                 }),
             dbc.Col(body, width=9),
         ],
-        justify="center",
-    ),
+        style={
+            "justify-content":"center",
+        },
+        
+    )
 )
 
 @app.callback(Output('page-content', 'children'),
               [Input("slider-vertical", "value")])
 def display_page(value):
     if value == 0:
-        return abstract.layout
+        return tldr.layout
     elif value == 10:
         return introduction.layout
     elif 20 <= value < 40:

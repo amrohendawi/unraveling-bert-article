@@ -13,20 +13,21 @@
   font-family: "Open Sans", sans-serif;
   padding: 0px 35px;
 }
-a {
-  color: #2a6fd3 !important;
-}
+
 body {
   margin: 0;
+  background-color: #f8f9fa;
 }
-.sidebar{
-  position: "fixed";
+.sidebar {
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  width: "18rem";
-  padding: "2rem 1rem";
-  background-color: "#dde1e7";
+  width: 16rem;
+  padding: 1rem 0rem 0rem 0rem;
+  background-color: #f8f9fa;
+  height: fit-content;
+  margin-top: 15rem;
 }
 .drop-down-component {
   padding: 0px 0px 10px 0px;
@@ -37,7 +38,7 @@ div {
 }
 
 .card-component {
-  box-shadow: -5px -5px 9px rgba(255,255,255,0.45), 5px 5px 9px rgba(94,104,121,0.2);
+  box-shadow: -5px -5px 9px rgba(255, 255, 255, 1), 5px 5px 8px rgba(94,104,121,0.25);
 }
 /* 
 .card-component:hover {

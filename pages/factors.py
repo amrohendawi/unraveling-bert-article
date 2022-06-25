@@ -170,7 +170,6 @@ def get_network_graph():
     data = [trace1, trace2]
     return go.Figure(data=data, layout=layout)
 
-
 def process_graph_data(data):
     N = len(data['nodes'])
     L = len(data['links'])
@@ -207,10 +206,11 @@ factors_section = html.Div([dcc.Markdown(
     )
 )],
     className="text-box card-component")
+
 fine_tuning_section = html.Div([
     dcc.Markdown(
         """
-            # Fine-tuning
+            ## Fine-tuning
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
 
@@ -226,7 +226,7 @@ fine_tuning_section = html.Div([
 
 layer_epoch_effect = html.Div([dcc.Markdown(
     """
-        # Layer and epoch effect on transferability
+        ## Layer and epoch effect on transferability
         As observed in different studies, the middle layers of BERT models tend to contain the most syntactic information.
         This is likely due to the fact that these layers are the most transferable across tasks.
         Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the
@@ -289,7 +289,7 @@ layer_epoch_effect = html.Div([dcc.Markdown(
 
 dataset_section = html.Div([dcc.Markdown(
     """
-            # Dataset
+            ## Dataset
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
@@ -369,7 +369,7 @@ task_to_task_trans_learning = dbc.Row(
 task_similarity_section = html.Div([
     dcc.Markdown(
         """
-            # Task Similarity
+            ## Task Similarity
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
@@ -416,7 +416,7 @@ network_graph = dbc.Row(
 
 embeddings_quality_section = html.Div([dcc.Markdown(
     """
-            # Embeddings Quality
+            ## Embeddings Quality
             The quality of the learned embeddings is an important factor in the performance of downstream tasks. If the embeddings are of poor quality, the downstream task will likely suffer.
             There are a few ways to measure the quality of learned embeddings. One is to evaluate the performance of a model that is trained on a supervised task using the learned embeddings as features. Another is to evaluate the performance of a model that is trained on a unsupervised task using the learned embeddings as features.
             BERT models have been shown to produce high-quality embeddings. For example, a study found that a BERT model trained on a large corpus of English text produced embeddings that were better at capturing syntactic and semantic information than word2vec embeddings.
@@ -521,7 +521,8 @@ layout = html.Div([
 def update_figure(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
                      animation_frame="epoch", animation_group="x",
-                     log_x=True, size_max=100, facet_col='layer', facet_col_wrap=4)
+                     log_x=True, size_max=100, facet_col='layer', facet_col_wrap=4,
+                     )
 
     fig.update_xaxes(visible=False, showticklabels=False)
     fig.update_yaxes(visible=False, showticklabels=False,
@@ -537,6 +538,7 @@ def update_figure(dataset):
 def update_figure(experiment):
     fig = px.imshow(gen_avg_trans_learn_dict[experiment],
                     labels={"x": "Target Task", "y": "Source Task"},
+                    contrast_rescaling='minmax',
                     )
     fig.update_coloraxes(colorbar_orientation="h")
     fig.update_layout(coloraxis_colorbar_y=-0.001)
@@ -598,7 +600,6 @@ def task_group_info_on_hover(hoverData):
         ])
 
     except Exception as error:
-        print(error)
         raise PreventUpdate
 
 
@@ -619,7 +620,6 @@ def task_info_on_hover(hoverData):
         ])
 
     except Exception as error:
-        # print(error)
         raise PreventUpdate
 
 
@@ -644,5 +644,4 @@ def task_info_on_hover(hoverData):
         ])
 
     except Exception as error:
-        print(error)
         raise PreventUpdate

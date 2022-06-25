@@ -5,7 +5,7 @@ layout = html.Div(
     [
         html.Div([dcc.Markdown(
             """
-            # Abstract
+            # TL;DR
             In this article, we investigate the factors affecting the
             transferability of a BERT model trained on general natural language
             understanding to downstream, more specific tasks. These factors
