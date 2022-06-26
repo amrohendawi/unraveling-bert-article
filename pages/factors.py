@@ -472,7 +472,6 @@ def update_figure(dataset):
                      facet_col='layer', facet_col_wrap=4,
                      facet_col_spacing=0,
                      width=800, height=600,
-                     #  log_x=True, log_y=True,
                      )
 
     fig.update_xaxes(visible=False, showticklabels=False)
