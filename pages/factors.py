@@ -102,85 +102,6 @@ network_graph_data = {
     "textemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TEXTEMB_SPACE.json'))),
 }
 
-
-def get_network_graph():
-    # read local json file TASKEMB_SPACE.json
-    data = network_graph_data['textemb']
-    Edges, labels, group, layt, Xn, Yn, Zn = process_graph_data(data)
-    Xe = []
-    Ye = []
-    Ze = []
-    for e in Edges:
-        # x-coordinates of edge ends
-        Xe += [layt[e[0]][0], layt[e[1]][0], None]
-        Ye += [layt[e[0]][1], layt[e[1]][1], None]
-        Ze += [layt[e[0]][2], layt[e[1]][2], None]
-
-    trace1 = go.Scatter3d(x=Xe,
-                          y=Ye,
-                          z=Ze,
-                          mode='lines',
-                          line=dict(color='rgb(125,125,125)', width=1),
-                          hoverinfo='none'
-                          )
-
-    trace2 = go.Scatter3d(x=Xn,
-                          y=Yn,
-                          z=Zn,
-                          mode='markers',
-                          name='actors',
-                          marker=dict(symbol='circle',
-                                      size=8,
-                                      color=group,
-                                      colorscale='Viridis',
-                                      line=dict(
-                                          color='rgb(50,50,50)', width=0.5)
-                                      ),
-                          text=labels,
-                          hoverinfo='text'
-                          )
-
-    axis = dict(showbackground=False,
-                showline=False,
-                zeroline=False,
-                showgrid=False,
-                showticklabels=False,
-                title=''
-                )
-
-    layout = go.Layout(
-        # title=" A 3D visualization of the task spaces TASKEMB captures task similarity (the two part-of-speech tagging tasks are interconnected despite their domain dissimilarity).",
-        # width=500,
-        # height=500,
-        # showlegend=True,
-        scene=dict(
-            xaxis=dict(axis),
-            yaxis=dict(axis),
-            zaxis=dict(axis),
-        ),
-        margin=dict(
-            t=100
-        ),
-        hovermode='closest',
-        annotations=[
-            dict(
-                showarrow=False,
-                xref='paper',
-                yref='paper',
-                x=0,
-                y=0.1,
-                xanchor='left',
-                yanchor='bottom',
-                font=dict(
-                    size=14
-                )
-            )
-        ],)
-
-    data = [trace1, trace2]
-    return go.Figure(data=data, layout=layout)
-
-
 def process_graph_data(data):
     N = len(data['nodes'])
     L = len(data['links'])
@@ -428,8 +349,7 @@ network_graph = dbc.Row(
     [
         dbc.Col(
             dcc.Loading(
-                dcc.Graph(figure=get_network_graph(),
-                          id="network-graph", className="card-component",)
+                dcc.Graph( id="network-graph", className="card-component",)
             ),
             width=6),
         dbc.Col(
@@ -576,7 +496,7 @@ def update_figure(experiment):
                     contrast_rescaling='minmax',
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    fig.update_layout(coloraxis_colorbar_y=-0.001)
+    # fig.update_layout(coloraxis_colorbar_y=-0.001)
     fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
@@ -592,6 +512,81 @@ def update_figure(experiment):
     })
     return fig
 
+@ app.callback(
+    Output('network-graph', 'figure'),
+    Input("dropdown-graph-type", "value"))
+def update_figure(method):
+    data = network_graph_data[method]
+    Edges, labels, group, layt, Xn, Yn, Zn = process_graph_data(data)
+    Xe = []
+    Ye = []
+    Ze = []
+    for e in Edges:
+        # x-coordinates of edge ends
+        Xe += [layt[e[0]][0], layt[e[1]][0], None]
+        Ye += [layt[e[0]][1], layt[e[1]][1], None]
+        Ze += [layt[e[0]][2], layt[e[1]][2], None]
+
+    trace1 = go.Scatter3d(x=Xe,
+                          y=Ye,
+                          z=Ze,
+                          mode='lines',
+                          line=dict(color='rgb(125,125,125)', width=1),
+                          hoverinfo='none'
+                          )
+
+    trace2 = go.Scatter3d(x=Xn,
+                          y=Yn,
+                          z=Zn,
+                          mode='markers',
+                          name='actors',
+                          marker=dict(symbol='circle',
+                                      size=8,
+                                      color=group,
+                                      colorscale='Viridis',
+                                      line=dict(
+                                          color='rgb(50,50,50)', width=0.5)
+                                      ),
+                          text=labels,
+                          hoverinfo='text'
+                          )
+
+    axis = dict(showbackground=False,
+                showline=False,
+                zeroline=False,
+                showgrid=False,
+                showticklabels=False,
+                title=''
+                )
+
+    graph_layout = go.Layout(
+        scene=dict(
+            xaxis=dict(axis),
+            yaxis=dict(axis),
+            zaxis=dict(axis),
+        ),
+        margin=dict(
+            t=100
+        ),
+        hovermode='closest',
+        annotations=[
+            dict(
+                showarrow=False,
+                xref='paper',
+                yref='paper',
+                x=0,
+                y=0.1,
+                xanchor='left',
+                yanchor='bottom',
+                font=dict(
+                    size=14
+                )
+            )
+        ],)
+
+    data = [trace1, trace2]
+    return go.Figure(data=data, layout=graph_layout)
+
 
 @ app.callback(
     Output('clickable-heatmap2', 'figure'),
@@ -605,7 +600,7 @@ def update_figure(task_class, task_category, dataset_size):
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    fig.update_layout(coloraxis_colorbar_y=-0.001)
+    # fig.update_layout(coloraxis_colorbar_y=-0.001)
     # fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
