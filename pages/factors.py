@@ -314,84 +314,85 @@ dataset_section = html.Div([dcc.Markdown(
 
 task_to_task_trans_learning = html.Div(
     [
-    dbc.Row(
-        [
-        dbc.Col(
-            dcc.Dropdown(
-                id="dropdown-class",
-                searchable=False,
-                clearable=False,
-                # the keys from task_to_task_trans_learning_res
-                options=[
-                    {"label": k, "value": k}
-                    for k in task_to_task_transfer_learning_res.keys()],
-                placeholder="Select a class",
-                value=list(
-                    task_to_task_transfer_learning_res.keys())[0],
-                className="drop-down-component"
-            ),
-        ),
-        dbc.Col(
-            dcc.Dropdown(
-                id="dropdown-task-category",
-                searchable=False,
-                clearable=False,
-                # the keys from task_to_task_trans_learning_res
-                options=[
-                    {"label": k, "value": k}
-                    for k in task_to_task_transfer_learning_res['inclass'].keys()],
-                placeholder="Select a task category",
-                value=list(
+        dbc.Row(
+            [
+                dbc.Col(
+                    dcc.Dropdown(
+                        id="dropdown-class",
+                        searchable=False,
+                        clearable=False,
+                        # the keys from task_to_task_trans_learning_res
+                        options=[
+                            {"label": k, "value": k}
+                            for k in task_to_task_transfer_learning_res.keys()],
+                        placeholder="Select a class",
+                        value=list(
+                            task_to_task_transfer_learning_res.keys())[0],
+                        className="drop-down-component"
+                    ),
+                ),
+                dbc.Col(
+                    dcc.Dropdown(
+                        id="dropdown-task-category",
+                        searchable=False,
+                        clearable=False,
+                        # the keys from task_to_task_trans_learning_res
+                        options=[
+                            {"label": k, "value": k}
+                            for k in task_to_task_transfer_learning_res['inclass'].keys()],
+                        placeholder="Select a task category",
+                        value=list(
                             task_to_task_transfer_learning_res['inclass'].keys())[0],
-                className="drop-down-component"
-            ),
+                        className="drop-down-component"
+                    ),
 
-        ),
-        dbc.Col(
-            dcc.Dropdown(
-                id="dropdown-dataset-size",
-                searchable=False,
-                clearable=False,
-                # the keys from task_to_task_trans_learning_res
-                options=[
-                    {"label": k, "value": k}
-                    for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
-                placeholder="Select a dataset size",
-                value=list(
+                ),
+                dbc.Col(
+                    dcc.Dropdown(
+                        id="dropdown-dataset-size",
+                        searchable=False,
+                        clearable=False,
+                        # the keys from task_to_task_trans_learning_res
+                        options=[
+                            {"label": k, "value": k}
+                            for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
+                        placeholder="Select a dataset size",
+                        value=list(
                             task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
-                className="drop-down-component"
-            ),
+                        className="drop-down-component"
+                    ),
+                ),
+            ]
         ),
-        ]
-    ),
-    dbc.Row(
-        [
-            dbc.Col(
-                [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        html.Div(
+                            dcc.Loading(
+                                dcc.Graph(
+                                    id="clickable-heatmap2",
+                                    hoverData={"points": [
+                                        {"pointNumber": 0}]},
+                                    config={"displayModeBar": False},
+                                    style={"padding": "5px 10px"},
+                                )
+                            ), className="card-component"
+                        )
+                    ], width=6,
+                ),
+                # A text box to show the current task description
+                dbc.Col(
                     html.Div(
-                        dcc.Loading(
-                            dcc.Graph(
-                                id="clickable-heatmap2",
-                                hoverData={"points": [
-                                    {"pointNumber": 0}]},
-                                config={"displayModeBar": False},
-                                style={"padding": "5px 10px"},
-                            )
-                        ), className="card-component"
-                    )
-                ], width=6,
-            ),
-            # A text box to show the current task description
-            dbc.Col(
-                html.Div(
-                    id="source_target_task_desc2",
-                    className="text-box card-component",
-                ), width=6
-            ),
-        ]
-    )
-]
+                        id="source_target_task_desc2",
+                        className="text-box card-component",
+                    ), width=6
+                ),
+            ]
+        )
+    ]
 )
+
 task_similarity_section = html.Div([
     dcc.Markdown(
         """
