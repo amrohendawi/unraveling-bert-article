@@ -23,11 +23,12 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 16rem;
+  width: 15%;
   padding: 1rem 0rem 0rem 0rem;
   background-color: #f4f4f5;
   height: fit-content;
-  margin-top: 15rem;
+  margin: auto;
+  margin-left: 1rem;
 }
 .drop-down-component {
   padding: 0px 0px 10px 0px;

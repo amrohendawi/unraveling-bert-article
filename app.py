@@ -91,7 +91,6 @@ app.layout = html.Div(
                 "position": "fixed",
                 "z-index": "1",
                 "top": "0",
-                "left": "0",
                 "overflow-x": "hidden",
                 }),
             dbc.Col(body, width=9),

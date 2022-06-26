@@ -18,9 +18,9 @@ PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
 
 tsne_dict = {
-    "tsne_hate": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_hate.csv")),
-    "tsne_offensive": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_offensive.csv")),
-    "tsne_sentiment": pd.read_csv(DATA_PATH.joinpath("tsne_bert_base_cased_sentiment.csv")),
+    "tsne_hate": pd.read_csv(DATA_PATH.joinpath("tsne_data/tsne_hate.csv")),
+    "tsne_offensive": pd.read_csv(DATA_PATH.joinpath("tsne_data/tsne_offensive.csv")),
+    "tsne_sentiment": pd.read_csv(DATA_PATH.joinpath("tsne_data/tsne_sentiment.csv")),
 }
 
 tsne_labels_dict = {
@@ -101,6 +101,7 @@ network_graph_data = {
     "taskemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TASKEMB_SPACE.json'))),
     "textemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TEXTEMB_SPACE.json'))),
 }
+
 
 def process_graph_data(data):
     N = len(data['nodes'])
@@ -349,7 +350,7 @@ network_graph = dbc.Row(
     [
         dbc.Col(
             dcc.Loading(
-                dcc.Graph( id="network-graph", className="card-component",)
+                dcc.Graph(id="network-graph", className="card-component",)
             ),
             width=6),
         dbc.Col(
@@ -469,14 +470,15 @@ def update_figure(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
                      animation_frame="epoch", animation_group="x",
                      facet_col='layer', facet_col_wrap=4,
-                     facet_col_spacing=0.01,
-                     width=800, height=800,
+                     facet_col_spacing=0.1,
+                     width=800, height=600,
                      #  log_x=True, log_y=True,
                      )
 
     fig.update_xaxes(visible=False, showticklabels=False)
     fig.update_yaxes(visible=False, showticklabels=False,
                      scaleanchor="x", scaleratio=1)
+    # fig.update_layout(hovermode="x")
     # fig.update_coloraxes(showscale=False)
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -511,6 +513,7 @@ def update_figure(experiment):
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
     })
     return fig
+
 
 @ app.callback(
     Output('network-graph', 'figure'),
