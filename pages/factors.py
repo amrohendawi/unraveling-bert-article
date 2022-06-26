@@ -470,7 +470,7 @@ def update_figure(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
                      animation_frame="epoch", animation_group="x",
                      facet_col='layer', facet_col_wrap=4,
-                     facet_col_spacing=0.1,
+                     facet_col_spacing=0,
                      width=800, height=600,
                      #  log_x=True, log_y=True,
                      )
