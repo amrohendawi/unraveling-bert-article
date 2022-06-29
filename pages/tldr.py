@@ -1,9 +1,10 @@
 import dash_bootstrap_components as dbc
-from dash import dcc, html
+from dash import html
+from utils import textBox
 
 layout = html.Div(
     [
-        html.Div([dcc.Markdown(
+        textBox(
             """
             # TL;DR
             In this article, we investigate the factors affecting the
@@ -15,11 +16,8 @@ layout = html.Div(
             with more data and for more epochs transfers better than a model
             trained with less data and for fewer epochs. We also find that label
             noise has a negative effect on transferability.
-            """.replace(
-                "  ", ""
-            )
-        )],
-            className="text-box card-component"),
+            """
+        ),
     ],
     id="page",
     className="row",

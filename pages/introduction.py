@@ -1,9 +1,10 @@
 import dash_bootstrap_components as dbc
-from dash import dcc, html
+from dash import html
+from utils import textBox
 
 layout = html.Div(
     [
-        html.Div([dcc.Markdown(
+        textBox(
             """
             # Introduction
                 Since their introduction in 2017, Transformers (Vaswani et al.,
@@ -32,11 +33,8 @@ layout = html.Div(
                 In conclusion, we find that the transferability of BERT is affected
                 by a number of factors, including the number of layers, the number
                 of fine-tuning epochs, the dataset size, and the label noise.
-            """.replace(
-                "  ", ""
-            )
-        )],
-            className="text-box card-component"),
+            """
+        ),
     ],
     id="page",
     className="row",
