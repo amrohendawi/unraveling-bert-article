@@ -3,7 +3,6 @@
 from dash.dependencies import Input, Output
 from dash import dcc, html, Input, Output
 import dash_bootstrap_components as dbc
-# import dash_cytoscape as cyto
 from appServer import app
 
 from pages import tldr, introduction, factors, directions, conclusion, references
