@@ -1,4 +1,4 @@
-# Dash Yield Curve App
+# Unraveling BERT's Transferability secrets in a Dash article
 
 This is a demo of the Dash interactive Python framework developed by [Plotly](https://plot.ly/).
 
@@ -10,25 +10,21 @@ To learn more check out our [documentation](https://plot.ly/dash).
 
 ### Running the app locally
 
-First create a virtual environment with conda or venv inside a temp folder, then activate it.
-
-```
-virtualenv venv
-
-# Windows
-venv\Scripts\activate
-# Or Linux
-source venv/bin/activate
-
-```
-
-Clone the git repo, then install the requirements with pip
+First, clone the git repo, then create a virtual environment for installing dependencies.
+Feel free to use conda or any other environment manager of your choice.
 
 ```
 
 git clone https://github.com/amrohendawi/unraveling-bert-article
-cd cd unraveling-bert-article
+cd unraveling-bert-article
 python -m venv venv
+
+
+```
+
+Activate the environment and install the requirements with pip
+
+```
 source venv/bin/activate
 pip install -r requirements.txt
 
@@ -44,12 +40,17 @@ python app.py
 
 ## About the app
 
-This Dash app adapts the excellent [NY Times report A 3-D View of a Chart That Predicts The Economic Future: The Yield Curve](https://www.nytimes.com/interactive/2015/03/19/upshot/3d-yield-curve-economic-growth.html).
+This Dash app adapts the excellent [NY Times report A 3-D View of a Chart That Predicts The Economic Future: The Yield Curve](https://www.nytimes.com/interactive/2015/03/19/upshot/3d-yield-curve-economic-growth.html) as a base project.
 
 ## Built With
 
 - [Dash](https://dash.plot.ly/) - Main server and interactive components
 - [Plotly Python](https://plot.ly/python/) - Used to create the interactive plots
+
+## Heroku DevOps
+
+You can push the project to production by simply creating a new app on heroku and connecting it to your github repo within 60 seconds.
+
 
 ## Screenshots
 
@@ -60,4 +61,3 @@ The following are screenshots for the app in this repo:
 ![screenshot](screenshots/screenshot2.png)
 
 ![animated](screenshots/dash-yield-curve-demo.gif)
-
