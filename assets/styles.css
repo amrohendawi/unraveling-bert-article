@@ -16,7 +16,7 @@
 
 body {
   margin: 0;
-  background-color: #f4f4f5;
+  background-color: #f1f1f6;
 }
 .sidebar {
   position: fixed;
@@ -25,10 +25,10 @@ body {
   bottom: 0;
   width: 15%;
   padding: 1rem 0rem 0rem 0rem;
-  background-color: #f4f4f5;
+  background-color: #f1f1f6;
   height: fit-content;
   margin: auto;
-  margin-left: 1rem;
+  margin-left: 1rem !important;
 }
 .drop-down-component {
   padding: 0px 0px 10px 0px;
@@ -39,8 +39,8 @@ div {
 }
 
 .card-component {
-  box-shadow: -5px -5px 15px rgba(255, 255, 255, 1), 5px 5px 8px rgba(94,104,121,0.25);
-  /* width: fit-content; */
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 1), 5px 5px 8px rgba(94,104,121,0.60);
+  width: fit-content;
   margin: auto;
 }
 /* 
@@ -76,7 +76,7 @@ h5 {
 .text-box {
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: #f4f4f5;
+  background-color: #f1f1f6;
   padding: 1rem;
 }
 #text {

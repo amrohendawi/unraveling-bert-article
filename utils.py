@@ -3,7 +3,7 @@ import pathlib
 
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
-DATA_PATH = PATH.joinpath("pages/data").resolve()
+DATA_PATH = PATH.joinpath("data").resolve()
 
 def textBox(text, style=None, className=""):
     return html.Div(dcc.Markdown(

@@ -57,7 +57,7 @@ sidebar = html.Div(
                     style={'transform': 'scaleY(-1)'}
                 ),
             ],
-            style={"padding": "15px 15px 15px 15px"},
+            style={"padding": "1rem"},
         )
     ],
     className="sidebar card-component",
