@@ -56,8 +56,8 @@ You can push the project to production by simply creating a new app on heroku an
 
 The following are screenshots for the app in this repo:
 
-![screenshot](screenshots/screenshot1.png)
+![screenshot](screenshots/screenshot_welcome.png)
 
-![screenshot](screenshots/screenshot2.png)
-
-![animated](screenshots/dash-yield-curve-demo.gif)
+![screenshot](screenshots/screenshot_content.png)
+<!-- 
+![animated](screenshots/dash-yield-curve-demo.gif) -->
