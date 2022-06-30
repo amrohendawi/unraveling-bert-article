@@ -10,6 +10,6 @@ layout = html.Div(
     Other factors like the dataset and the model's size  can also affect transferability.
     """),
     ],
-    id="page",
+    id="conclusion",
     className="row",
 )

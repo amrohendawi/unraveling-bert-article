@@ -19,6 +19,6 @@ layout = html.Div(
             """
         ),
     ],
-    id="page",
+    id="tldr",
     className="row",
 )

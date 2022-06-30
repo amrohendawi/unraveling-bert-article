@@ -13,6 +13,6 @@ layout = html.Div(
     """
         ),
     ],
-    id="page",
+    id="references",
     className="row",
 )

@@ -42,7 +42,7 @@ network_graph = dbc.Row(
     [
         dbc.Col(
             dcc.Loading(
-                dcc.Graph(id="network-graph", className="card-component",)
+                dcc.Graph(id="network-graph", className="card-component", style={"width": "auto"})
             ),
             width=6),
         dbc.Col(
@@ -75,7 +75,7 @@ content = html.Div([
         className="drop-down-component"
     ),
     network_graph,
-],
+], id="embeddings-quality"
 )
 
 

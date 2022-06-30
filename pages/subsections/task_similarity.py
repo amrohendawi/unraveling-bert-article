@@ -109,7 +109,8 @@ task_to_task_trans_learning = html.Div(
                                     config={"displayModeBar": False},
                                     style={"padding": "5px 10px"},
                                 )
-                            ), className="card-component"
+                            ), className="card-component",
+                            style={"width": "auto"},
                         )
                     ], width=6,
                 ),
@@ -149,7 +150,7 @@ content = html.Div([
             Positive transfers are shown in blue and the best results are highlighted in bold (blue). These results suggest that fine-tuning can improve a model's ability to transfer to other tasks and domains.
             """
     ),
-],
+], id="task-similarity"
 )
 
 
@@ -189,8 +190,6 @@ def update_figure(task_class, task_category, dataset_size):
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    # fig.update_layout(coloraxis_colorbar_y=-0.001)
-    # fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
             'text': "Task to Task transfer learning results",

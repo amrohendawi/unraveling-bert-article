@@ -36,6 +36,6 @@ layout = html.Div(
             """
         ),
     ],
-    id="page",
+    id="introduction",
     className="row",
 )

@@ -32,20 +32,18 @@ fine_tuning_section = html.Div([
             However, it is not clear how much of an improvement fine-tuning provides in this case.
             """
     ),
-],
+], id="fine-tuning"
 )
 
-layout = html.Div([
-    html.Div(
-        [
-            factors_section,
-            fine_tuning_section,
-            layer_epoch_effect.content,
-            dataset.content,
-            task_similarity.content,
-            embeddings_quality.content,
-        ],
-        id="page",
-        className="row",
-    ),
-])
+layout = html.Div(
+    [
+        factors_section,
+        fine_tuning_section,
+        layer_epoch_effect.content,
+        dataset.content,
+        task_similarity.content,
+        embeddings_quality.content,
+    ],
+    id="factors",
+    className="row",
+)

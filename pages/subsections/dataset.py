@@ -63,7 +63,8 @@ gen_avg_trans_learning = dbc.Row(
                             config={"displayModeBar": False},
                             style={"padding": "5px 10px"},
                         )
-                    ), className="card-component"
+                    ), className="card-component",
+                    style={"width": "auto"},
                 )
             ], width=4,
         ),
@@ -88,7 +89,7 @@ content = html.Div([
             However, it is not clear how much of an improvement fine-tuning provides in this case.
             """),
     gen_avg_trans_learning,
-])
+], id="dataset")
 
 
 @ app.callback(
