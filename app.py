@@ -62,12 +62,13 @@ sidebar = html.Div(
                                 step=1,
                                 marks={i: {'style': {
                                     'transform': 'scaleY(-1)',
-                                    }} for i in [HEADLINES[key]['index'] for key in HEADLINES]},
+                                }} for i in [HEADLINES[key]['index'] for key in HEADLINES]},
                                 id="slider-vertical",
                                 vertical=True,
                             ),
                             style={'transform': 'scaleY(-1)',
                                    'flex': '0 0 0%',
+                                   'padding-right': '0rem',
                                    }
                         ),
                         dbc.Col(
@@ -75,6 +76,9 @@ sidebar = html.Div(
                                 navLinks,
                                 vertical=True,
                             ),
+                            style={
+                                'padding-left': '0rem',
+                            }
                         )
                     ], style={"padding-left": "0px"}
                 ),
