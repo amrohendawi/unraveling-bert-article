@@ -77,7 +77,7 @@ content = html.Div([
                 The previous observations show that the pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively. Furthermore, the observation shows which layers learn and hold the most discriminating features.
             """
     ),
-], id="layer-epoch-effect"
+], id="layer-epoch"
 )
 
 @ app.callback(
