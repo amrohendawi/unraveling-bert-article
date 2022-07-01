@@ -93,8 +93,7 @@ content = html.Div([
                 The previous observations show that the pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively. Furthermore, the observation shows which layers learn and hold the most discriminating features.
             """
     ),
-], id="layer-epoch"
-)
+], id="layer-epoch")
 facet_cols = {1: 1, 2: 1, 3: 1, 4: 2,
                 5: 2, 6: 3, 7: 3, 8: 4, 9: 3, 10: 4, 11: 4, 12: 4}
 

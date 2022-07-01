@@ -5,7 +5,7 @@ import igraph as ig
 
 from utils import textBox, DATA_PATH
 from appServer import app
-
+import pandas as pd
 import json
 
 
@@ -18,25 +18,23 @@ def process_graph_data(data):
     G = ig.Graph(Edges, directed=False)
     labels = []
     group = []
-
-    groups = {'CR': 1, 'SL': 2, 'QA': 3}
-
     for node in data['nodes']:
         labels.append(node['name'])
-        group.append(groups[node['group']])
+        group.append(node['group'])
 
-    layt = G.layout('kk', dim=3)
-    Xn = [layt[k][0] for k in range(N)]  # x-coordinates of nodes
-    Yn = [layt[k][1] for k in range(N)]  # y-coordinates
-    Zn = [layt[k][2] for k in range(N)]  # z-coordinates
-    return Edges, labels, group, layt, Xn, Yn, Zn
+    layout = G.layout('kk', dim=3)
+    Xn = [layout[k][0] for k in range(N)]  # x-coordinates of nodes
+    Yn = [layout[k][1] for k in range(N)]  # y-coordinates
+    Zn = [layout[k][2] for k in range(N)]  # z-coordinates
+    # from groups and Xn, Yn, Zn, and labels create a dataframe
+    df = pd.DataFrame(dict(x=Xn, y=Yn, z=Zn, label=labels, group=group))
+    return Edges, layout, df
 
 
 network_graph_data = {
     "taskemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TASKEMB_SPACE.json'))),
     "textemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TEXTEMB_SPACE.json'))),
 }
-
 
 network_graph = dbc.Row(
     [
@@ -79,12 +77,12 @@ content = html.Div([
 )
 
 
-@ app.callback(
+@app.callback(
     Output('network-graph', 'figure'),
     Input("dropdown-graph-type", "value"))
 def update_figure(method):
     data = network_graph_data[method]
-    Edges, labels, group, layt, Xn, Yn, Zn = process_graph_data(data)
+    Edges, layt, df = process_graph_data(data)
     Xe = []
     Ye = []
     Ze = []
@@ -94,29 +92,40 @@ def update_figure(method):
         Ye += [layt[e[0]][1], layt[e[1]][1], None]
         Ze += [layt[e[0]][2], layt[e[1]][2], None]
 
-    trace1 = go.Scatter3d(x=Xe,
-                          y=Ye,
-                          z=Ze,
-                          mode='lines',
-                          line=dict(color='rgb(125,125,125)', width=1),
-                          hoverinfo='none'
-                          )
-
-    trace2 = go.Scatter3d(x=Xn,
-                          y=Yn,
-                          z=Zn,
-                          mode='markers',
-                          name='actors',
-                          marker=dict(symbol='circle',
-                                      size=8,
-                                      color=group,
-                                      colorscale='Viridis',
-                                      line=dict(
-                                          color='rgb(50,50,50)', width=0.5)
-                                      ),
-                          text=labels,
-                          hoverinfo='text'
-                          )
+    # for every edge create a trace. the line width is the value at data['links'][k]['value']
+    traces = []
+    groups = {'CR': 1, 'SL': 2, 'QA': 3}
+    # group df by group
+    for g in set(df['group']):
+        traces.append(
+            go.Scatter3d(
+                x=df[df['group'] == g]['x'],
+                y=df[df['group'] == g]['y'],
+                z=df[df['group'] == g]['z'],
+                mode='markers',
+                name=g,
+                marker=dict(
+                    size=8,
+                    color=groups[g],
+                    colorscale='Viridis',
+                    opacity=0.8
+                ),
+                text=df[df['group'] == g]['label'],
+                hoverinfo='text'
+            )
+        )
+    for i in range(len(Edges)):
+        traces.append(
+            go.Scatter3d(x=Xe[i * 3:(i + 1) * 3],
+                         y=Ye[i * 3:(i + 1) * 3],
+                         z=Ze[i * 3:(i + 1) * 3],
+                         mode='lines',
+                         showlegend=False,
+                         line=dict(color='rgb(125,125,125)', width=data['links'][i]['value']*4),
+                         hoverinfo='none',
+                         # hide label and legend
+                         )
+        )
 
     axis = dict(showbackground=False,
                 showline=False,
@@ -136,20 +145,14 @@ def update_figure(method):
             t=100
         ),
         hovermode='closest',
-        annotations=[
-            dict(
-                showarrow=False,
-                xref='paper',
-                yref='paper',
-                x=0,
-                y=0.1,
-                xanchor='left',
-                yanchor='bottom',
-                font=dict(
-                    size=14
-                )
-            )
-        ],)
+    )
 
-    data = [trace1, trace2]
-    return go.Figure(data=data, layout=graph_layout)
+    fig = go.Figure(data=traces, layout=graph_layout)
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+        'autosize': True,
+        'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
+        'legend': {'y': 0.5},
+    })
+    return fig
