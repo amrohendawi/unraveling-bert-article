@@ -3,35 +3,14 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
 from dash.exceptions import PreventUpdate
 
-from utils import textBox, DATA_PATH
+from utils import DATA_PATH, textBox, read_tasks_nested_tables, df_to_matrix
 from appServer import app
 
 import pandas as pd
 import json
 
-def df_to_matrix(df):
-    df_matrix = pd.DataFrame(columns=df['sourceTask'].unique())
-    for _, row in df.iterrows():
-        df_matrix.loc[row['destinationTask'], row['sourceTask']] = row['value']
-    return df_matrix
-
-# Convert the content of 3_task_to_task_transfer_learning_res folder to a json file with nested structure
-# recursive function
-def get_task_list(folder):
-    new_dict = {}
-    for dir in DATA_PATH.joinpath(folder).iterdir():
-        # if the directory is a directory, call the function again
-        if dir.is_dir():
-            new_dict[dir.name] = get_task_list(folder + "/" + dir.name)
-        # if the directory is a csv file, read the file and add the content to the dictionary
-        if dir.is_file() and dir.suffix == ".csv":
-            # read csv an convert it to json
-            df = df_to_matrix(pd.read_csv(dir))
-            new_dict[dir.name] = df
-    return new_dict
-
-task_to_task_transfer_learning_res = get_task_list(
-    "3_task_to_task_transfer_learning_res")
+task_to_task_transfer_learning_res = read_tasks_nested_tables(
+    "3_task_to_task_transfer_learning_res", convert_csvs=df_to_matrix)
 
 tasks_groups_list = json.load(
     open(DATA_PATH.joinpath('33 tasks description.json')))

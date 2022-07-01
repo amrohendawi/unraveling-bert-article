@@ -3,18 +3,16 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
 from dash.exceptions import PreventUpdate
 
-from utils import textBox, DATA_PATH
+from utils import textBox, DATA_PATH, df_to_matrix
 from appServer import app
-
-import pages.subsections.task_similarity as task_similarity
 
 import pandas as pd
 import json
 
 gen_avg_trans_learn_dict = {
-    "full-full": task_similarity.df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_full.csv"))),
-    "full-limited": task_similarity.df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_limited.csv"))),
-    "limited-limited": task_similarity.df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_limited_limited.csv"))),
+    "full-full":        df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_full.csv"))),
+    "full-limited":     df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_limited.csv"))),
+    "limited-limited":  df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_limited_limited.csv"))),
 }
 
 tasks_groups_list = json.load(
