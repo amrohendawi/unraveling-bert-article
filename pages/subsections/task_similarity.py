@@ -108,7 +108,7 @@ task_to_task_trans_learning = html.Div(
 content = html.Div([
     textBox(
         """
-            ## Task Similarity
+            #### Task Similarity
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.

@@ -12,7 +12,7 @@ import pages.subsections.dataset as dataset
 factors_section = html.Div([
     textBox(
         """
-        # Factors
+        ## Factors
         In this section we discuss the main factors that affect the
         transferability of BERT. These factors are the number of layers,
         the number of fine-tuning epochs, the dataset size, and the label

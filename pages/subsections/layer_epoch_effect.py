@@ -25,7 +25,7 @@ for key, value in tsne_dict.items():
 content = html.Div([
     textBox(
         """
-        ## Layer and epoch effect on transferability
+        #### Layer and epoch effect on transferability
         As observed in different studies, the middle layers of BERT models tend to contain the most syntactic information.
         This is likely due to the fact that these layers are the most transferable across tasks.
         Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the

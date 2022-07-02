@@ -88,7 +88,9 @@ sidebar = html.Div(
     ],
     className="sidebar card-component",
     style={
-        "top": "20%"
+        "margin": "auto",
+        "top": "0",
+        "bottom": "0",
     },
 )
 
@@ -123,11 +125,14 @@ app.layout = html.Div(
         [
             dcc.Location(id="url"),
             dcc.Store(id="click-output"),
-            dbc.Col(sidebar, width=2),
-            dbc.Col(body, width=9),
+            dbc.Col(sidebar, width=2,
+                    ),
+            dbc.Col(body, width=8,
+                    ),
         ],
         style={
             "justify-content": "center",
+            # "align-items": "center",
         },
 
     )

@@ -6,7 +6,7 @@ layout = html.Div(
     [
         textBox(
             """
-            # Introduction
+            ## Introduction
                 Since their introduction in 2017, Transformers (Vaswani et al.,
                 2017) have taken NLP by storm, offering enhanced parallelization and
                 better modeling of long-range dependencies. The best known
