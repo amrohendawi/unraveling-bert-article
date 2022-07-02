@@ -1,94 +1,65 @@
-.title {
-  color: #2a3f5f;
-  padding: 0px 35px;
-}
-.subtitle {
-  color: #2a3f5f;
-  font-size: 14px;
-  font-family: "Open Sans", sans-serif;
-  padding: 0px 35px;
-}
-
 .nav-link-paragraph {
     color: #666;
     font-size: 12px;
     font-weight: bold !important;
     padding: 1rem 0rem 1rem 0rem;
 }
+
 .nav-link-section {
     color: #666;
     font-size: 12px;
     font-weight: bold !important;
     padding: 1rem 0rem 0.8rem 0rem;
 }
+
 .nav-link-subsection {
     color: #666;
     font-size: 10px;
-    padding: 0.1rem 1rem 0.1rem 0rem;
-}
-body {
-  margin: 0;
-  background-color: #fcfcfe;
-}
-.sidebar {
-  position: fixed;
-  background-color: #f8f8fc;
-  height: fit-content;
-  margin: auto;
-}
-.drop-down-component {
-  padding: 0px 0px 10px 0px;
+    padding: 0.1rem 1rem 0.2rem 0rem;
 }
 
-div {
-  border-radius: 10px;
+body {
+    margin: 0;
+    background-color: #fcfcfe;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: #f8f8fc;
+    height: fit-content;
+    margin: auto;
+}
+
+.nav-link:hover {
+color: #37949CFF;
 }
 
 .card-component {
-  box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.99), 5px 5px 8px rgba(94,94,94,0.20);
-  width: fit-content;
-  margin: auto;
+    box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.99), 5px 5px 8px rgba(94, 94, 94, 0.20);
+    width: fit-content;
+    margin: auto;
 }
 
 .card-component:hover {
-  transform: translateY(-5px);
-  box-shadow: -5px -10px 18px rgba(255,255,255,0.45), 5px 10px 18px rgba(94,104,121,0.15);
+    transform: translateY(-2px);
+    box-shadow: -5px -10px 18px rgba(255, 255, 255, 0.45), 5px 10px 18px rgba(94, 104, 121, 0.15);
 }
 
-h5 {
-  font-weight: 500 !important;
-}
-.info-button {
-  padding: 20px 35px;
-}
-.timeline-slider {
-  padding: 10px 38px;
-}
 .rc-slider-handle {
-  border: solid 2px #2a6fd3;
+    border: solid 2px #37949c;
 }
+
 .rc-slider-track {
-  background-color: #2a6fd3;
+    background-color: #37949c;
 }
+
 .rc-slider-dot-active {
-  border-color: #2a6fd3;
+    border-color: #37949c;
 }
-.flex-display {
-  display: flex;
-}
-.page-buttons {
-  padding: 15px 35px;
-}
+
 .text-box {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  background-color: #f8f8fc;
-  padding: 1rem;
-}
-#text {
-  padding: 50px;
-  color: #506783;
-  font-family: "Open Sans", sans-serif;
-  font-size: 13px;
-  width: 90%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #f8f8fc;
+    padding: 1rem;
 }
