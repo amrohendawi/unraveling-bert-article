@@ -39,43 +39,27 @@ content = html.Div([
         to experiment with different numbers of epochs to find the best results.
             """
     ),
-    dbc.Row(
-        [
-            dbc.Col(
-
-                dcc.Dropdown(
-                    id="dropdown-dataset",
-                    searchable=False,
-                    clearable=False,
-                    options=[
-                        {
-                            "label": "BERT base cased hate",
-                            "value": "tsne_hate",
-                        },
-                        {
-                            "label": "BERT base cased offensive",
-                            "value": "tsne_offensive",
-                        },
-                        {
-                            "label": "BERT base cased sentiment",
-                            "value": "tsne_sentiment",
-                        },
-                    ],
-                    placeholder="Select a dataset",
-                    value="tsne_sentiment",
-                    className="drop-down-component",
-                )
-            ),
-            dbc.Col(
-                dcc.Dropdown(
-                    id="layer-select",
-                    # layers options
-                    options=[{"label": 'layer ' + str(i), "value": i} for i in range(1, 13)],
-                    value=[1,2,3,4,5,6,7,8,9,10,11,12],
-                    multi=True,
-                )
-            ),
-        ]
+    dcc.Dropdown(
+        id="dropdown-dataset",
+        searchable=False,
+        clearable=False,
+        options=[
+            {
+                "label": "BERT base cased hate",
+                "value": "tsne_hate",
+            },
+            {
+                "label": "BERT base cased offensive",
+                "value": "tsne_offensive",
+            },
+            {
+                "label": "BERT base cased sentiment",
+                "value": "tsne_sentiment",
+            },
+        ],
+        placeholder="Select a dataset",
+        value="tsne_sentiment",
+        className="drop-down-component",
     ),
     html.Div(
         [
@@ -94,22 +78,17 @@ content = html.Div([
             """
     ),
 ], id="layer-epoch")
-facet_cols = {1: 1, 2: 1, 3: 1, 4: 2,
-                5: 2, 6: 3, 7: 3, 8: 4, 9: 3, 10: 4, 11: 4, 12: 4}
+
 
 @app.callback(
+
     Output('scatter-with-slider', 'figure'),
-    [Input("dropdown-dataset", "value"),
-        Input("layer-select", "value")
-    ]
-    )
-def update_figure(dataset, layers):
-    # plot only the selected layers
-    df = tsne_dict[dataset].loc[tsne_dict[dataset]['layer'].isin(layers)]
-    num = facet_cols[len(layers)]
-    fig = px.scatter(df, x="x", y="y", color="label",
+    Input("dropdown-dataset", "value")
+)
+def update_figure(dataset):
+    fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
                      animation_frame="epoch", animation_group="x",
-                     facet_col='layer', facet_col_wrap=num,
+                     facet_col='layer', facet_col_wrap=4,
                      hover_name='label',
                      labels={
                          'layer': '',
@@ -118,6 +97,7 @@ def update_figure(dataset, layers):
                          'epoch': '',
                          'label': '',
                      },
+                     opacity=0.8,
                      facet_col_spacing=0,
                      width=800, height=600,
                      )

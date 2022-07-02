@@ -40,7 +40,10 @@ network_graph = dbc.Row(
     [
         dbc.Col(
             dcc.Loading(
-                dcc.Graph(id="network-graph", className="card-component", style={"width": "auto"})
+                dcc.Graph(id="network-graph", className="card-component",
+                          style={"width": "auto"},
+                          config={"displayModeBar": False},
+                          )
             ),
             width=6),
         dbc.Col(
@@ -105,7 +108,7 @@ def update_figure(method):
                 mode='markers',
                 name=g,
                 marker=dict(
-                    size=8,
+                    size=10,
                     color=groups[g],
                     colorscale='Viridis',
                     opacity=0.8
@@ -121,7 +124,7 @@ def update_figure(method):
                          z=Ze[i * 3:(i + 1) * 3],
                          mode='lines',
                          showlegend=False,
-                         line=dict(color='rgb(125,125,125)', width=data['links'][i]['value']*4),
+                         line=dict(color='rgb(125,125,125)', width=data['links'][i]['value'] * 4),
                          hoverinfo='none',
                          # hide label and legend
                          )
@@ -140,9 +143,6 @@ def update_figure(method):
             xaxis=dict(axis),
             yaxis=dict(axis),
             zaxis=dict(axis),
-        ),
-        margin=dict(
-            t=100
         ),
         hovermode='closest',
     )
