@@ -18,9 +18,44 @@ tsne_labels_dict = {
     "tsne_sentiment": ["positive", "neutral", "negative"],
 }
 
+def draw_scatter_facet(dataset):
+    fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
+                     animation_frame="epoch", animation_group="x",
+                     facet_col='layer', facet_col_wrap=4,
+                     hover_name='label',
+                     labels={
+                         'layer': '',
+                         'y': '',
+                         'x': '',
+                         'epoch': '',
+                         'label': '',
+                     },
+                     opacity=0.8,
+                     facet_col_spacing=0,
+                     width=800, height=600,
+                     )
+    fig.update_xaxes(showticklabels=False, showline=True, linewidth=1,
+                     linecolor='black', mirror=True)
+    fig.update_yaxes(showticklabels=False, scaleanchor="x", scaleratio=1,
+                     showline=True, linewidth=1,
+                     linecolor='black', mirror=True)
+    fig.update_traces(hoverinfo='none')
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+        'autosize': True,
+    })
+    return fig
+
 # for each dataframe in tsne_dict, update the label column with the corresponding labels from tsne_labels_dict
 for key, value in tsne_dict.items():
     value['label'] = value['label'].apply(lambda x: tsne_labels_dict[key][x])
+
+tsne_figures = {}
+
+# for every dataframe in tsne_dict, draw a scatter plot
+for key, value in tsne_dict.items():
+    tsne_figures[key] = draw_scatter_facet(key)
 
 content = html.Div([
     textBox(
@@ -61,6 +96,7 @@ content = html.Div([
         value="tsne_sentiment",
         className="drop-down-component",
     ),
+    html.Br(),
     html.Div(
         [
             dcc.Loading(
@@ -81,37 +117,8 @@ content = html.Div([
 
 
 @app.callback(
-
     Output('scatter-with-slider', 'figure'),
     Input("dropdown-dataset", "value")
 )
 def update_figure(dataset):
-    fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
-                     animation_frame="epoch", animation_group="x",
-                     facet_col='layer', facet_col_wrap=4,
-                     hover_name='label',
-                     labels={
-                         'layer': '',
-                         'y': '',
-                         'x': '',
-                         'epoch': '',
-                         'label': '',
-                     },
-                     opacity=0.8,
-                     facet_col_spacing=0,
-                     width=800, height=600,
-                     )
-
-    fig.update_xaxes(showticklabels=False, showline=True, linewidth=1,
-                     linecolor='black', mirror=True)
-    fig.update_yaxes(showticklabels=False, scaleanchor="x", scaleratio=1,
-                     showline=True, linewidth=1,
-                     linecolor='black', mirror=True)
-    fig.update_traces(hoverinfo='none')
-    fig.update_layout({
-        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
-        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
-        'autosize': True,
-    })
-
-    return fig
+    return tsne_figures[dataset]

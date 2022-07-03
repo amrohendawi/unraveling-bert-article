@@ -1,8 +1,6 @@
-import plotly.offline as pyo
-import plotly.express as px
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
-from utils import textBox, read_tasks_nested_tables, DATA_PATH, df_to_matrix
+from utils import textBox, read_tasks_nested_tables, df_to_matrix
 from appServer import app
 import plotly.graph_objs as go
 import pandas as pd
@@ -13,8 +11,23 @@ fine_tuning_dataframes = read_tasks_nested_tables(
 # merge all the dictionaries from dict(dict(pd.dataframe)) to dict(pd.dataframe)
 fine_tuning_dataframes = {k: pd.concat(v) for k, v in fine_tuning_dataframes.items()}
 
-# from the first dictionary item, get the headers of the dataframe
-headers = list(list(fine_tuning_dataframes.values())[0].columns)
+# for every task group and epoch, draw a radar graph
+for task_group, df in fine_tuning_dataframes.items():
+    # transpose the dataframe
+    df = df.T
+    cols = df.columns
+    # update df column names by the second part of the cols tuples
+    df.columns = [col[1] for col in cols]
+    fine_tuning_dataframes[task_group] = df
+
+# get the first dictionary item
+first_dict = list(fine_tuning_dataframes.values())[0]
+
+# get the row headers of the dataframe
+radar_headers = first_dict.index.tolist()
+
+# get the tasks from the first dictionary item
+tasks = {k: list(d.keys()) for k, d in fine_tuning_dataframes.items()}
 
 fine_tuning_section = html.Div([
     textBox(
@@ -32,37 +45,22 @@ fine_tuning_section = html.Div([
         [
             dbc.Col(
                 dcc.Dropdown(
-                    id="dropdown-dataset-type",
+                    id="dropdown-task-group",
                     searchable=False,
                     clearable=False,
-                    options=[{"label": i, "value": i} for i in range(1, 6)],
-                    value=3,
+                    options=[{"label": i, "value": i} for i in
+                             ['1_classification_regression_tasks', '2_Qa_tasks', '3_sequence_labeling_ft_tasks']],
+                    value='1_classification_regression_tasks',
                     className="drop-down-component",
                 )
             ),
-            dbc.Col(
-                dcc.Dropdown(
-                    id="dropdown-epoch",
-                    searchable=False,
-                    clearable=False,
-                    options=[{"label": i, "value": i} for i in range(1, 6)],
-                    value=1,
-                    className="drop-down-component",
-                )
-            )
+            dcc.Dropdown(
+                id="dropdown-task-multiselect",
+                multi=True,
+            ),
         ]
     ),
-    dcc.Dropdown(
-        id="admit-select",
-        options=[{"label": i, "value": i} for i in range(1, 6)],
-        value=1,
-        multi=True,
-    ),
     html.Br(),
-    html.Div(
-        id="reset-btn-outer",
-        children=html.Button(id="reset-btn", children="Reset", n_clicks=0),
-    ),
     dcc.Loading(
         dcc.Graph(id="fine_tuning_graph", className="card-component",
                   style={"width": "auto"})
@@ -76,29 +74,37 @@ content = html.Div([
 )
 
 
-# TODO:
-#  add filters:
-# 1- ff, fu, lu
-# 2- dropdown list t 1,2,3
-# 3- dropdown multiselect tasks (11)
+@app.callback(
+    [
+        Output('dropdown-task-multiselect', 'options'),
+        Output('dropdown-task-multiselect', 'value'),
+    ],
+    Input('dropdown-task-group', 'value')
+)
+def update_tasks_dropdown_multiselect(task_group):
+    return [{'label': i, 'value': i} for i in tasks[task_group]], tasks[task_group][:3]
+
 
 @app.callback(
     Output('fine_tuning_graph', 'figure'),
-    Input("dropdown-graph-type", "value"))
-def update_figure(list_of_values):
-    dummy_data = {
-        'data1': [4, 4, 5, 4, 3, 4, 5, 4, 3],
-        'data2': [5, 5, 4, 5, 2, 5, 4, 5, 2],
-        'data3': [3, 4, 5, 3, 5, 4, 5, 3, 5],
-    }
+    [
+        Input("dropdown-task-group", "value"),
+        Input("dropdown-task-multiselect", "value"),
+    ])
+def update_figure(task_group, tasks_multiselect):
+    selected_tasks = fine_tuning_dataframes[task_group][tasks_multiselect]
+    selected_tasks = selected_tasks.to_dict('list')
 
-    data = [go.Scatterpolar(r=v, theta=headers, fill='toself', name=k)
-            for k, v in dummy_data.items()
+    data = [go.Scatterpolar(r=v, theta=radar_headers, fill='toself', name=k)
+            for k, v in selected_tasks.items()
             ]
     graph_layout = go.Layout(
-        title=go.layout.Title(text='Dummy data comparison'),
-        polar={'radialaxis': {'visible': True}},
-        showlegend=True
+        title=go.layout.Title(text='Tasks transferability comparison based on different fine-tuning methods'),
+        # polar={'radialaxis': {'visible': True}},
+        showlegend=True,
     )
-
-    return go.Figure(data=data, layout=graph_layout)
+    fig = go.Figure(data=data, layout=graph_layout)
+    fig.update_layout(
+        legend_title="Task",
+    )
+    return fig
