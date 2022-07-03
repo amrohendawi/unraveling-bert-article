@@ -100,11 +100,15 @@ def update_figure(task_group, tasks_multiselect):
             ]
     graph_layout = go.Layout(
         title=go.layout.Title(text='Tasks transferability comparison based on different fine-tuning methods'),
-        # polar={'radialaxis': {'visible': True}},
         showlegend=True,
     )
     fig = go.Figure(data=data, layout=graph_layout)
     fig.update_layout(
         legend_title="Task",
     )
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+        'autosize': True,
+    })
     return fig
