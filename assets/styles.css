@@ -25,7 +25,7 @@ body {
 
 .sidebar {
     position: fixed;
-    background-color: #f8f8fc;
+    background-color: #fcfcfe;
     height: fit-content;
     margin: auto;
 }
@@ -60,6 +60,6 @@ color: #37949CFF;
 .text-box {
     margin-top: 50px;
     margin-bottom: 50px;
-    background-color: #f8f8fc;
+    background-color: #fcfcfe;
     padding: 1rem;
 }
