@@ -6,7 +6,7 @@ layout = dbc.Row(
     [
         dbc.Col(
             html.Iframe(
-                src='https://my.spline.design/bertarchitecture3d-0acb3f660b62e4d2136948931cb8676a/',
+                src='https://my.spline.design/3dbertarchitecture-9303898daa2ee7a1b5068e70540c4fb0/',
                 width='100%',
                 height='100%'
             ),
