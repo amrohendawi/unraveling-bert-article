@@ -10,15 +10,21 @@ function checkScroll() {
         if (window.requestAnimationFrame) {
             requestAnimationFrame(function () {
                 var elements = getVisibleElements();
-                console.log(elements);
                 if (elements.length > 0) {
                     disableScrolling();
+                    var target = '';
                     if (elements.includes(document.querySelector('#tldr'))) {
-                        document.getElementById('tldr-button').click();
+                        target = 'tldr-button';
                     } else if (elements.includes(document.querySelector('#references'))) {
-                        document.getElementById('references-button').click();
+                        target = 'references-button';
                     } else {
-                        document.getElementById(elements[elements.length - 1].id + '-button').click();
+                        target = elements[elements.length - 1].id + '-button';
+                    }
+                    // get the current url without the hash
+                    var url = window.location.href.split('#');
+                    var url_without_hash = url[url.length - 1];
+                    if(url_without_hash + '-button' !== target) {
+                        document.getElementById(target).click();
                     }
                     enableScrolling();
                 }
