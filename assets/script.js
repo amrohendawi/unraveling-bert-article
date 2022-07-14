@@ -28,7 +28,6 @@ function getVisibleElements() {
     return elements;
 }
 
-// block the event listener when a button is clicked
 document.addEventListener('click', function (e) {
     // remove the scroll event listener when a button is clicked
     window.removeEventListener('scroll', checkScroll, false);
