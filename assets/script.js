@@ -7,7 +7,7 @@ function checkScroll() {
         requestAnimationFrame(function () {
             var elements = getVisibleElements();
             if (elements.length > 0) {
-                document.getElementById(elements[0].id + '-button').click();
+                document.getElementById(elements[elements.length - 1].id + '-button').click();
             }
         });
     }
@@ -31,7 +31,6 @@ function getVisibleElements() {
 document.addEventListener('click', function (e) {
     // remove the scroll event listener when a button is clicked
     window.removeEventListener('scroll', checkScroll, false);
-    // console.log('click happened')
     if (e.target.classList.contains('button')) {
         e.preventDefault();
     }
