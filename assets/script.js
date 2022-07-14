@@ -8,7 +8,6 @@ function checkScroll() {
             var elements = getVisibleElements();
             if (elements.length > 0) {
                 document.getElementById(elements[0].id + '-button').click();
-                console.log(elements);
             }
         });
     }
