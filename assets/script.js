@@ -33,14 +33,14 @@ function getVisibleElements() {
     return elements;
 }
 
-// document.addEventListener('click', function (e) {
-//     // remove the scroll event listener when a button is clicked
-//     window.removeEventListener('scroll', checkScroll, false);
-//     if (e.target.classList.contains('button')) {
-//         e.preventDefault();
-//     }
-//     //    add the scroll event listener back after 1 second
-//     setTimeout(function () {
-//         window.addEventListener('scroll', checkScroll, false);
-//     }, 1000);
-// });
+document.addEventListener('click', function (e) {
+    // remove the scroll event listener when a button is clicked
+    window.removeEventListener('scroll', checkScroll, false);
+    if (e.target.classList.contains('button')) {
+        e.preventDefault();
+    }
+    //    add the scroll event listener back after 1 second
+    setTimeout(function () {
+        window.addEventListener('scroll', checkScroll, false);
+    }, 1000);
+});
