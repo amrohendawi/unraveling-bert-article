@@ -61,10 +61,17 @@ content = html.Div([
     textBox(
         """
         #### Layer and epoch effect on transferability
+        To demonstrate the layer and epoch effect on BERT's transferability, a BERT model is fine-tuned to do classification task on 3 labels.
+        Then, t-SNE is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.
+
         As observed in different studies, the middle layers of BERT models tend to contain the most syntactic information.
-        This is likely due to the fact that these layers are the most transferable across tasks.
+        This is why these layers are the most transferable across tasks.
         Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the
-        middle layers. Additionally, the number of epochs also seems to have an effect on the performance of BERT models.
+        middle layers.
+        
+        The higher layers seem to be more effective in this process because they acquire more general understanding.
+        The lower layers, on the other hand, seem to be more specialized and only understand specific aspects of the data.
+        Additionally, the number of epochs also seems to have an effect on the performance of BERT models.
 
         Jawahar et al. (2019) found that the lower layers of BERT are more sensitive to lexical information, while the higher layers are more sensitive to syntactic information.
         Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).

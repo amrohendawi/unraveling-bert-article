@@ -35,8 +35,7 @@ function getVisibleElements() {
         var element = document.querySelector('#' + headlines_ids[i]);
         var position = element.getBoundingClientRect();
         // checking whether fully visible
-        console.log(`elem id ${element.id} top ${position.top} bottom ${position.bottom} height ${window.innerHeight}`);
-        if (position.top >= 0 && position.bottom <= window.innerHeight) {
+        if(position.top < window.innerHeight && position.bottom >= 0) {
             elements.push(element);
         }
     }
