@@ -4,6 +4,7 @@ from utils import textBox, read_tasks_nested_tables, df_to_matrix
 from appServer import app
 import plotly.graph_objs as go
 import pandas as pd
+import re
 
 fine_tuning_dataframes = read_tasks_nested_tables(
     "2_fine_tuning_taskwise_res_table", df_to_matrix)
@@ -25,6 +26,8 @@ first_dict = list(fine_tuning_dataframes.values())[0]
 
 # get the row headers of the dataframe
 radar_headers = first_dict.index.tolist()
+# add space before every uppercase letter in the row headers
+radar_headers = [re.sub(r'([A-Z])', r' \1', header) for header in radar_headers]
 
 # get the tasks from the first dictionary item
 tasks = {k: list(d.keys()) for k, d in fine_tuning_dataframes.items()}
@@ -73,7 +76,6 @@ content = html.Div([
 ], id="fine-tuning"
 )
 
-
 @app.callback(
     [
         Output('dropdown-task-multiselect', 'options'),
@@ -83,7 +85,6 @@ content = html.Div([
 )
 def update_tasks_dropdown_multiselect(task_group):
     return [{'label': i, 'value': i} for i in tasks[task_group]], tasks[task_group][:3]
-
 
 @app.callback(
     Output('fine_tuning_graph', 'figure'),

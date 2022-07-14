@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Import required libraries
-from dash import dcc, html, Input, Output, callback_context, State
+from dash import dcc, html, Input, Output, callback_context
 import dash_bootstrap_components as dbc
 from appServer import app
 from dash.exceptions import PreventUpdate
@@ -46,7 +46,7 @@ for key in HEADLINES:
 sidebar = html.Div(
     [
         html.H3("Content", className="display-4",
-                style={"font-style": "bold", "padding": "0rem 1rem 0rem 1rem"}),
+                style={"fontStyle": "bold", "padding": "0rem 1rem 0rem 1rem"}),
         html.Hr(style={"margin": "0rem 1rem 0rem 1rem"}),
         html.Div(
             [
@@ -68,7 +68,7 @@ sidebar = html.Div(
                             ),
                             style={'transform': 'scaleY(-1)',
                                    'flex': '0 0 0%',
-                                   'padding-right': '0rem',
+                                   'paddingRight': '0rem',
                                    }
                         ),
                         dbc.Col(
@@ -77,10 +77,10 @@ sidebar = html.Div(
                                 vertical=True,
                             ),
                             style={
-                                'padding-left': '0rem',
+                                'paddingLeft': '0rem',
                             }
                         )
-                    ], style={"padding-left": "0px"}
+                    ], style={"paddingLeft": "0px"}
                 ),
             ],
             style={"padding": "1rem"},
@@ -131,7 +131,7 @@ app.layout = html.Div(
                     ),
         ],
         style={
-            "justify-content": "center",
+            "justifyContent": "center",
             # "align-items": "center",
         },
 
