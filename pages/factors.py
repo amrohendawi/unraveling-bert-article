@@ -19,8 +19,9 @@ factors_section = html.Div([
         noise.
         """
     ),
-])
-
+],
+    id="factors",
+)
 
 layout = html.Div(
     [
@@ -31,6 +32,5 @@ layout = html.Div(
         task_similarity.content,
         embeddings_quality.content,
     ],
-    id="factors",
     className="row",
 )

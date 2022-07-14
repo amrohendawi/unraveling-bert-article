@@ -3,19 +3,28 @@ window.addEventListener('scroll', checkScroll, false);
 var isScrolling;
 
 function checkScroll() {
-window.clearTimeout( isScrolling );
-	// Set a timeout to run after scrolling ends
-	isScrolling = setTimeout(function() {
-		// Run the callback
+    window.clearTimeout(isScrolling);
+    // Set a timeout to run after scrolling ends
+    isScrolling = setTimeout(function () {
+        // Run the callback
         if (window.requestAnimationFrame) {
             requestAnimationFrame(function () {
                 var elements = getVisibleElements();
+                console.log(elements);
                 if (elements.length > 0) {
-                    document.getElementById(elements[elements.length - 1].id + '-button').click();
+                    disableScrolling();
+                    if (elements.includes(document.querySelector('#tldr'))) {
+                        document.getElementById('tldr-button').click();
+                    } else if (elements.includes(document.querySelector('#references'))) {
+                        document.getElementById('references-button').click();
+                    } else {
+                        document.getElementById(elements[elements.length - 1].id + '-button').click();
+                    }
+                    enableScrolling();
                 }
             });
         }
-	}, 66);
+    }, 66);
 }
 
 // a function that returns all the elements that are visible in the screen
@@ -26,6 +35,7 @@ function getVisibleElements() {
         var element = document.querySelector('#' + headlines_ids[i]);
         var position = element.getBoundingClientRect();
         // checking whether fully visible
+        console.log(`elem id ${element.id} top ${position.top} bottom ${position.bottom} height ${window.innerHeight}`);
         if (position.top >= 0 && position.bottom <= window.innerHeight) {
             elements.push(element);
         }
@@ -44,3 +54,11 @@ document.addEventListener('click', function (e) {
         window.addEventListener('scroll', checkScroll, false);
     }, 1000);
 });
+
+function disableScrolling() {
+    document.body.style.overflow = 'hidden';
+}
+
+function enableScrolling() {
+    document.body.style.overflow = 'auto';
+}
