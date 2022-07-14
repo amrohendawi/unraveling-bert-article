@@ -4,7 +4,7 @@ from utils import textBox
 
 layout = html.Div(
     [
-        textBox(
+          html.H6(
             """
             ## Introduction
                 Since their introduction in 2017, Transformers (Vaswani et al.,
@@ -34,8 +34,10 @@ layout = html.Div(
                 by a number of factors, including the number of layers, the number
                 of fine-tuning epochs, the dataset size, and the label noise.
             """
-        ),
+        ),html.A('[1]', href='#references', id="refAnchor"),
+        html.H6("Hello")
     ],
     id="introduction",
     className="row",
 )
+
