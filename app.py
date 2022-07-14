@@ -141,15 +141,11 @@ app.layout = html.Div(
 buttons_list = [k + '-button' for k in HEADLINES]
 
 
-
-
-
-
 @app.callback(Output('slider-vertical', 'value'),
               [Input(button, 'n_clicks')
                for button in buttons_list],
-               Input("refAnchor", 'n_clicks')
-               )
+              Input("refAnchor", 'n_clicks')
+              )
 def update_value(n_clicks, *args):
     ctx = callback_context
     if ctx.triggered:
