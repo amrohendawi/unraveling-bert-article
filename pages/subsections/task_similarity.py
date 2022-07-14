@@ -6,11 +6,36 @@ from dash.exceptions import PreventUpdate
 from utils import DATA_PATH, textBox, read_tasks_nested_tables, df_to_matrix
 from appServer import app
 
-import pandas as pd
 import json
 
 task_to_task_transfer_learning_res = read_tasks_nested_tables(
     "3_task_to_task_transfer_learning_res", convert_csvs=df_to_matrix)
+
+def create_heatmap(task_class, task_category, dataset_size):
+    fig = px.imshow(task_to_task_transfer_learning_res[task_class][task_category][dataset_size],
+                    labels={"x": "Target Task", "y": "Source Task"},
+                    )
+    fig.update_coloraxes(colorbar_orientation="h")
+    fig.update_layout(
+        title={
+            'text': "Task to Task transfer learning results",
+            'font_size': 15,
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center'})
+    fig.update_layout({
+        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
+        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    })
+    return fig
+
+heatmaps = {}
+for task_class in task_to_task_transfer_learning_res:
+    heatmaps[task_class] = {}
+    for task_category in task_to_task_transfer_learning_res[task_class]:
+        heatmaps[task_class][task_category] = {}
+        for dataset_size in task_to_task_transfer_learning_res[task_class][task_category]:
+            heatmaps[task_class][task_category][dataset_size] = create_heatmap(task_class, task_category, dataset_size)
 
 tasks_groups_list = json.load(
     open(DATA_PATH.joinpath('33 tasks description.json')))
@@ -21,7 +46,6 @@ for key, value in tasks_groups_list.items():
     tasks = value['tasks']
     # append every task to tasks_description dict
     tasks_description.update(tasks)
-
 
 task_to_task_trans_learning = html.Div(
     [
@@ -47,29 +71,16 @@ task_to_task_trans_learning = html.Div(
                         id="dropdown-task-category",
                         searchable=False,
                         clearable=False,
-                        # the keys from task_to_task_trans_learning_res
-                        options=[
-                            {"label": k, "value": k}
-                            for k in task_to_task_transfer_learning_res['inclass'].keys()],
                         placeholder="Select a task category",
-                        value=list(
-                            task_to_task_transfer_learning_res['inclass'].keys())[0],
                         className="drop-down-component"
                     ),
-
                 ),
                 dbc.Col(
                     dcc.Dropdown(
                         id="dropdown-dataset-size",
                         searchable=False,
                         clearable=False,
-                        # the keys from task_to_task_trans_learning_res
-                        options=[
-                            {"label": k, "value": k}
-                            for k in task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys()],
                         placeholder="Select a dataset size",
-                        value=list(
-                            task_to_task_transfer_learning_res['inclass']['1_classification_inclass'].keys())[0],
                         className="drop-down-component"
                     ),
                 ),
@@ -155,7 +166,28 @@ def task_info_on_hover(hoverData):
     except Exception as error:
         raise PreventUpdate
 
+@app.callback(
+    [
+        Output('dropdown-task-category', 'options'),
+        Output('dropdown-task-category', 'value'),
+    ],
+    Input('dropdown-class', 'value')
+)
+def update_tasks_category_dropdown(task_class):
+    return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class].keys()], list(task_to_task_transfer_learning_res[task_class].keys())[0]
 
+@app.callback(
+    [
+        Output('dropdown-dataset-size', 'options'),
+        Output('dropdown-dataset-size', 'value'),
+    ],
+    [
+        Input('dropdown-class', 'value'),
+        Input('dropdown-task-category', 'value'),
+     ]
+)
+def update_tasks_category_dropdown(task_class, task_category):
+    return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
 
 @ app.callback(
     Output('clickable-heatmap2', 'figure'),
@@ -165,22 +197,7 @@ def task_info_on_hover(hoverData):
         Input("dropdown-dataset-size", "value"),
     ])
 def update_figure(task_class, task_category, dataset_size):
-    fig = px.imshow(task_to_task_transfer_learning_res[task_class][task_category][dataset_size],
-                    labels={"x": "Target Task", "y": "Source Task"},
-                    )
-    fig.update_coloraxes(colorbar_orientation="h")
-    fig.update_layout(
-        title={
-            'text': "Task to Task transfer learning results",
-            'font_size': 15,
-            'y': 0.9,
-            'x': 0.5,
-            'xanchor': 'center'})
-    fig.update_layout({
-        'plot_bgcolor': 'rgba(0, 0, 0, 0)',
-        'paper_bgcolor': 'rgba(0, 0, 0, 0)',
-    })
-    return fig
+    return heatmaps[task_class][task_category][dataset_size]
 
 
 @ app.callback(
