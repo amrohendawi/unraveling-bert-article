@@ -132,7 +132,6 @@ app.layout = html.Div(
         ],
         style={
             "justifyContent": "center",
-            # "align-items": "center",
         },
 
     )

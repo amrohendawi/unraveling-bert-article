@@ -18,6 +18,7 @@ tsne_labels_dict = {
     "tsne_sentiment": ["positive", "neutral", "negative"],
 }
 
+
 def draw_scatter_facet(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
                      animation_frame="epoch", animation_group="x",
@@ -46,6 +47,7 @@ def draw_scatter_facet(dataset):
         'autosize': True,
     })
     return fig
+
 
 # for each dataframe in tsne_dict, update the label column with the corresponding labels from tsne_labels_dict
 for key, value in tsne_dict.items():

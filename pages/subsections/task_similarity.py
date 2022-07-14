@@ -11,6 +11,7 @@ import json
 task_to_task_transfer_learning_res = read_tasks_nested_tables(
     "3_task_to_task_transfer_learning_res", convert_csvs=df_to_matrix)
 
+
 def create_heatmap(task_class, task_category, dataset_size):
     fig = px.imshow(task_to_task_transfer_learning_res[task_class][task_category][dataset_size],
                     labels={"x": "Target Task", "y": "Source Task"},
@@ -28,6 +29,7 @@ def create_heatmap(task_class, task_category, dataset_size):
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
     })
     return fig
+
 
 heatmaps = {}
 for task_class in task_to_task_transfer_learning_res:
@@ -144,10 +146,7 @@ content = html.Div([
 )
 
 
-
-
-
-@ app.callback(
+@app.callback(
     Output("task_desc", "children"),
     Input("network-graph", "hoverData")
 )
@@ -166,6 +165,7 @@ def task_info_on_hover(hoverData):
     except Exception as error:
         raise PreventUpdate
 
+
 @app.callback(
     [
         Output('dropdown-task-category', 'options'),
@@ -174,7 +174,9 @@ def task_info_on_hover(hoverData):
     Input('dropdown-class', 'value')
 )
 def update_tasks_category_dropdown(task_class):
-    return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class].keys()], list(task_to_task_transfer_learning_res[task_class].keys())[0]
+    return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class].keys()], \
+           list(task_to_task_transfer_learning_res[task_class].keys())[0]
+
 
 @app.callback(
     [
@@ -184,12 +186,13 @@ def update_tasks_category_dropdown(task_class):
     [
         Input('dropdown-class', 'value'),
         Input('dropdown-task-category', 'value'),
-     ]
+    ]
 )
 def update_tasks_category_dropdown(task_class, task_category):
-    return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
+    return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
+           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
 
-@ app.callback(
+@app.callback(
     Output('clickable-heatmap2', 'figure'),
     [
         Input("dropdown-class", "value"),
@@ -200,7 +203,7 @@ def update_figure(task_class, task_category, dataset_size):
     return heatmaps[task_class][task_category][dataset_size]
 
 
-@ app.callback(
+@app.callback(
     Output("source_target_task_desc2", "children"),
     Input("clickable-heatmap2", "hoverData")
 )
