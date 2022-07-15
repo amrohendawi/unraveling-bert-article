@@ -63,3 +63,16 @@ color: #37949CFF;
     background-color: #fcfcfe;
     padding: 1rem;
 }
+
+.combound p { 
+    display: inline;
+}
+.combound {
+    display: inline;
+}
+
+.popup-trigger  p{
+    color: #1B416C;
+    cursor: pointer;
+    border-bottom: dashed;
+}

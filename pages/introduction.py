@@ -1,15 +1,51 @@
 import dash_bootstrap_components as dbc
 from dash import html
-from utils import textBox
+from utils import textBox, text_article
 
-layout = html.Div(
-    [
-        textBox(
-            """
+introduction_text_dict = [
+    {"type": "txt",
+     "text": """
             ## Introduction
                 Since their introduction in 2017, Transformers (Vaswani et al.,
                 2017) have taken NLP by storm, offering enhanced parallelization and
-                better modeling of long-range dependencies. The best known
+                better 
+            """
+     },
+    {"type": "popup",
+     "text": """modeling""",
+     "hovtxt": "the action or habit of estimating something as"},
+    {"type": "txt",
+     "text": """
+                 comtinue their introduction in 2017, Transformers (Vaswani et al.,
+                2017) have taken NLP by storm, offering enhanced parallelization and
+                better
+            """,
+     },
+    {"type": "ref",
+     "text": """[[12]](/#references)""",
+     "hovtxt": """
+    >
+    > Block quotes are used to highlight text with the link[www.google.com](www.google.com).
+    >
+    """},
+    {"type": "txt",
+     "text": """
+                 comtinue their introduction in 2017, Transformers (Vaswani et al.,
+                2017) have taken NLP by storm, offering enhanced parallelization and
+                better
+            """,
+     },
+    {"type": "popup",
+     "text": """someHOVERABLETEXT""",
+     "hovtxt": "HOVERHOVERHOVER"},
+]
+
+layout = html.Div(
+    [
+        text_article(introduction_text_dict,  style=""),
+        textBox(
+            """
+             of long-range dependencies. The best known
                 Transformer-based model is BERT (Devlin et al., 2019); it obtained
                 state-of-the-art results in numerous benchmarks and is still a
                 must-have baseline.
