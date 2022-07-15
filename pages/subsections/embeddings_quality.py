@@ -8,6 +8,7 @@ from appServer import app
 import pandas as pd
 import json
 
+
 def process_graph_data(method, data):
     N = len(data['nodes'])
     L = len(data['links'])
@@ -49,6 +50,7 @@ network_graph_data = {
     "taskemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TASKEMB_SPACE.json'))),
     "textemb": json.load(open(DATA_PATH.joinpath('text_task_embedding_space/TEXTEMB_SPACE.json'))),
 }
+
 
 def draw_network_graph(method):
     figure_data = network_graph_data_processed[method]
@@ -124,17 +126,14 @@ def draw_network_graph(method):
     })
     return fig
 
+
 # for each task, get process graph data
 network_graph_data_processed = {}
 graph_figs = {}
 
-
 for key, value in network_graph_data.items():
     network_graph_data_processed[key] = process_graph_data(key, value)
     graph_figs[key] = draw_network_graph(key)
-
-
-
 
 network_graph = dbc.Row(
     [
@@ -162,7 +161,8 @@ content = html.Div([
             The quality of the learned embeddings is an important factor in the performance of downstream tasks. If the embeddings are of poor quality, the downstream task will likely suffer.
             There are a few ways to measure the quality of learned embeddings. One is to evaluate the performance of a model that is trained on a supervised task using the learned embeddings as features. Another is to evaluate the performance of a model that is trained on a unsupervised task using the learned embeddings as features.
             BERT models have been shown to produce high-quality embeddings. For example, a study found that a BERT model trained on a large corpus of English text produced embeddings that were better at capturing syntactic and semantic information than word2vec embeddings.
-            """
+            """,
+        text_id="embeddings-quality"
     ),
     dcc.Dropdown(
         id="dropdown-graph-type",
@@ -176,7 +176,7 @@ content = html.Div([
         className="drop-down-component"
     ),
     network_graph,
-], id="embeddings-quality"
+]
 )
 
 

@@ -11,8 +11,8 @@ layout = html.Div(
     3. https://huggingface.co/transformers/pretrained_models.html#bert
     4. https://medium.com/@jonathan_hui/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
     """
+            , text_id="references"
         ),
     ],
-    id="references",
     className="row",
 )

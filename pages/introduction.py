@@ -42,7 +42,7 @@ introduction_text_dict = [
 
 layout = html.Div(
     [
-        text_article(introduction_text_dict,  style=""),
+        text_article(introduction_text_dict, style=""),
         textBox(
             """
              of long-range dependencies. The best known

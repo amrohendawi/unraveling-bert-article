@@ -8,13 +8,13 @@ PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
 
 
-def textBox(text, style=None, className=""):
+def textBox(text, style=None, class_name="", text_id=""):
     return html.Div(dcc.Markdown(
-        text.replace(
-            "  ", ""
-        ),
+        text
     ),
-        className="text-box card-component ",
+        style=style,
+        className="text-box card-component " + class_name,
+        id=text_id,
     )
 
 
@@ -53,7 +53,7 @@ def text_article(content, style=None):
                     i["hovtxt"].replace(
                         "  ", "",
                     ),
-                    link_target="_blank",),
+                    link_target="_blank", ),
                 target="rid-" + i["text"].strip(),
                 delay={'show': 0, 'hide': 3000}))
     return html.Div(list,

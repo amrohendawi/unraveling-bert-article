@@ -127,7 +127,8 @@ content = html.Div([
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
             For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
             However, it is not clear how much of an improvement fine-tuning provides in this case.
-            """
+            """,
+        text_id="task-similarity"
     ),
     task_to_task_trans_learning,
     textBox(
@@ -142,7 +143,7 @@ content = html.Div([
             Positive transfers are shown in blue and the best results are highlighted in bold (blue). These results suggest that fine-tuning can improve a model's ability to transfer to other tasks and domains.
             """
     ),
-], id="task-similarity"
+]
 )
 
 
@@ -191,6 +192,7 @@ def update_tasks_category_dropdown(task_class):
 def update_tasks_category_dropdown(task_class, task_category):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
            list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
+
 
 @app.callback(
     Output('clickable-heatmap2', 'figure'),

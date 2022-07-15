@@ -10,9 +10,12 @@ import pandas as pd
 import json
 
 gen_avg_trans_learn_dict = {
-    "full-full":        df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_full.csv"))),
-    "full-limited":     df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_limited.csv"))),
-    "limited-limited":  df_to_matrix(pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_limited_limited.csv"))),
+    "full-full": df_to_matrix(
+        pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_full.csv"))),
+    "full-limited": df_to_matrix(
+        pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_full_limited.csv"))),
+    "limited-limited": df_to_matrix(
+        pd.read_csv(DATA_PATH.joinpath("1_general__avg_transfer_learning_res_table/gen_limited_limited.csv"))),
 }
 
 tasks_groups_list = json.load(
@@ -85,12 +88,14 @@ content = html.Div([
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
             For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
             However, it is not clear how much of an improvement fine-tuning provides in this case.
-            """),
+            """,
+        text_id="dataset"
+    ),
     gen_avg_trans_learning,
-], id="dataset")
+])
 
 
-@ app.callback(
+@app.callback(
     Output("source_target_task_desc", "children"),
     Input("clickable-heatmap", "hoverData")
 )
@@ -116,7 +121,7 @@ def task_group_info_on_hover(hoverData):
         raise PreventUpdate
 
 
-@ app.callback(
+@app.callback(
     Output('clickable-heatmap', 'figure'),
     Input("dropdown-task", "value"))
 def update_figure(experiment):

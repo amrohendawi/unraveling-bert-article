@@ -18,12 +18,12 @@ function checkScroll() {
                     } else if (elements.includes(document.querySelector('#references'))) {
                         target = 'references-button';
                     } else {
-                        target = elements[elements.length - 1].id + '-button';
+                        target = elements[0].id + '-button';
                     }
                     // get the current url without the hash
                     var url = window.location.href.split('#');
                     var url_without_hash = url[url.length - 1];
-                    if(url_without_hash + '-button' !== target) {
+                    if (url_without_hash + '-button' !== target) {
                         document.getElementById(target).click();
                     }
                     enableScrolling();
@@ -41,7 +41,7 @@ function getVisibleElements() {
         var element = document.querySelector('#' + headlines_ids[i]);
         var position = element.getBoundingClientRect();
         // checking whether fully visible
-        if(position.top < window.innerHeight && position.bottom >= 0) {
+        if (position.top >= 0 && position.bottom <= window.innerHeight) {
             elements.push(element);
         }
     }

@@ -42,7 +42,7 @@ fine_tuning_section = html.Div([
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
             For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
             However, it is not clear how much of an improvement fine-tuning provides in this case.
-            """
+            """, text_id="fine-tuning"
     ),
     dbc.Row(
         [
@@ -73,8 +73,9 @@ fine_tuning_section = html.Div([
 
 content = html.Div([
     fine_tuning_section,
-], id="fine-tuning"
+]
 )
+
 
 @app.callback(
     [
@@ -85,6 +86,7 @@ content = html.Div([
 )
 def update_tasks_dropdown_multiselect(task_group):
     return [{'label': i, 'value': i} for i in tasks[task_group]], tasks[task_group][:3]
+
 
 @app.callback(
     Output('fine_tuning_graph', 'figure'),

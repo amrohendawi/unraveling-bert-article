@@ -82,6 +82,7 @@ content = html.Div([
         In general, the more epochs, the better the performance. However, this is not always the case, and it is important
         to experiment with different numbers of epochs to find the best results.
             """
+        , text_id="layer-epoch"
     ),
     dcc.Dropdown(
         id="dropdown-dataset",
@@ -122,7 +123,7 @@ content = html.Div([
                 The previous observations show that the pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively. Furthermore, the observation shows which layers learn and hold the most discriminating features.
             """
     ),
-], id="layer-epoch")
+])
 
 
 @app.callback(

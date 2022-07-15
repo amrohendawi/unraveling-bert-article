@@ -101,7 +101,7 @@ body = html.Div([
                 """
                     # Unraveling BERT's Transferability
                     """,
-                className="title",
+                class_name="title",
                 style={"textAlign": "center", "width": "fit-content"}
             ),
         ],
