@@ -55,7 +55,7 @@ layout = html.Div(
             ## Introduction
             Since their introduction in 2017, Transformers (Vaswani et al.,
             2017) have taken NLP by storm, offering enhanced parallelization and
-            better [modeling](#references "the action or habit of estimating something as") of long-range dependencies.
+            better [modeling](#references "Vu, T., Wang, T., Munkhdalai, T., Sordoni, A., Trischler, A., Mattarella-Micke, A., Maji, S. and Iyyer, M., 2020. Exploring and predicting transferability across NLP tasks. arXiv preprint arXiv:2005.00770.") of long-range dependencies.
             The best known Transformer-based model is BERT (Devlin et al., 2019); it obtained
             state-of-the-art results in numerous benchmarks and is still a
             must-have baseline.
