@@ -17,10 +17,10 @@ factors_section = html.Div([
         transferability of BERT. These factors are the number of layers,
         the number of fine-tuning epochs, the dataset size, and the label
         noise.
-        """
+        """,
+        text_id="factors"
     ),
 ],
-    id="factors",
 )
 
 layout = html.Div(

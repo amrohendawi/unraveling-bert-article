@@ -143,7 +143,6 @@ buttons_list = [k + '-button' for k in HEADLINES]
 @app.callback(Output('slider-vertical', 'value'),
               [Input(button, 'n_clicks')
                for button in buttons_list],
-              Input("refAnchor", 'n_clicks')
               )
 def update_value(n_clicks, *args):
     ctx = callback_context
@@ -151,8 +150,6 @@ def update_value(n_clicks, *args):
         prop_id = ctx.triggered[0]['prop_id'].split('.')[0]
         if prop_id in buttons_list:
             return HEADLINES[prop_id[:-7]]['index']
-        if prop_id == "refAnchor":
-            return 70
 
 
 # Run the Dash app

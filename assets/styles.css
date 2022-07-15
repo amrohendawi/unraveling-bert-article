@@ -4,6 +4,13 @@
     font-weight: bold !important;
     padding: 1rem 0rem 1rem 0rem;
 }
+/* change anchor style */
+p a {
+    color: #1B416C;
+    cursor: pointer;
+    border-bottom: dashed;
+    text-decoration: none;
+}
 
 .nav-link-section {
     color: #666;
