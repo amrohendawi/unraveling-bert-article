@@ -67,3 +67,20 @@ function disableScrolling() {
 function enableScrolling() {
     document.body.style.overflow = 'auto';
 }
+
+// replace every title tag inside anchor tag with data-title
+function replaceTitle() {
+    var anchors = document.querySelectorAll('a');
+    for (var i = 0; i < anchors.length; i++) {
+        var anchor = anchors[i];
+        var title = anchor.title;
+        anchor.setAttribute('data-title', title);
+        anchor.removeAttribute('title');
+    }
+}
+
+// call replaceTitle() when the page is loaded
+window.addEventListener('load', replaceTitle, false);
+
+// call replaceTitle() when the page is refreshed
+window.addEventListener('refresh', replaceTitle, false);

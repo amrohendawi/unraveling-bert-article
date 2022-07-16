@@ -4,12 +4,39 @@
     font-weight: bold !important;
     padding: 1rem 0rem 1rem 0rem;
 }
+
 /* change anchor style */
 p a {
     color: #1B416C;
     cursor: pointer;
     border-bottom: dashed;
     text-decoration: none;
+}
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.5s ease 0.5s;
+    visibility: visible;
+}
+
+[data-title]:after {
+    content: attr(data-title);
+    visibility: hidden;
+    width: 30rem;
+    background-color: #313131;
+    color: #fff;
+    /*text-align: center;*/
+    padding: 0.3rem 0 0.3rem 0.3rem;
+    border-radius: 0.5rem;
+    margin-left: 0.5rem;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+[data-title] {
+    position: relative;
 }
 
 .nav-link-section {
@@ -38,7 +65,7 @@ body {
 }
 
 .nav-link:hover {
-color: #37949CFF;
+    color: #37949CFF;
 }
 
 .card-component {
@@ -74,11 +101,12 @@ color: #37949CFF;
 .combound p {
     display: inline;
 }
+
 .combound {
     display: inline;
 }
 
-.popup-trigger  p{
+.popup-trigger p {
     color: #1B416C;
     cursor: pointer;
     border-bottom: dashed;
