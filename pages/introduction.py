@@ -1,4 +1,3 @@
-import dash_bootstrap_components as dbc
 from dash import html
 from utils import textBox, text_article
 
@@ -49,7 +48,7 @@ introduction_text_dict = [
 
 layout = html.Div(
     [
-        text_article(introduction_text_dict, style=""),
+        # text_article(introduction_text_dict, style=""),
         textBox(
             """
             ## Introduction
@@ -60,6 +59,14 @@ layout = html.Div(
             state-of-the-art results in numerous benchmarks and is still a
             must-have baseline.
 
+            > The overriding design goal for Markdown's
+            > formatting syntax is to make it as readable
+            > as possible. The idea is that a
+            > Markdown-formatted document should be
+            > publishable as-is, as plain text, without
+            > looking like it's been marked up with tags
+            > or formatting instructions.
+            
             BERT is a deep learning model that has been shown to be effective
             for a range of natural language understanding tasks. However, it is
             not clear how well BERT transfers to more specific tasks. In this

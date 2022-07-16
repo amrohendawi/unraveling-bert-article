@@ -5,6 +5,12 @@
     padding: 1rem 0rem 1rem 0rem;
 }
 
+blockquote {
+    margin: 0;
+    padding-left: 1.4rem;
+    border-left: 4px solid #dadada;
+}
+
 /* change anchor style */
 p a {
     color: #1B416C;
@@ -15,7 +21,7 @@ p a {
 
 [data-title]:hover:after {
     opacity: 1;
-    transition: all 0.5s ease 0.5s;
+    transition: all 0s ease 0.5s;
     visibility: visible;
 }
 
@@ -23,16 +29,15 @@ p a {
     content: attr(data-title);
     visibility: hidden;
     width: 30rem;
-    background-color: #313131;
+    background-color: #424242;
     color: #fff;
-    /*text-align: center;*/
     padding: 0.3rem 0 0.3rem 0.3rem;
     border-radius: 0.5rem;
     margin-left: 0.5rem;
-
-    /* Position the tooltip text - see examples below! */
+    box-sizing: border-box;
     position: absolute;
     z-index: 1;
+    font-size: 12px;
 }
 
 [data-title] {

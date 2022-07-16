@@ -1,18 +1,32 @@
-from dash import html
+from dash import html, dcc
 from utils import textBox
+import dash_bootstrap_components as dbc
 
 layout = html.Div(
     [
-        textBox(
+        dcc.Markdown(
             """
-    ## References
-    1. https://arxiv.org/pdf/1906.01083.pdf
-    2. https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
-    3. https://huggingface.co/transformers/pretrained_models.html#bert
-    4. https://medium.com/@jonathan_hui/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
-    """
-            , text_id="references"
+            ## References
+            """
+            , id="references"
+        ),
+        # a list of bullet points
+        dbc.ListGroup(
+            [
+                dbc.ListGroupItem(
+                    "1. Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+                    href="https://arxiv.org/pdf/1906.01083.pdf",
+                ),
+                dbc.ListGroupItem(
+                    "2. Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+                    href="https://arxiv.org/pdf/1906.01083.pdf",
+                ),
+                dbc.ListGroupItem(
+                    "3. Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+                    href="https://arxiv.org/pdf/1906.01083.pdf",
+                ),
+            ]
         ),
     ],
-    className="row",
+    className="row text-box card-component ",
 )
