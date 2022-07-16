@@ -70,12 +70,16 @@ function enableScrolling() {
 
 // replace every title tag inside anchor tag with data-title
 function replaceTitle() {
-    var anchors = document.querySelectorAll('a');
-    for (var i = 0; i < anchors.length; i++) {
-        var anchor = anchors[i];
-        var title = anchor.title;
-        anchor.setAttribute('data-title', title);
-        anchor.removeAttribute('title');
+    var ps = document.querySelectorAll('p');
+    for (var j = 0; j < ps.length; j++) {
+        var p = ps[j];
+        var anchors = p.querySelectorAll('a');
+        for (var i = 0; i < anchors.length; i++) {
+            var anchor = anchors[i];
+            var title = anchor.title;
+            anchor.setAttribute('data-title', title);
+            anchor.removeAttribute('title');
+        }
     }
 }
 
