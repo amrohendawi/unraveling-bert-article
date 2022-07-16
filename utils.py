@@ -8,9 +8,10 @@ PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
 
 
-def textBox(text, style=None, class_name="", text_id=""):
+def textBox(text, style=None, class_name="", text_id="", dangerously_allow_html=False):
     return html.Div(dcc.Markdown(
-        text
+        text,
+        dangerously_allow_html=dangerously_allow_html,
     ),
         style=style,
         className="text-box card-component " + class_name,

@@ -86,7 +86,12 @@ layout = html.Div(
             In conclusion, we find that the transferability of BERT is affected
             by a number of factors, including the number of layers, the number
             of fine-tuning epochs, the dataset size, and the label noise.
+            <details>
+            <summary>Read more</summary>
+            This is an example of read-more section for advanced readers.
+            </details>
             """,
+            dangerously_allow_html=True,
             text_id="introduction",
         ),
     ],
