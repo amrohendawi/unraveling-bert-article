@@ -4,8 +4,7 @@ from utils import textBox
 
 import pages.subsections.layer_epoch_effect as layer_epoch_effect
 import pages.subsections.fine_tuning as fine_tuning
-import pages.subsections.task_similarity as task_similarity
-import pages.subsections.embeddings_quality as embeddings_quality
+import pages.subsections.task_relevance as task_relevance
 import pages.subsections.dataset as dataset
 import pages.subsections.model_size as model_size
 import pages.subsections.model_depth as model_depth
@@ -32,9 +31,8 @@ layout = html.Div(
         model_size.content,
         model_depth.content,
         layer_epoch_effect.content,
-        task_similarity.content,
+        task_relevance.content,
         fine_tuning.content,
-        embeddings_quality.content,
     ],
     className="row",
 )

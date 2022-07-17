@@ -19,12 +19,11 @@ HEADLINES = {
     'model-size': {"index": 31, "title": "How big should BERT be?", "type": "subsection"},
     'model-depth': {"index": 35, "title": "Does depth matter?", "type": "subsection"},
     'layer-epoch': {"index": 39, "title": "Layer & Epoch", "type": "subsection"},
-    'task-similarity': {"index": 43, "title": "Task Similarity", "type": "subsection"},
+    'task-relevance': {"index": 43, "title": "The Importance of Task Relevance", "type": "subsection"},
     'fine-tuning': {"index": 47, "title": "Fine-tuning", "type": "subsection"},
-    'embeddings-quality': {"index": 52, "title": "Embeddings Quality", "type": "subsection"},
-    'directions': {"index": 60, "title": "Directions & Further Research", "type": "paragraph"},
-    'conclusion': {"index": 70, "title": "Conclusion", "type": "paragraph"},
-    'references': {"index": 80, "title": "References", "type": "paragraph"},
+    'directions': {"index": 55, "title": "Directions & Further Research", "type": "paragraph"},
+    'conclusion': {"index": 65, "title": "Conclusion", "type": "paragraph"},
+    'references': {"index": 75, "title": "References", "type": "paragraph"},
 }
 
 headlines_style = {

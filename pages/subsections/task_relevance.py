@@ -289,7 +289,7 @@ content = html.Div([
             
             Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning.
             """,
-        text_id="task-similarity"
+        text_id="task-relevance"
     ),
     task_to_task_trans_learning,
     textBox(
