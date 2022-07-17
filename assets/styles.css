@@ -19,6 +19,15 @@ p a {
     text-decoration: none;
 }
 
+.list-group-item {
+    background-color: transparent;
+}
+
+/*change text color of list-group-item on hover */
+.list-group-item:hover {
+    color: #37949CFF;
+}
+
 [data-title]:hover:after {
     opacity: 1;
     transition: all 0s ease 0.5s;
@@ -60,13 +69,56 @@ p a {
 body {
     margin: 0;
     background-color: #fcfcfe;
+    color: #4d4d4d;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+summary {
+  padding: 1rem;
+  display: block;
+  padding-left: 2.2rem;
+  position: relative;
+  cursor: pointer;
+}
+/* THE MAGIC 🧙‍♀️ */
+details[open] > summary:before {
+  transform: rotate(90deg);
+}
+
+
+details summary::-webkit-details-marker {
+  display:none;
+}
+
+
+summary:before {
+  content: '';
+  border-width: .4rem;
+  border-style: solid;
+  border-color: transparent transparent transparent #4d4d4d;
+  position: absolute;
+  top: 1.3rem;
+  left: 1rem;
+  transform: rotate(0);
+  transform-origin: .2rem 50%;
+  transition: .25s transform ease;
+}
+
+summary:hover {
+    color: #37949CFF;
 }
 
 .sidebar {
+    top: 0;
+    bottom: 0;
     position: fixed;
     background-color: #fcfcfe;
     height: fit-content;
-    margin: auto;
 }
 
 .nav-link:hover {
@@ -97,9 +149,9 @@ body {
 }
 
 .text-box {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    background-color: #fcfcfe;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: #fdfdfd;
     padding: 1rem;
 }
 

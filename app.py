@@ -89,9 +89,7 @@ sidebar = html.Div(
     ],
     className="sidebar card-component",
     style={
-        "margin": "auto",
-        "top": "0",
-        "bottom": "0",
+        "margin-left": "2rem",
     },
 )
 
