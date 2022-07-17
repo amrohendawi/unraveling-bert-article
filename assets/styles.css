@@ -2,7 +2,20 @@
     color: #666;
     font-size: 12px;
     font-weight: bold !important;
-    padding: 1rem 0rem 1rem 0rem;
+    padding: 1rem 0rem 0.8rem 0rem;
+}
+
+.nav-link-section {
+    color: #666;
+    font-size: 12px;
+    font-weight: bold !important;
+    padding: 0.9rem 0rem 0.8rem 0rem;
+}
+
+.nav-link-subsection {
+    color: #666;
+    font-size: 10px;
+    padding: 0.1rem 1rem 0.1rem 0rem;
 }
 
 blockquote {
@@ -51,19 +64,6 @@ p a {
 
 [data-title] {
     position: relative;
-}
-
-.nav-link-section {
-    color: #666;
-    font-size: 12px;
-    font-weight: bold !important;
-    padding: 1rem 0rem 0.8rem 0rem;
-}
-
-.nav-link-subsection {
-    color: #666;
-    font-size: 10px;
-    padding: 0.1rem 1rem 0.2rem 0rem;
 }
 
 body {

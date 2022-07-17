@@ -130,17 +130,20 @@ def update_figure(experiment):
                     contrast_rescaling='minmax',
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
+    # fig.update_layout(margin=dict(l=1, r=1, t=1, b=1))
     fig.update_layout(
         title={
-            'text': "General average transfer learning results on <br> " + experiment,
-            'font_size': 15,
+            'text': "Average transfer learning results",
+            'font_size': 12,
             'y': 0.9,
             'x': 0.5,
             'xanchor': 'center',
-        })
+        },
+        coloraxis={'colorscale': 'viridis'}
+    )
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+        'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
     })
     return fig

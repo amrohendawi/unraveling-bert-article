@@ -35,16 +35,16 @@ function checkScroll() {
 
 // a function that returns all the elements that are visible in the screen
 function getVisibleElements() {
-    var headlines_ids = ['tldr', 'introduction', 'factors', 'directions', 'conclusion', 'references', 'fine-tuning', 'layer-epoch', 'dataset', 'task-similarity', 'embeddings-quality'];
+    var headlines_ids = ['tldr', 'introduction', 'factors', 'directions', 'conclusion', 'references', 'dataset', 'model-size', 'model-depth', 'layer-epoch', 'task-relevance', 'fine-tuning'];
     var elements = [];
-    for (var i = 0; i < headlines_ids.length; i++) {
-        var element = document.querySelector('#' + headlines_ids[i]);
+    headlines_ids.forEach(function (headline_id) {
+        var element = document.querySelector('#' + headline_id);
         var position = element.getBoundingClientRect();
         // checking whether fully visible
         if (position.top >= 0 && position.bottom <= window.innerHeight) {
             elements.push(element);
         }
-    }
+    });
     return elements;
 }
 
@@ -67,6 +67,7 @@ function disableScrolling() {
 function enableScrolling() {
     document.body.style.overflow = 'auto';
 }
+
 //
 // // replace every title tag inside anchor tag with data-title
 // function replaceTitle() {

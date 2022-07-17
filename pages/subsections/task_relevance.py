@@ -26,10 +26,13 @@ def create_heatmap(task_class, task_category, dataset_size):
             'font_size': 15,
             'y': 0.9,
             'x': 0.5,
-            'xanchor': 'center'})
+            'xanchor': 'center'},
+        coloraxis={'colorscale': 'viridis'}
+    )
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+        'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
     })
     return fig
 
@@ -364,7 +367,7 @@ def update_tasks_category_dropdown(task_class):
 )
 def update_tasks_category_dropdown(task_class, task_category):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
-           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
+           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[-1]
 
 
 @app.callback(

@@ -89,7 +89,7 @@ sidebar = html.Div(
     ],
     className="sidebar card-component",
     style={
-        "margin-left": "2rem",
+        "marginLeft": "2rem",
     },
 )
 
@@ -149,8 +149,6 @@ def update_value(n_clicks, *args):
         if prop_id in buttons_list:
             return HEADLINES[prop_id[:-7]]['index']
 
-
 # Run the Dash app
 if __name__ == "__main__":
     app.run_server(debug=True)
-    # app.run_server(debug=False)
