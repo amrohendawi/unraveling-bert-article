@@ -13,16 +13,18 @@ server = app.server
 # dictionary for the headlines from TEXTS
 HEADLINES = {
     'tldr': {"index": 0, "title": "TL;DR", "type": "paragraph"},
-    'introduction': {"index": 10, "title": "Introduction", "type": "paragraph"},
-    'factors': {"index": 20, "title": "Factors", "type": "section"},
-    'fine-tuning': {"index": 27, "title": "Fine-tuning", "type": "subsection"},
-    'layer-epoch': {"index": 31, "title": "Layer & Epoch", "type": "subsection"},
-    'dataset': {"index": 35, "title": "Dataset", "type": "subsection"},
-    'task-similarity': {"index": 39, "title": "Task Similarity", "type": "subsection"},
-    'embeddings-quality': {"index": 43, "title": "Embeddings Quality", "type": "subsection"},
-    'directions': {"index": 50, "title": "Directions & Further Research", "type": "paragraph"},
-    'conclusion': {"index": 60, "title": "Conclusion", "type": "paragraph"},
-    'references': {"index": 70, "title": "References", "type": "paragraph"},
+    'introduction': {"index": 10, "title": "BERT and Transfer-Learning", "type": "paragraph"},
+    'factors': {"index": 20, "title": "What makes a model more transferable?", "type": "section"},
+    'dataset': {"index": 27, "title": "The Effect of Dataset Size", "type": "subsection"},
+    'model-size': {"index": 31, "title": "How big should BERT be?", "type": "subsection"},
+    'model-depth': {"index": 35, "title": "Does depth matter?", "type": "subsection"},
+    'layer-epoch': {"index": 39, "title": "Layer & Epoch", "type": "subsection"},
+    'task-similarity': {"index": 43, "title": "Task Similarity", "type": "subsection"},
+    'fine-tuning': {"index": 47, "title": "Fine-tuning", "type": "subsection"},
+    'embeddings-quality': {"index": 52, "title": "Embeddings Quality", "type": "subsection"},
+    'directions': {"index": 60, "title": "Directions & Further Research", "type": "paragraph"},
+    'conclusion': {"index": 70, "title": "Conclusion", "type": "paragraph"},
+    'references': {"index": 80, "title": "References", "type": "paragraph"},
 }
 
 headlines_style = {
@@ -124,14 +126,13 @@ app.layout = html.Div(
     dbc.Row(
         [
             dcc.Location(id="url"),
-            dcc.Store(id="click-output"),
-            dbc.Col(sidebar, width=2,
+            dbc.Col(sidebar, width=3,
                     ),
-            dbc.Col(body, width=8,
+            dbc.Col(body, width=7,
                     ),
         ],
         style={
-            "justifyContent": "center",
+            # "justifyContent": "center",
         },
 
     )
