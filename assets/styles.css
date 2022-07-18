@@ -14,7 +14,7 @@
 
 .nav-link-subsection {
     color: #666;
-    font-size: 10px;
+    font-size: 11px;
     padding: 0.1rem 1rem 0.1rem 0rem;
 }
 
@@ -26,6 +26,13 @@ blockquote {
 
 /* change anchor style */
 p a {
+    color: #1B416C;
+    cursor: pointer;
+    border-bottom: dashed;
+    text-decoration: none;
+}
+
+dccTooltip {
     color: #1B416C;
     cursor: pointer;
     border-bottom: dashed;
