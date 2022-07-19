@@ -27,7 +27,6 @@ def draw_scatter_facet(dataset):
                      labels={
                          'y': '',
                          'x': '',
-                         'epoch': '',
                          'label': '',
                      },
                      opacity=0.8,
