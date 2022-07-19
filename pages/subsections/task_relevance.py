@@ -273,7 +273,7 @@ network_graph = dbc.Row(
 content = html.Div([
     textBox(
         """
-            #### The Importance of Task Relevance
+            ##### The Importance of Task Relevance
              
             Multitask transfer learning results in improved regularization and transfer compared to single-task learning [2].
             Transferability within the same domain returns better results with few exceptions [2].

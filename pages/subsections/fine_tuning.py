@@ -35,7 +35,7 @@ tasks = {k: list(d.keys()) for k, d in fine_tuning_dataframes.items()}
 fine_tuning_section = html.Div([
     textBox(
         """
-            #### Fine-tuning
+            ##### Fine-tuning
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
 

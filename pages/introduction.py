@@ -1,51 +1,6 @@
 from dash import html
-from utils import textBox, text_article
+from utils import textBox
 import dash_bootstrap_components as dbc
-
-introduction_text_dict = [
-    {
-        "type": "txt",
-        "text": """
-            ## Introduction
-                Since their introduction in 2017, Transformers (Vaswani et al.,
-                2017) have taken NLP by storm, offering enhanced parallelization and
-                better 
-            """
-    },
-    {
-        "type": "popup",
-        "text": """modeling""",
-        "hovtxt": "the action or habit of estimating something as"},
-    {
-        "type": "txt",
-        "text": """
-                 continue their introduction in 2017, Transformers (Vaswani et al.,
-                2017) have taken NLP by storm, offering enhanced parallelization and
-                better
-            """,
-    },
-    {
-        "type": "ref",
-        "text": """[[12]](/#references)""",
-        "hovtxt": """
-        >
-        > Block quotes are used to highlight text with the link[www.google.com](www.google.com).
-        >
-        """
-    },
-    {
-        "type": "txt",
-        "text": """
-                 comtinue their introduction in 2017, Transformers (Vaswani et al.,
-                2017) have taken NLP by storm, offering enhanced parallelization and
-                better
-            """,
-    },
-    {
-        "type": "popup",
-        "text": """someHOVERABLETEXT""",
-        "hovtxt": "HOVERHOVERHOVER"},
-]
 
 layout = html.Div(
     [
@@ -55,7 +10,7 @@ layout = html.Div(
         ),
         textBox(
             """
-            ## BERT and Transfer-Learning
+            ### BERT and Transfer-Learning
 
             Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP
             by storm, offering enhanced parallelization and better modeling of long-range <a

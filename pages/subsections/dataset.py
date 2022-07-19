@@ -82,7 +82,7 @@ gen_avg_trans_learning = dbc.Row(
 content = html.Div([
     textBox(
         """
-            #### The Effect of Dataset Size
+            ##### The Effect of Dataset Size
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
             This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
             There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.

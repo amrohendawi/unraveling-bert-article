@@ -13,7 +13,7 @@ import pages.subsections.model_depth as model_depth
 factors_section = html.Div([
     textBox(
         """
-        ## What makes a model more transferable? 
+        ### What makes a model more transferable? 
         In this section we discuss the main factors that affect the
         transferability of BERT. These factors are the number of layers,
         the number of fine-tuning epochs, the dataset size, and the label

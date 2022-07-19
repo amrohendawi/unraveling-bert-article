@@ -60,7 +60,7 @@ for key, value in tsne_dict.items():
 content = html.Div([
     textBox(
         """
-        #### Layer and epoch effect on transferability
+        ##### Layer and epoch effect on transferability
         To demonstrate the layer and epoch effect on BERT's transferability, a BERT model is fine-tuned to do classification task on 3 labels.
         Then, t-SNE is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.
 

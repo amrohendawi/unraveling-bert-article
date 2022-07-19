@@ -18,50 +18,6 @@ def textBox(text, style=None, class_name="", text_id="", dangerously_allow_html=
         id=text_id,
     )
 
-
-def text_article(content, style=None):
-    list = []
-    for i in content:
-        if i["type"] == "popup":
-            list.append(dcc.Markdown(
-                i["text"].replace(
-                    "  ", ""
-                ),
-                id="rid-" + i["text"],
-                className="combound popup-trigger"
-            ))
-            list.append(dbc.Tooltip(
-                i["hovtxt"], target="rid-" + i["text"]))
-        elif i["type"] == "txt":
-            list.append(dcc.Markdown(
-                i["text"].replace(
-                    "  ", ""
-                ),
-                className="combound"
-            ))
-        else:
-            list.append(dcc.Markdown(
-                i["text"].replace(
-                    "  ", ""
-                ),
-                id="rid-" + i["text"].strip(),
-                className="combound refrence",
-            )
-            )
-
-            list.append(dbc.Tooltip(
-                dcc.Markdown(
-                    i["hovtxt"].replace(
-                        "  ", "",
-                    ),
-                    link_target="_blank", ),
-                target="rid-" + i["text"].strip(),
-                delay={'show': 0, 'hide': 3000}))
-    return html.Div(list,
-                    className="text-box card-component",
-                    )
-
-
 def df_to_matrix(df):
     df_matrix = pd.DataFrame(columns=df['sourceTask'].unique())
     for _, row in df.iterrows():

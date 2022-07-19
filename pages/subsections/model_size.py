@@ -8,7 +8,7 @@ from appServer import app
 content = html.Div([
     textBox(
         """
-            #### How big should BERT be?
+            ##### How big should BERT be?
             
             The size of BERT depends on the specific application and dataset.
             Generally, BERT should have 30-40% of weights pruned without any impact on downstream tasks.

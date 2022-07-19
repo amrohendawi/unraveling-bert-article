@@ -6,7 +6,7 @@ layout = html.Div(
     [
         dcc.Markdown(
             """
-            ## References
+            ### References
             """
             , id="references"
         ),
