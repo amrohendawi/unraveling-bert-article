@@ -25,7 +25,6 @@ def draw_scatter_facet(dataset):
                      facet_col='layer', facet_col_wrap=4,
                      hover_name='label',
                      labels={
-                         'layer': '',
                          'y': '',
                          'x': '',
                          'epoch': '',
@@ -36,10 +35,10 @@ def draw_scatter_facet(dataset):
                      width=800, height=600,
                      )
     fig.update_xaxes(showticklabels=False, showline=True, linewidth=1,
-                     linecolor='black', mirror=True)
+                     linecolor='#4d4d4d', mirror=True)
     fig.update_yaxes(showticklabels=False, scaleanchor="x", scaleratio=1,
                      showline=True, linewidth=1,
-                     linecolor='black', mirror=True)
+                     linecolor='#4d4d4d', mirror=True)
     fig.update_traces(hoverinfo='none')
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',

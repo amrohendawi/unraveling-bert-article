@@ -38,10 +38,10 @@
 }
 
 .tooltip-inner {
-    background-color: #37949CFF;
+    background-color: #3c8288;
 }
 .tooltip-arrow::before {
-    border-left-color: #37949CFF !important;
+    border-left-color: #3c8288 !important;
 }
 
 blockquote {
