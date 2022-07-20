@@ -59,15 +59,37 @@ for key, value in tsne_dict.items():
 
 content = html.Div([
     dbc.Tooltip(
-        "Click to find out more",
+        "Click to find more about t-SNE",
         target="tsne-anchor",
+        className="tooltip-class",
     ),
     dbc.Offcanvas(
-        html.P("Some offcanvas content..."),
+        [
+            html.P(
+                """
+                The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model.
+                T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together
+                in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar
+                high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence
+                between the two computed probability distributions in order to maintain the structure as much as possible with a low projection
+                error rate.
+                """
+            ),
+            html.P(
+                """
+                In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to
+                visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity
+                of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable
+                coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the
+                progression of training.
+                """
+            ),
+        ],
         id="tsne-canvas",
         title="What is t-SNE?",
         is_open=False,
-        placement="end"
+        placement="end",
+        className="offcanvas-class",
     ),
     html.Div(
         [
@@ -162,12 +184,15 @@ content = html.Div([
     ),
 ])
 
+
 @callback(
+
     Output("tsne-canvas", "is_open"),
     Input("tsne-anchor", "n_clicks"),
 )
 def toggle_text(n1):
     return n1
+
 
 @app.callback(
     Output('scatter-with-slider', 'figure'),

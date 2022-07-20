@@ -66,6 +66,7 @@ fine_tuning_section = html.Div([
     html.Br(),
     dcc.Loading(
         dcc.Graph(id="fine_tuning_graph", className="card-component",
+                  config={"displayModeBar": False},
                   style={"width": "auto"})
     ),
 ]
