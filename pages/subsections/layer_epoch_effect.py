@@ -61,7 +61,6 @@ content = html.Div([
     dbc.Tooltip(
         "Click to find more about t-SNE",
         target="tsne-anchor",
-        className="tooltip-class",
     ),
     dbc.Offcanvas(
         [
@@ -97,6 +96,7 @@ content = html.Div([
             html.H5(
                 "Layer and epoch effect on transferability",
             ),
+            html.Br(),
             html.P(
                 [
                     """
@@ -163,7 +163,6 @@ content = html.Div([
         ],
         placeholder="Select a dataset",
         value="tsne_sentiment",
-        className="drop-down-component",
     ),
     html.Br(),
     html.Div(
