@@ -1,6 +1,6 @@
 import plotly.express as px
 import dash_bootstrap_components as dbc
-from dash import dcc, html, Input, Output
+from dash import dcc, html, Input, Output, callback
 from utils import textBox, DATA_PATH
 from appServer import app
 
@@ -58,29 +58,68 @@ for key, value in tsne_dict.items():
     tsne_figures[key] = draw_scatter_facet(key)
 
 content = html.Div([
-    textBox(
-        """
-        ##### Layer and epoch effect on transferability
-        To demonstrate the layer and epoch effect on BERT's transferability, a BERT model is fine-tuned to do classification task on 3 labels.
-        Then, t-SNE is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.
+    dbc.Tooltip(
+        "Click to find out more",
+        target="tsne-anchor",
+    ),
+    dbc.Offcanvas(
+        html.P("Some offcanvas content..."),
+        id="tsne-canvas",
+        title="What is t-SNE?",
+        is_open=False,
+        placement="end"
+    ),
+    html.Div(
+        [
 
-        As observed in different studies, the middle layers of BERT models tend to contain the most syntactic information.
-        This is why these layers are the most transferable across tasks.
-        Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the
-        middle layers.
-        
-        The higher layers seem to be more effective in this process because they acquire more general understanding.
-        The lower layers, on the other hand, seem to be more specialized and only understand specific aspects of the data.
-        Additionally, the number of epochs also seems to have an effect on the performance of BERT models.
-
-        Jawahar et al. (2019) found that the lower layers of BERT are more sensitive to lexical information, while the higher layers are more sensitive to syntactic information.
-        Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).
-        Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
-        
-        In general, the more epochs, the better the performance. However, this is not always the case, and it is important
-        to experiment with different numbers of epochs to find the best results.
-            """
-        , text_id="layer-epoch"
+            html.H5(
+                "Layer and epoch effect on transferability",
+            ),
+            html.P(
+                [
+                    """
+                      To demonstrate the layer and epoch effect on BERT's transferability, a BERT model is fine-tuned
+                      to do classification task on 3 labels. Then, 
+                       """,
+                    html.A(
+                        "t-SNE",
+                        id="tsne-anchor",
+                        className="toggle-text",
+                    ),
+                    " is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.",
+                ]
+            ),
+            html.P(
+                """
+                As observed in different studies, the middle layers of BERT models tend to contain the most syntactic information.
+                This is why these layers are the most transferable across tasks.
+                Therefore, when using transfer learning with BERT models, it is important to keep this in mind and focus on the
+                middle layers.        
+                """
+            ),
+            html.P(
+                """
+                The higher layers seem to be more effective in this process because they acquire more general understanding.
+                The lower layers, on the other hand, seem to be more specialized and only understand specific aspects of the data.
+                Additionally, the number of epochs also seems to have an effect on the performance of BERT models.
+                """
+            ),
+            html.P(
+                """
+                Jawahar et al. (2019) found that the lower layers of BERT are more sensitive to lexical information, while the higher layers are more sensitive to syntactic information.
+                Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).
+                Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
+                """
+            ),
+            html.P(
+                """
+                In general, the more epochs, the better the performance. However, this is not always the case, and it is important
+                to experiment with different numbers of epochs to find the best results.
+                """
+            ),
+        ],
+        id="layer-epoch",
+        className="text-box card-component"
     ),
     dcc.Dropdown(
         id="dropdown-dataset",
@@ -123,6 +162,12 @@ content = html.Div([
     ),
 ])
 
+@callback(
+    Output("tsne-canvas", "is_open"),
+    Input("tsne-anchor", "n_clicks"),
+)
+def toggle_text(n1):
+    return n1
 
 @app.callback(
     Output('scatter-with-slider', 'figure'),

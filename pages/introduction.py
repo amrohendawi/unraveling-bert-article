@@ -1,7 +1,5 @@
-from dash import html, Output, Input
-from utils import textBox
+from dash import html, Output, Input, callback
 import dash_bootstrap_components as dbc
-from appServer import app
 
 layout = html.Div(
     [
@@ -75,7 +73,7 @@ layout = html.Div(
 )
 
 
-@app.callback(
+@callback(
     Output("modal-scroll", "is_open"),
     Input("open-scroll", "n_clicks"),
 )
@@ -83,7 +81,7 @@ def toggle_text(n1):
     return n1
 
 
-@app.callback(
+@callback(
     Output("offcanvas-placement", "is_open"),
     Input("open-scroll2", "n_clicks"),
 )

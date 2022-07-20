@@ -2,20 +2,20 @@
     color: #666;
     font-size: 12px;
     font-weight: bold !important;
-    padding: 1rem 0rem 0.8rem 0rem;
+    padding: 1rem 0 0.8rem 0;
 }
 
 .nav-link-section {
     color: #666;
     font-size: 12px;
     font-weight: bold !important;
-    padding: 0.9rem 0rem 0.8rem 0rem;
+    padding: 0.9rem 0 0.8rem 0;
 }
 
 .nav-link-subsection {
     color: #666;
     font-size: 11px;
-    padding: 0.1rem 1rem 0.1rem 0rem;
+    padding: 0.1rem 1rem 0.1rem 0;
 }
 
 
@@ -59,14 +59,12 @@ blockquote {
 p a {
     color: #1B416C;
     cursor: pointer;
-    border-bottom: dashed;
+    border-bottom: dashed 2px;
     text-decoration: none;
 }
 
 .toggle-text {
     color: #1B416C;
-    cursor: pointer;
-    border-bottom: dashed;
     text-decoration: none;
 }
 
@@ -82,14 +80,14 @@ p a {
 body {
     margin: 0;
     background-color: #fcfcfe;
-    color: #3d3e52;
+    color: #3c4d5b;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     margin: 0;
     padding: 0;
-    color: #2b4667
+    color: #45535e
 }
 
 summary {
