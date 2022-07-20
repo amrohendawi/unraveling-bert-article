@@ -55,6 +55,7 @@ gen_avg_trans_learning = dbc.Row(
                     value="full-full",
                     className="drop-down-component"
                 ),
+                html.Br(),
                 html.Div(
                     dcc.Loading(
                         dcc.Graph(

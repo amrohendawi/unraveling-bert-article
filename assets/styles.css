@@ -60,10 +60,6 @@
     border-left-color: #3c8288 !important;
 }
 
-.tooltip-class {
-    width: 300px;
-}
-
 blockquote {
     margin: 0;
     padding-left: 1.4rem;
@@ -103,40 +99,6 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     color: #45535e
-}
-
-summary {
-    padding: 1rem;
-    display: block;
-    padding-left: 2.2rem;
-    position: relative;
-    cursor: pointer;
-}
-
-/* THE MAGIC 🧙‍♀️ */
-details[open] > summary:before {
-    transform: rotate(90deg);
-}
-
-details summary::-webkit-details-marker {
-    display: none;
-}
-
-summary:before {
-    content: '';
-    border-width: .4rem;
-    border-style: solid;
-    border-color: transparent transparent transparent #4d4d4d;
-    position: absolute;
-    top: 1.3rem;
-    left: 1rem;
-    transform: rotate(0);
-    transform-origin: .2rem 50%;
-    transition: .25s transform ease;
-}
-
-summary:hover {
-    color: #37949CFF;
 }
 
 .sidebar {

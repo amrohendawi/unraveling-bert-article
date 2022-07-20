@@ -20,6 +20,9 @@ def create_heatmap(task_class, task_category, dataset_size):
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
+    max_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].max().max()
+    min_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].min().min()
+
     fig.update_layout(
         title={
             'text': "Task to Task transfer learning results",
@@ -27,7 +30,15 @@ def create_heatmap(task_class, task_category, dataset_size):
             'y': 0.9,
             'x': 0.5,
             'xanchor': 'center'},
-        coloraxis={'colorscale': 'viridis'}
+        coloraxis={
+            'colorscale': 'viridis_r',
+            'showscale': True,
+            'colorbar': dict(
+                ticktext=['worst', 'best'],
+                tickvals=[min_val+5, max_val-5],
+            )
+        },
+
     )
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -367,7 +378,7 @@ def update_tasks_category_dropdown(task_class):
 )
 def update_tasks_category_dropdown(task_class, task_category):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
-           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[-1]
+           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
 
 
 @app.callback(
