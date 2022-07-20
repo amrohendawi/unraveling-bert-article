@@ -6,7 +6,7 @@ layout = html.Div(
     [
         dbc.Tooltip(
             "Vu, T., Wang, T., Munkhdalai, T., Sordoni, A., Trischler, A., Mattarella-Micke, A., Maji, S. and Iyyer, M., 2020. Exploring and predicting transferability across NLP tasks. arXiv preprint arXiv:2005.00770.",
-            target="tooltip-target",
+            target="tt-1",
         ),
         textBox(
             """
@@ -14,7 +14,7 @@ layout = html.Div(
 
             Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP
             by storm, offering enhanced parallelization and better modeling of long-range <a
-            id="tooltip-target" href="#references" children="dependencies" />. The best known
+            id="tt-1" href="#references" children="dependencies" />. The best known
             Transformer-based model is BERT (Devlin et al., 2019); it obtained state-of-the-art
             results in numerous benchmarks and is still a must-have baseline.
 
