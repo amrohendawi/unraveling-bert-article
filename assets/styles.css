@@ -37,9 +37,14 @@
     padding: 1rem;
 }
 
+.tooltip.show {
+    opacity: 1;
+}
+
 .tooltip-inner {
     background-color: #3c8288;
 }
+
 .tooltip-arrow::before {
     border-left-color: #3c8288 !important;
 }
@@ -52,6 +57,13 @@ blockquote {
 
 /* change anchor style */
 p a {
+    color: #1B416C;
+    cursor: pointer;
+    border-bottom: dashed;
+    text-decoration: none;
+}
+
+.toggle-text {
     color: #1B416C;
     cursor: pointer;
     border-bottom: dashed;
