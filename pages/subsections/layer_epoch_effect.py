@@ -12,6 +12,11 @@ tsne_dict = {
     "tsne_sentiment": pd.read_csv(DATA_PATH.joinpath("tsne_data/tsne_sentiment.csv")),
 }
 
+# for every tsne_dataset
+for dataset in tsne_dict:
+    #     add a new column called unique_id
+    tsne_dict[dataset]['unique_id'] = tsne_dict[dataset].index
+
 tsne_labels_dict = {
     "tsne_hate": ["hate", "no hate"],
     "tsne_offensive": ["offensive", "no offensive"],
@@ -21,7 +26,7 @@ tsne_labels_dict = {
 
 def draw_scatter_facet(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
-                     animation_frame="epoch", animation_group="x",
+                     animation_frame="epoch", animation_group="unique_id",
                      facet_col='layer', facet_col_wrap=4,
                      hover_name='label',
                      labels={
@@ -38,7 +43,9 @@ def draw_scatter_facet(dataset):
     fig.update_yaxes(showticklabels=False, scaleanchor="x", scaleratio=1,
                      showline=True, linewidth=1,
                      linecolor='#4d4d4d', mirror=True)
-    fig.update_traces(hoverinfo='none')
+    fig.update_traces(hoverinfo='none',
+                      marker=dict(line=dict(width=1, color='white')),
+                      )
     fig.update_layout({
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
