@@ -43,6 +43,7 @@ def draw_scatter_facet(dataset):
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'autosize': True,
+        'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
     })
     return fig
 
