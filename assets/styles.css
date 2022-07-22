@@ -18,6 +18,12 @@
     padding: 0.1rem 1rem 0.1rem 0;
 }
 
+.slider-label {
+    color: #666;
+    font-size: 12px;
+    font-weight: bold !important;
+    padding: 0.9rem 0 0.8rem 0;
+}
 
 .card-component {
     box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.99), 5px 5px 8px rgba(94, 94, 94, 0.20);

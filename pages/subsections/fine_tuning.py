@@ -44,32 +44,56 @@ fine_tuning_section = html.Div([
             However, it is not clear how much of an improvement fine-tuning provides in this case.
             """, text_id="fine-tuning"
     ),
-    dbc.Row(
+    html.Div(
         [
-            dbc.Col(
-                dcc.Dropdown(
-                    id="dropdown-task-group",
-                    searchable=False,
-                    clearable=False,
-                    options=[{"label": i, "value": i} for i in
-                             ['1_classification_regression_tasks', '2_Qa_tasks', '3_sequence_labeling_ft_tasks']],
-                    value='1_classification_regression_tasks',
-                    className="drop-down-component",
-                )
+            dbc.Row(
+                [
+                    dbc.Col(
+                        html.P("Pick task domain: ", style={"font-weight": "bold"}),
+                        width=3,
+                    ),
+                    dbc.Col(
+                        dcc.Dropdown(
+                            id="dropdown-task-group",
+                            searchable=False,
+                            clearable=False,
+                            options=[{"label": i, "value": i} for i in
+                                     ['1_classification_regression_tasks', '2_Qa_tasks',
+                                      '3_sequence_labeling_ft_tasks']],
+                            value='1_classification_regression_tasks',
+                            className="drop-down-component",
+                        ),
+                        width=5,
+                    ),
+                ],
+                style={"margin": "auto"},
             ),
-            dcc.Dropdown(
-                id="dropdown-task-multiselect",
-                multi=True,
+            dbc.Row(
+                [
+                    dbc.Col(
+                        html.P("Pick different tasks to compare: ", style={"font-weight": "bold"}),
+                        width=3,
+                    ),
+                    dbc.Col(
+                        dcc.Dropdown(
+                            id="dropdown-task-multiselect",
+                            multi=True,
+                        ),
+                        width=5,
+                    ),
+                ],
+                style={"margin": "auto"},
             ),
-        ]
+        ],
     ),
     html.Br(),
     dcc.Loading(
-        dcc.Graph(id="fine_tuning_graph", className="card-component",
+        dcc.Graph(id="fine_tuning_graph",
                   config={"displayModeBar": False},
                   style={"width": "auto"})
     ),
-]
+],
+    className="card-component",
 )
 
 content = html.Div([
