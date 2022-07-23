@@ -19,6 +19,7 @@ factors_section = html.Div([
     html.P("After that, the task task relevance will be highlighted with a heat-map. By the end, the techniques used during the fine tuning and its effect on the results will be considered."),
     html.Hr()
 ],
+    id="factors"
 )
 
 layout = html.Div(

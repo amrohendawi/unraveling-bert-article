@@ -37,7 +37,7 @@ def create_heatmap(task_class, task_category, dataset_size):
             'showscale': True,
             'colorbar': dict(
                 ticktext=['worst', 'best'],
-                tickvals=[min_val+5, max_val-5],
+                tickvals=[min_val + 5, max_val - 5],
             )
         },
 
@@ -290,15 +290,28 @@ network_graph = dbc.Row(
     ],
 )
 
+text_content = html.Div(
+    [
+        html.H4("The Importance of Task Relevance"),
+        html.P(
+            "Multitask transfer learning results in improved regularization and transfer compared to single-task learning. Transferability within the same domain returns better results with few exceptions. Cross-domain transfer learning also returns better results with few exceptions "),
+        html.P(
+            "BERT models can be fine-tuned for multiple tasks such as natural language understanding (NLU) and natural language generation (NLG). BERT's performance on NLU tasks can be improved by fine-tuning on NLG tasks. This indicates that BERT's representations are general enough to be transferable to different tasks."),
+        # TODO: check refernce and text
+        html.P(
+            "Taskonomy can be used to improve the performance of BERT models. Taskonomy can be used to select the most relevant tasks for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
+        html.P(
+            "Taskonomy can also be used to select the most relevant layers for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
+        html.P(
+            "Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning."),
+        html.P(["The following graph visualize the relativness of tasks within 3 domains. ",
+                html.A("[4]", id="ds2-ref", href="#references")]),
+    ],
+    id="task-relevance",
+)
+
 content = html.Div([
-    html.H3("The Importance of Task Relevance"),
-    html.P("Multitask transfer learning results in improved regularization and transfer compared to single-task learning. Transferability within the same domain returns better results with few exceptions. Cross-domain transfer learning also returns better results with few exceptions "),
-    html.P("BERT models can be fine-tuned for multiple tasks such as natural language understanding (NLU) and natural language generation (NLG). BERT's performance on NLU tasks can be improved by fine-tuning on NLG tasks. This indicates that BERT's representations are general enough to be transferable to different tasks."),  # TODO: check refernce and text
-    html.P("Taskonomy can be used to improve the performance of BERT models. Taskonomy can be used to select the most relevant tasks for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
-    html.P("Taskonomy can also be used to select the most relevant layers for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
-    html.P("Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning."),
-    html.P(["The following graph visualize the relativness of tasks within 3 domains. ",
-           html.A("[4]", id="ds2-ref", href="#references")]),
+    text_content,
     dcc.Dropdown(
         id="dropdown-graph-type",
         searchable=False,
@@ -312,7 +325,7 @@ content = html.Div([
     ),
     network_graph,
     html.P(["The following heatmap shows the transferability's performance between some tasks. ",
-           html.A("[4]", id="ds3-ref", href="#references")]),
+            html.A("[4]", id="ds3-ref", href="#references")]),
     task_to_task_trans_learning,
 
     html.Hr(),
@@ -349,7 +362,7 @@ def task_info_on_hover(hoverData):
 )
 def update_tasks_category_dropdown(task_class):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class].keys()], \
-        list(task_to_task_transfer_learning_res[task_class].keys())[0]
+           list(task_to_task_transfer_learning_res[task_class].keys())[0]
 
 
 @app.callback(
@@ -364,8 +377,8 @@ def update_tasks_category_dropdown(task_class):
 )
 def update_tasks_category_dropdown(task_class, task_category):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
-        list(task_to_task_transfer_learning_res[task_class][task_category].keys())[
-        0]
+           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[
+               0]
 
 
 @app.callback(

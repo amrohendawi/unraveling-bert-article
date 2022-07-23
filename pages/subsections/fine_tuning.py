@@ -34,20 +34,43 @@ radar_headers = [re.sub(r'([A-Z])', r' \1', header)
 # get the tasks from the first dictionary item
 tasks = {k: list(d.keys()) for k, d in fine_tuning_dataframes.items()}
 
+text_content = html.Div(
+    [
+        html.H4("Fine-tuning"),
+        html.P(
+            """
+            Fine tuning is the process of tweaking a machine learning model to get better performance. This can involve changes to the
+            model architecture, the training data, the training procedure, or any other number of factors. The goal is to improve the
+            model's performance on some metric
+            """),
+        html.P(
+            """
+            Fine tuning is often an iterative process, where one makes a small change and then evaluates the model's performance on
+            a test set. If the performance improves, the change is kept; if not, the change is reverted. This process is repeated until
+            the model's performance is satisfactory.
+            """),
+        html.P(
+            """
+            Fine tuning is not always necessary, and in some cases, it can actually hurt performance. For example, if a model
+            is overfit to the training data, then fine tuning it may just lead to further overfitting. It is important to evaluate
+            the model on a hold-out set or cross-validation set before making any changes, to make sure that the changes are actually helping.
+            """),
+    ],
+    id="fine-tuning"
+)
+
 fine_tuning_section = html.Div([
-    html.H3("Fine-tuning"),
-    html.P("Fine tuning is the process of tweaking a machine learning model to get better performance. This can involve changes to the model architecture, the training data, the training procedure, or any other number of factors. The goal is to improve the model's performance on some metric"),
-    html.P("Fine tuning is often an iterative process, where one makes a small change and then evaluates the model's performance on a test set. If the performance improves, the change is kept; if not, the change is reverted. This process is repeated until the model's performance is satisfactory."),
-    html.P("Fine tuning is not always necessary, and in some cases, it can actually hurt performance. For example, if a model is overfit to the training data, then fine tuning it may just lead to further overfitting. It is important to evaluate the model on a hold-out set or cross-validation set before making any changes, to make sure that the changes are actually helping."),
-    html.P(["The following radar chart visualizes some of the techniques that can be used to fine-tune a machine learning model. ",
-           html.A("[4]", id="ds4-ref", href="#references")]),
+    text_content,
+    html.P([
+        "The following radar chart visualizes some of the techniques that can be used to fine-tune a machine learning model. ",
+        html.A("[4]", id="ds4-ref", href="#references")]),
     html.Div(
         [
             dbc.Row(
                 [
                     dbc.Col(
                         html.P("Pick task domain: ", style={
-                               "font-weight": "bold"}),
+                            "font-weight": "bold"}),
                         width=3,
                     ),
                     dbc.Col(

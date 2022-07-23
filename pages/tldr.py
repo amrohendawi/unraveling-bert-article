@@ -12,6 +12,7 @@ layout = html.Div(
             For example, the model is able to transfer more knowledge to a task that is similar to the task it was trained on than to a task that is dissimilar. This suggests that the model is able to learn general principles that can be applied to new tasks, but that the amount of knowledge that can be transferred is limited by the similarity between the tasks.\n
             Furthermore, the results show that the effectiveness of the system increases with the number of layers, number of fine-tuning epochs, and dataset size used for the fine-tuning. In addition, a shallower BERT model transfers better than a deeper model.
             """,
+            text_id="tldr"
         ),
         html.Hr(),
         # TODO: Put the following in a component. Maybe instad of direction compnent (I think it is not necessary)
@@ -48,9 +49,7 @@ layout = html.Div(
             html.Hr()
 
         ], className="card-component")
-
     ],
-    id="tldr"
 )
 
 

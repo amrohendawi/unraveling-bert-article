@@ -80,14 +80,37 @@ gen_avg_trans_learning = dbc.Row(
     ]
 )
 
+text_content = html.Div(
+    [
+        html.H4("The Effect of Dataset Size"),
+        html.P(
+            """
+            When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced. This is because the
+            model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks. There is
+            some evidence that  effect of source and target dataset size can also improve a knowledge transformation.
+            """),
+        html.P(
+            """
+            The effect of source and target dataset size in transfer learning is an important factor to consider. The size of the source
+            dataset can impact the performance of the model when transferring to the target dataset. If the source dataset is too small,
+            the model may not be able to learn the relevant features for the target dataset. On the other hand, if the source dataset is
+            too large, the model may overfit on the source dataset and not be able to generalize to the target dataset. The size of the
+            target dataset can also impact the performance of the model.
+            """),
+    ],
+    id="dataset"
+)
+
 content = html.Div([
-    html.H3("The Effect of Dataset Size"),
-    html.P("When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced. This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks. There is some evidence that  effect of source and target dataset size can also improve a knowledge transformation."),
-    html.P("The effect of source and target dataset size in transfer learning is an important factor to consider. The size of the source dataset can impact the performance of the model when transferring to the target dataset. If the source dataset is too small, the model may not be able to learn the relevant features for the target dataset. On the other hand, if the source dataset is too large, the model may overfit on the source dataset and not be able to generalize to the target dataset. The size of the target dataset can also impact the performance of the model."),
-    html.P(["The heat map below provides a visualization of the effect of data set size on performance. The three set-ups shown represent different combinations of source and target data set sizes. The first set-up is a full size source task to full size target task, the second set-up shows the impact of a full size source data set size to a limited size target task, and finally the third set-up is limited to limited. ", html.A("[4]", id="ds-ref", href="#references")]),
-    gen_avg_trans_learning,  # TODO: speake about the methodolgy, how the result has been achived and maybe in each set up show a text at the bottem overviews the results
+    text_content,
+    html.P([
+        "The heat map below provides a visualization of the effect of data set size on performance. The three set-ups shown represent different combinations of source and target data set sizes. The first set-up is a full size source task to full size target task, the second set-up shows the impact of a full size source data set size to a limited size target task, and finally the third set-up is limited to limited. ",
+        html.A("[4]", id="ds-ref", href="#references")]),
+    gen_avg_trans_learning,
+    # TODO: speake about the methodolgy, how the result has been achived and maybe in each set up show a text at the bottem overviews the results
     html.Hr()
-])
+],
+)
 
 
 @app.callback(

@@ -148,6 +148,7 @@ def update_value(n_clicks, *args):
     if ctx.triggered:
         prop_id = ctx.triggered[0]['prop_id'].split('.')[0]
         if prop_id in buttons_list:
+            print(HEADLINES[prop_id[:-7]]['index'])
             return HEADLINES[prop_id[:-7]]['index']
 
 

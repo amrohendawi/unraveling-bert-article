@@ -87,7 +87,7 @@ content = html.Div([
     html.Div(
         [
 
-            html.H5(
+            html.H4(
                 "Layer and epoch effect on transferability",
             ),
             html.Br(),
