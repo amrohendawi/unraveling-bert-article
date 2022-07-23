@@ -14,12 +14,9 @@ First, clone the git repo, then create a virtual environment for installing depe
 Feel free to use conda or any other environment manager of your choice.
 
 ```
-
 git clone https://github.com/amrohendawi/unraveling-bert-article
 cd unraveling-bert-article
 python -m venv venv
-
-
 ```
 
 Activate the environment and install the requirements with pip
@@ -27,16 +24,22 @@ Activate the environment and install the requirements with pip
 ```
 source venv/bin/activate
 pip install -r requirements.txt
-
 ```
 
 Run the app
 
 ```
-
 python app.py
-
 ```
+
+## Working on the implementation
+
+Before you push to heroku make sure to update the dependencies in the requirements.txt file in case of new additions.
+
+```bash
+pip freeze > requirements.txt
+```
+
 
 ## About the app
 
