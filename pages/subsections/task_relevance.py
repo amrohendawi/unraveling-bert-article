@@ -20,8 +20,10 @@ def create_heatmap(task_class, task_category, dataset_size):
                     labels={"x": "Target Task", "y": "Source Task"},
                     )
     fig.update_coloraxes(colorbar_orientation="h")
-    max_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].max().max()
-    min_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].min().min()
+    max_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].max(
+    ).max()
+    min_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].min(
+    ).min()
 
     fig.update_layout(
         title={
@@ -54,7 +56,8 @@ for task_class in task_to_task_transfer_learning_res:
     for task_category in task_to_task_transfer_learning_res[task_class]:
         heatmaps[task_class][task_category] = {}
         for dataset_size in task_to_task_transfer_learning_res[task_class][task_category]:
-            heatmaps[task_class][task_category][dataset_size] = create_heatmap(task_class, task_category, dataset_size)
+            heatmaps[task_class][task_category][dataset_size] = create_heatmap(
+                task_class, task_category, dataset_size)
 
 tasks_groups_list = json.load(
     open(DATA_PATH.joinpath('33 tasks description.json')))
@@ -150,9 +153,11 @@ def process_graph_data(method, data):
     for e in Edges:
         if int(e[0] / 11) == int(e[1] / 11):
             if method == 'taskemb':
-                edges_color.append('blue' if e[0] < 11 else 'red' if e[0] < 22 else 'green')
+                edges_color.append(
+                    'blue' if e[0] < 11 else 'red' if e[0] < 22 else 'green')
             else:
-                edges_color.append('red' if e[0] < 11 else 'blue' if e[0] < 22 else 'green')
+                edges_color.append(
+                    'red' if e[0] < 11 else 'blue' if e[0] < 22 else 'green')
         else:
             edges_color.append('grey')
 
@@ -188,9 +193,12 @@ def draw_network_graph(method):
     data = network_graph_data[method]
     for e in figure_data['edges']:
         # x-coordinates of edge ends
-        Xe += [figure_data['layout'][e[0]][0], figure_data['layout'][e[1]][0], None]
-        Ye += [figure_data['layout'][e[0]][1], figure_data['layout'][e[1]][1], None]
-        Ze += [figure_data['layout'][e[0]][2], figure_data['layout'][e[1]][2], None]
+        Xe += [figure_data['layout'][e[0]][0],
+               figure_data['layout'][e[1]][0], None]
+        Ye += [figure_data['layout'][e[0]][1],
+               figure_data['layout'][e[1]][1], None]
+        Ze += [figure_data['layout'][e[0]][2],
+               figure_data['layout'][e[1]][2], None]
 
     # for every edge create a trace. the line width is the value at data['links'][k]['value']
     traces = []
@@ -221,7 +229,8 @@ def draw_network_graph(method):
                          z=Ze[i * 3:(i + 1) * 3],
                          mode='lines',
                          showlegend=False,
-                         line=dict(color=figure_data['edges_color'][i], width=data['links'][i]['value'] * 4),
+                         line=dict(
+                             color=figure_data['edges_color'][i], width=data['links'][i]['value'] * 4),
                          hoverinfo='none',
                          )
         )
@@ -282,42 +291,14 @@ network_graph = dbc.Row(
 )
 
 content = html.Div([
-    textBox(
-        """
-            ##### The Importance of Task Relevance
-             
-            Multitask transfer learning results in improved regularization and transfer compared to single-task learning [2].
-            Transferability within the same domain returns better results with few exceptions [2].
-            Cross-domain transfer learning also returns better results with few exceptions [2].
-            
-            BERT models can be fine-tuned for multiple tasks such as natural language understanding (NLU) and natural language generation (NLG) [3].
-            BERT's performance on NLU tasks can be improved by fine-tuning on NLG tasks [3].
-            This indicates that BERT's representations are general enough to be transferable to different tasks.
-            
-            Taskonomy can be used to improve the performance of BERT models [4].
-            Taskonomy can be used to select the most relevant tasks for fine-tuning a BERT model [4].
-            For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all.
-            
-            Taskonomy can also be used to select the most relevant layers for fine-tuning a BERT model [4].
-            For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all.
-            
-            Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning.
-            """,
-        text_id="task-relevance"
-    ),
-    task_to_task_trans_learning,
-    textBox(
-        """
-            It has been shown that fine-tuning a model on a specific task can improve its transferability to other tasks.
-            This is because the model has been specifically optimized for the task at hand and is better able to generalize to other tasks.
-            There is also some evidence that fine-tuning can improve a model's ability to transfer to other domains. For example, a model
-            that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
-            
-            In the limited setting, the mean and standard deviation across 20 random restarts are reported.
-            In the out-of-class transfer results, the orange-colored row Baseline shows the results of fine-tuning BERT on target tasks without any intermediate fine-tuning.
-            Positive transfers are shown in blue and the best results are highlighted in bold (blue). These results suggest that fine-tuning can improve a model's ability to transfer to other tasks and domains.
-            """
-    ),
+    html.H3("The Importance of Task Relevance"),
+    html.P("Multitask transfer learning results in improved regularization and transfer compared to single-task learning. Transferability within the same domain returns better results with few exceptions. Cross-domain transfer learning also returns better results with few exceptions "),
+    html.P("BERT models can be fine-tuned for multiple tasks such as natural language understanding (NLU) and natural language generation (NLG). BERT's performance on NLU tasks can be improved by fine-tuning on NLG tasks. This indicates that BERT's representations are general enough to be transferable to different tasks."),  # TODO: check refernce and text
+    html.P("Taskonomy can be used to improve the performance of BERT models. Taskonomy can be used to select the most relevant tasks for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
+    html.P("Taskonomy can also be used to select the most relevant layers for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
+    html.P("Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning."),
+    html.P(["The following graph visualize the relativness of tasks within 3 domains. ",
+           html.A("[4]", id="ds2-ref", href="#references")]),
     dcc.Dropdown(
         id="dropdown-graph-type",
         searchable=False,
@@ -330,6 +311,11 @@ content = html.Div([
         className="drop-down-component"
     ),
     network_graph,
+    html.P(["The following heatmap shows the transferability's performance between some tasks. ",
+           html.A("[4]", id="ds3-ref", href="#references")]),
+    task_to_task_trans_learning,
+
+    html.Hr(),
 ]
 )
 
@@ -363,7 +349,7 @@ def task_info_on_hover(hoverData):
 )
 def update_tasks_category_dropdown(task_class):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class].keys()], \
-           list(task_to_task_transfer_learning_res[task_class].keys())[0]
+        list(task_to_task_transfer_learning_res[task_class].keys())[0]
 
 
 @app.callback(
@@ -378,7 +364,8 @@ def update_tasks_category_dropdown(task_class):
 )
 def update_tasks_category_dropdown(task_class, task_category):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
-           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[0]
+        list(task_to_task_transfer_learning_res[task_class][task_category].keys())[
+        0]
 
 
 @app.callback(

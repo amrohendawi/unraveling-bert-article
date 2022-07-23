@@ -10,7 +10,8 @@ fine_tuning_dataframes = read_tasks_nested_tables(
     "2_fine_tuning_taskwise_res_table", df_to_matrix)
 
 # merge all the dictionaries from dict(dict(pd.dataframe)) to dict(pd.dataframe)
-fine_tuning_dataframes = {k: pd.concat(v) for k, v in fine_tuning_dataframes.items()}
+fine_tuning_dataframes = {k: pd.concat(v)
+                          for k, v in fine_tuning_dataframes.items()}
 
 # for every task group and epoch, draw a radar graph
 for task_group, df in fine_tuning_dataframes.items():
@@ -27,29 +28,26 @@ first_dict = list(fine_tuning_dataframes.values())[0]
 # get the row headers of the dataframe
 radar_headers = first_dict.index.tolist()
 # add space before every uppercase letter in the row headers
-radar_headers = [re.sub(r'([A-Z])', r' \1', header) for header in radar_headers]
+radar_headers = [re.sub(r'([A-Z])', r' \1', header)
+                 for header in radar_headers]
 
 # get the tasks from the first dictionary item
 tasks = {k: list(d.keys()) for k, d in fine_tuning_dataframes.items()}
 
 fine_tuning_section = html.Div([
-    textBox(
-        """
-            ##### Fine-tuning
-            When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced.
-            This is because the model has been specifically optimized for the task at hand, and so is better able to generalize to other tasks.
-
-            There is some evidence that fine-tuning can also improve a model's ability to transfer to other domains.
-            For example, a model that is fine-tuned on a medical domain may be able to better transfer to other medical domains.
-            However, it is not clear how much of an improvement fine-tuning provides in this case.
-            """, text_id="fine-tuning"
-    ),
+    html.H3("Fine-tuning"),
+    html.P("Fine tuning is the process of tweaking a machine learning model to get better performance. This can involve changes to the model architecture, the training data, the training procedure, or any other number of factors. The goal is to improve the model's performance on some metric"),
+    html.P("Fine tuning is often an iterative process, where one makes a small change and then evaluates the model's performance on a test set. If the performance improves, the change is kept; if not, the change is reverted. This process is repeated until the model's performance is satisfactory."),
+    html.P("Fine tuning is not always necessary, and in some cases, it can actually hurt performance. For example, if a model is overfit to the training data, then fine tuning it may just lead to further overfitting. It is important to evaluate the model on a hold-out set or cross-validation set before making any changes, to make sure that the changes are actually helping."),
+    html.P(["The following radar chart visualizes some of the techniques that can be used to fine-tune a machine learning model. ",
+           html.A("[4]", id="ds4-ref", href="#references")]),
     html.Div(
         [
             dbc.Row(
                 [
                     dbc.Col(
-                        html.P("Pick task domain: ", style={"font-weight": "bold"}),
+                        html.P("Pick task domain: ", style={
+                               "font-weight": "bold"}),
                         width=3,
                     ),
                     dbc.Col(
@@ -71,7 +69,8 @@ fine_tuning_section = html.Div([
             dbc.Row(
                 [
                     dbc.Col(
-                        html.P("Pick different tasks to compare: ", style={"font-weight": "bold"}),
+                        html.P("Pick different tasks to compare: ",
+                               style={"font-weight": "bold"}),
                         width=3,
                     ),
                     dbc.Col(
@@ -91,7 +90,7 @@ fine_tuning_section = html.Div([
         dcc.Graph(id="fine_tuning_graph",
                   config={"displayModeBar": False},
                   style={"width": "auto"})
-    ),
+    ), html.Hr()
 ],
     className="card-component",
 )
@@ -127,7 +126,8 @@ def update_figure(task_group, tasks_multiselect):
             for k, v in selected_tasks.items()
             ]
     graph_layout = go.Layout(
-        title=go.layout.Title(text='Tasks transferability comparison based on different fine-tuning methods'),
+        title=go.layout.Title(
+            text='Tasks transferability comparison based on different fine-tuning methods'),
         showlegend=True,
     )
     fig = go.Figure(data=data, layout=graph_layout)

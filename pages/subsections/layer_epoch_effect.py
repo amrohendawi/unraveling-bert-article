@@ -33,11 +33,11 @@ def draw_scatter_facet(dataset):
                          'y': '',
                          'x': '',
                          'label': '',
-                     },
-                     opacity=0.8,
-                     facet_col_spacing=0,
-                     width=800, height=600,
-                     )
+    },
+        opacity=0.8,
+        facet_col_spacing=0,
+        width=800, height=600,
+    )
     fig.update_xaxes(showticklabels=False, showline=True, linewidth=1,
                      linecolor='#4d4d4d', mirror=True)
     fig.update_yaxes(showticklabels=False, scaleanchor="x", scaleratio=1,
@@ -72,25 +72,11 @@ content = html.Div([
     ),
     dbc.Offcanvas(
         [
-            html.P(
-                """
-                The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model.
-                T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together
-                in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar
-                high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence
-                between the two computed probability distributions in order to maintain the structure as much as possible with a low projection
-                error rate.
-                """
-            ),
-            html.P(
-                """
-                In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to
-                visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity
-                of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable
-                coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the
-                progression of training.
-                """
-            ),
+            html.Ul([
+                html.Li("The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model. T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence between the two computed probability distributions in order to maintain the structure as much as possible with a low projection error rate."),
+                html.Li(["In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the progression of training. ",
+                         html.A("[10]", id="t10-ref", href="#references")])
+            ])
         ],
         id="tsne-canvas",
         title="What is t-SNE?",
@@ -136,13 +122,6 @@ content = html.Div([
             ),
             html.P(
                 """
-                Jawahar et al. (2019) found that the lower layers of BERT are more sensitive to lexical information, while the higher layers are more sensitive to syntactic information.
-                Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).
-                Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
-                """
-            ),
-            html.P(
-                """
                 In general, the more epochs, the better the performance. However, this is not always the case, and it is important
                 to experiment with different numbers of epochs to find the best results.
                 """
@@ -181,14 +160,13 @@ content = html.Div([
                           )),
         ], className="card-component", style={"width": "fit-content"}
     ),
-    textBox(
-        """
-                The results of the following visualization hold two main observations:
-                1. The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers.
-                2. The pattern and clustering of the different classes are primarily evident in higher layers of the model.
-                The previous observations show that the pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively. Furthermore, the observation shows which layers learn and hold the most discriminating features.
-            """
-    ),
+    html.P("The results of the following visualization hold two main observations:"),
+    html.Ol([
+        html.Li("The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers."),
+        html.Li("The pattern and clustering of the different classes are primarily evident in higher layers of the model."),
+        html.Li("The pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively"),
+    ]),
+    html.Hr(),
 ])
 
 

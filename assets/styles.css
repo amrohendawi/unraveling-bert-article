@@ -26,9 +26,9 @@
 }
 
 .card-component {
-    box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.99), 5px 5px 8px rgba(94, 94, 94, 0.20);
     width: fit-content;
     margin: auto;
+    
 }
 
 /*.card-component:hover {*/
@@ -73,16 +73,19 @@ blockquote {
 }
 
 /* change anchor style */
-p a {
+.toggle-text{
     color: #1B416C;
     cursor: pointer;
     border-bottom: dashed 2px;
     text-decoration: none;
 }
-
+.ds_img{
+    width: 90%;
+}
 .toggle-text {
     color: #1B416C;
     text-decoration: none;
+   
 }
 
 .list-group-item {
@@ -129,4 +132,41 @@ h1, h2, h3, h4, h5, h6 {
 
 .rc-slider-dot-active {
     border-color: #37949c;
+}
+
+.col-7{
+    border-left: 1px solid black;
+}
+
+.form-control{
+    display: inline;
+    width: 80%;
+}
+.me-1{
+    display: inline;
+    float: right;
+    width: 15%;
+}
+.img_tl{
+    width: 50%;
+
+}
+.img_holder{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+.img_holder_bert{
+    display:inline; 
+
+}
+.img_bert{
+    right: auto;
+    width: 25%;
+    float: right;
+    margin-left: 4%;
+}
+
+.depth_img{
+    max-width: 70%;
 }

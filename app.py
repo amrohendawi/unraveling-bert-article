@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # Import required libraries
-from dash import dcc, html, Input, Output, callback_context
+from dash import dcc, html, Input, Output, callback_context, State
 import dash_bootstrap_components as dbc
 from appServer import app
 from dash.exceptions import PreventUpdate
-
+import dash_dangerously_set_inner_html
 from pages import tldr, introduction, factors, directions, conclusion, references
 from utils import textBox
+import requests
 
 server = app.server
 
@@ -148,6 +149,25 @@ def update_value(n_clicks, *args):
         prop_id = ctx.triggered[0]['prop_id'].split('.')[0]
         if prop_id in buttons_list:
             return HEADLINES[prop_id[:-7]]['index']
+
+
+
+@app.callback(
+    Output('container-button-basic', 'children'),
+    Input('submit-val', 'n_clicks'),
+    State('input-on-submit', 'value')
+
+)
+def update_output(n_clicks, value):
+    if value != None and n_clicks == 1:  
+        url = "http://kadi.dnsfor.me:5020"
+        response = requests.post(url, json ={'sentence': value})
+        return html.Div([
+        dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[0] ),
+        dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[1] ),
+        html.P("When we compare the results of the fine-tuned model with the original model, we can see that some of the token values and importance have been adjusted.")
+
+])
 
 # Run the Dash app
 if __name__ == "__main__":

@@ -6,16 +6,13 @@ from appServer import app
 
 
 content = html.Div([
-    textBox(
-        """
-            ##### Does depth matter?
-            
-            BERT's performance on downstream tasks has been shown to improve with increased depth.
-            However, too many BERT heads and layers can be harmful to the performance of downstream tasks.
-            Therefore, it is often best to train a larger model and then compress it.
-            The benefits of compression are that it can reduce the size of BERT without any impact on downstream tasks.
-            Additionally, compression can make BERT more transferable.
-            """,
-        text_id="model-depth"
-    ),
+    html.H3("Does depth matter?"),
+    html.P("The transferability of the bert model is affected by the depth of the model. The shallower the model, the more transferable it is."),
+    html.P(["The next plot shows BERTs with many numbers of layrs being analyzid to detect the most transferabel layers. ",
+           html.A("[9]", id="t9-ref", href="#references")]),
+    html.Div(html.Img(src=app.get_asset_url('layer-performance.png'),
+             className="depth_img"), className="img_holder"),
+    # TODO: write more here
+    html.P("We could conclude that the middle layer are the most caplabe to transfer knowledge"),
+    html.Hr()
 ])
