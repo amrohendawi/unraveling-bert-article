@@ -26,6 +26,7 @@
 }
 
 .card-component {
+    /*box-shadow: -5px -5px 8px rgba(255, 255, 255, 0.99), 5px 5px 8px rgba(94, 94, 94, 0.60);*/
     width: fit-content;
     margin: auto;
     

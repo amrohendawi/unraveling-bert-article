@@ -151,7 +151,6 @@ def update_value(n_clicks, *args):
             return HEADLINES[prop_id[:-7]]['index']
 
 
-
 @app.callback(
     Output('container-button-basic', 'children'),
     Input('submit-val', 'n_clicks'),
@@ -159,15 +158,16 @@ def update_value(n_clicks, *args):
 
 )
 def update_output(n_clicks, value):
-    if value != None and n_clicks == 1:  
+    if value != None and n_clicks == 1:
         url = "http://kadi.dnsfor.me:5020"
-        response = requests.post(url, json ={'sentence': value})
+        response = requests.post(url, json={'sentence': value})
         return html.Div([
-        dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[0] ),
-        dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[1] ),
-        html.P("When we compare the results of the fine-tuned model with the original model, we can see that some of the token values and importance have been adjusted.")
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[0]),
+            dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[1]),
+            html.P(
+                "When we compare the results of the fine-tuned model with the original model, we can see that some of the token values and importance have been adjusted.")
+        ])
 
-])
 
 # Run the Dash app
 if __name__ == "__main__":
