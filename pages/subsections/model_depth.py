@@ -24,10 +24,13 @@ content = html.Div([
             html.A("[9].", id="t9-ref", href="#references")
         ]),
     html.Div([
-    dcc.Dropdown(['ELMo (original)', 'ELMo (4-layer)', 'ELMo (transformer)', 'OpenAI transformer', 'BERT (base, cased)', 'BERT (large, cased)'], 'BERT (base, cased)', id='depth-dropdown', clearable=False),
-    html.Div(html.Img(src=app.get_asset_url('depth/bertb.png'), className="depth_img", id="depth_img"), className="depth_img_holder"),
-    html.Div(html.Img(src=app.get_asset_url('depth/footer.png'),className="depth_footer"), className="depth_footer_holder"),
-]),
+        dcc.Dropdown(['ELMo (original)', 'ELMo (4-layer)', 'ELMo (transformer)', 'OpenAI transformer',
+                     'BERT (base, cased)', 'BERT (large, cased)'], 'BERT (base, cased)', id='depth-dropdown', clearable=False),
+        html.Div(html.Img(src=app.get_asset_url('depth/bertb.png'),
+                 className="depth_img", id="depth_img"), className="depth_img_holder"),
+        html.Div(html.Img(src=app.get_asset_url('depth/footer.png'),
+                 className="depth_footer"), className="depth_footer_holder"),
+    ]),
     #html.Div(html.Img(src=app.get_asset_url('depth/bertb.png'), className="depth_img"), className="img_holder"),
     #html.Div(html.Img(src=app.get_asset_url('depth/footer.png'),className="depth_img"), className="img_holder"),
     # TODO: write more here
@@ -36,12 +39,12 @@ content = html.Div([
 ],
 )
 
+
 @app.callback(
     Output('depth_img', 'src'),
     Input('depth-dropdown', 'value')
 )
 def update_output(value):
-    print(value)
     if value == "ELMo (original)":
         return app.get_asset_url('depth/elmo.png')
     elif value == "ELMo (4-layer)":
@@ -56,4 +59,4 @@ def update_output(value):
         return app.get_asset_url('depth/bertl.png')
     else:
         return app.get_asset_url('depth/bertb.png')
-    #return f'You have selected {value}'
+    # return f'You have selected {value}'
