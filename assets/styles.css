@@ -168,6 +168,26 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 4%;
 }
 
-.depth_img{
-    max-width: 70%;
+.depth_footer{
+    max-width: 60%;
 }
+
+.depth_img{
+    max-width: 90%;
+}
+
+.depth_img_holder{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-top: 5%;
+
+}
+.depth_footer_holder{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
