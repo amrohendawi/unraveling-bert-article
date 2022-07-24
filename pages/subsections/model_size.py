@@ -85,11 +85,11 @@ def update_textt_size(value):
               return "Pruning is a technique used to make the model smaller"
        else:
               return "BERT is relassed in base and small style"
-#
-#@app.callback(
-#    Output('size_plot', 'figure'),
-#    Input('sizeplot-dropdown', 'value')
-#)
+
+@app.callback(
+    Output('size_plot', 'figure'),
+    Input('sizeplot-dropdown', 'value')
+)
 def update_output_size(value):
        print(value)
        if value == "Quantization":
