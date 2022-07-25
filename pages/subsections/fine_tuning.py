@@ -70,7 +70,7 @@ fine_tuning_section = html.Div([
                 [
                     dbc.Col(
                         html.P("Pick task domain: ", style={
-                            "font-weight": "bold"}),
+                            "fontWeight": "bold"}),
                         width=3,
                     ),
                     dbc.Col(
@@ -93,7 +93,7 @@ fine_tuning_section = html.Div([
                 [
                     dbc.Col(
                         html.P("Pick different tasks to compare: ",
-                               style={"font-weight": "bold"}),
+                               style={"fontWeight": "bold"}),
                         width=3,
                     ),
                     dbc.Col(

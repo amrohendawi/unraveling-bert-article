@@ -1,0 +1,24 @@
+Method,Name,Compression,Performance,Speedup,Model,Evaluation,ParametersNumber,ParametersAfterCompression
+Distillation,DistilBERT Sanh et al. (2019),1.5,0.9,1.6,BERT6,All GLUE tasks,67.0,44.6667
+Distillation,BERT6-PKD Sun et al. (2019),1.6,0.97,1.9,BERT6,No WNLI;CoLA and STS-B,67.0,41.875
+Distillation,BERT3-PKD Sun et al. (2019),2.4,0.92,3.7,BERT3,No WNLI;CoLA and STS-B,45.7,19.0417
+Distillation,Aguilar et al. (2019),1.6,0.93,-,BERT6,CoLA;MRPC;QQP;RTE,67.0,41.875
+Distillation,BERT-48 Zhao et al. (2019),62.0,0.87,77,BERT12,MNLI;MRPC;SST-2,110.0,1.7742
+Distillation,BERT-192 Zhao et al. (2019),5.7,0.94,22,BERT12,MNLI;MRPC;SST-2,110.0,19.2982
+Distillation,TinyBERT Jiao et al. (2019),7.5,0.96,9.4,BERT4,All GLUE tasks,53.2,7.0933
+Distillation,MobileBERT Sun et al.,4.3,1.0,4,BERT24,No WNLI,340.0,79.0698
+Distillation,PD Turc et al. (2019),1.6,0.98,2.533,BERT6,No WNLI;CoLA;STS-B,67.0,41.875
+Distillation,MiniBERTTsai et al. (2019),6.0,0.98,27,mBERT3,CoNLL-2018 POS and morphology,45.7,7.6167
+Distillation,BiLSTM soft Tang et al. (2019),110.0,0.91,434,BiLSTM1,MNLI;QQP;SST-2,93.0,0.8455
+Quantization,Q-BERT-MP Shen et al. (2019),13.0,0.98,-,BERT12,MNLI;SST-2,110.0,8.4615
+Quantization,BERT-QAT Zafrir et al. (2019),4.0,0.99,-,BERT12,All GLUE tasks,110.0,27.5
+Quantization,GOBO (Zadeh and Moshovos 2020),9.8,0.99,-,BERT12,MNLI,110.0,11.2245
+Pruning,McCarley et al. (2020),2.2,0.98,1.9,BERT24,SQuAD;Natural Questions,340.0,154.5455
+Pruning,RPP (Guo et al.2019),1.7,0.99,-,BERT24,No WNLI;STS-B;SQuAD,340.0,200.0
+Pruning,Soft MvP (Sanh et al. 2020),33.0,0.94,-,BERT12,MNLI;QQP;SQuAD,110.0,3.3333
+Pruning,IMP (Chen et al. 2020) 50%,1.4,1.0,-,BERT12,No MNLI-mm;SQuAD,110.0,78.5714
+Pruning,IMP (Chen et al. 2020) 50%,2.5,1.0,-,BERT12,No MNLI-mm;SQuAD,110.0,44.0
+Other,ALBERT-base Lan et al. (2019),9.0,0.97,5.6,BERT12,MNLI;SST-2,110.0,12.2222
+Other,ALBERT-xxlarge Lan et al. (2019),0.47,1.07,0.3,BERT12,MNLI;SST-2,110.0,234.0426
+Other,BERT-of-Theseus Xu et al. (2020),1.6,0.98,-,BERT6,No WNLI,67.0,41.875
+Other,PoWER-BERT (Goyal et al. 2020),6.0,0.99,4.5,BERT12,No WNLI;RACE,110.0,18.3333

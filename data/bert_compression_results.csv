@@ -1,0 +1,24 @@
+Method,Name,Compression,Performance,Speedup,Model,Evaluation
+Distillation,DistilBERT Sanh et al. (2019),1.5,90%,1.6,BERT6,All GLUE tasks
+Distillation,BERT6-PKD Sun et al. (2019),1.6,97%,1.9,BERT6,No WNLI;CoLA and STS-B
+Distillation,BERT3-PKD Sun et al. (2019),2.4,92%,3.7,BERT3,No WNLI;CoLA and STS-B
+Distillation,Aguilar et al. (2019),1.6,93%,-,BERT6,CoLA;MRPC;QQP;RTE
+Distillation,BERT-48 Zhao et al. (2019),62,87%,77,BERT12,MNLI;MRPC;SST-2
+Distillation,BERT-192 Zhao et al. (2019),5.7,94%,22,BERT12,MNLI;MRPC;SST-2
+Distillation,TinyBERT Jiao et al. (2019),7.5,96%,9.4,BERT4,All GLUE tasks
+Distillation,MobileBERT Sun et al.,4.3,100%,4,BERT24,No WNLI
+Distillation,PD Turc et al. (2019),1.6,98%,2.533,BERT6,No WNLI;CoLA;STS-B
+Distillation,MiniBERTTsai et al. (2019),6,98%,27,mBERT3,CoNLL-2018 POS and morphology
+Distillation,BiLSTM soft Tang et al. (2019),110,91%,434,BiLSTM1,MNLI;QQP;SST-2
+Quantization,Q-BERT-MP Shen et al. (2019),13,98%,-,BERT12,MNLI;SST-2
+Quantization,BERT-QAT Zafrir et al. (2019),4,99%,-,BERT12,All GLUE tasks
+Quantization,GOBO (Zadeh and Moshovos 2020),9.8,99%,-,BERT12,MNLI
+Pruning,McCarley et al. (2020),2.2,98%,1.9,BERT24,SQuAD;Natural Questions
+Pruning,RPP (Guo et al.2019),1.7,99%,-,BERT24,No WNLI;STS-B;SQuAD
+Pruning,Soft MvP (Sanh et al. 2020),33,94%,-,BERT12,MNLI;QQP;SQuAD
+Pruning,IMP (Chen et al. 2020) 50%,1.4,100%,-,BERT12,No MNLI-mm;SQuAD
+Pruning,IMP (Chen et al. 2020) 50%,2.5,100%,-,BERT12,No MNLI-mm;SQuAD
+Other,ALBERT-base Lan et al. (2019),9,97%,5.6,BERT12,MNLI;SST-2
+Other,ALBERT-xxlarge Lan et al. (2019),0.47,107%,0.3,BERT12,MNLI;SST-2
+Other,BERT-of-Theseus Xu et al. (2020),1.6,98%,-,BERT6,No WNLI
+Other,PoWER-BERT (Goyal et al. 2020),6,99%,4.5,BERT12,No WNLI;RACE

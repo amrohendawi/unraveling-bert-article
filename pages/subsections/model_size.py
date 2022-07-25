@@ -1,11 +1,9 @@
-from re import I
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
-from dash import dcc
 import plotly.express as px
 import plotly.graph_objs as go
 
-from utils import textBox, DATA_PATH, df_to_matrix
+from utils import DATA_PATH
 from appServer import app
 import pandas as pd
 
@@ -17,17 +15,45 @@ def append_frames(list):
     return df
 
 
-def get_data(type):
+scatter_plot_data = pd.read_csv(DATA_PATH.joinpath("bert_compression_results_modified.csv"))
 
+
+# scatter_plot_data = pd.read_csv(DATA_PATH.joinpath("bert_compression_results.csv"))
+# # convert Performance column from string of format "99%" to float between 0 and 1
+# scatter_plot_data['Performance'] = scatter_plot_data['Performance'].apply(
+#     lambda x: float(x[:-1]) / 100)
+# # create a new column called ParametersNumber that is the number cut from the end of the model name
+# scatter_plot_data['ParametersNumber'] = scatter_plot_data['Model'].apply(
+#     lambda x: int(x.split('BERT')[-1]) if 'BERT' in x else 93)
+# model_parameters_dict = {
+#     3: 45.7,
+#     4: 53.2,
+#     6: 67,
+#     12: 110,
+#     24: 340,
+# }
+# # convert the ParametersNumber column using the model_parameters_dict dictionary
+# scatter_plot_data['ParametersNumber'] = scatter_plot_data['ParametersNumber'].apply(
+#     lambda x: model_parameters_dict[x] if x in model_parameters_dict.keys() else x)
+# # create a new column called ParametersAfterCompression that is the number of parameters divided by compression ratio
+# scatter_plot_data['ParametersAfterCompression'] = round(scatter_plot_data['ParametersNumber'] / scatter_plot_data['Compression'], 4)
+# # export the dataframe as csv file
+# scatter_plot_data.to_csv(DATA_PATH.joinpath("bert_compression_results_modified.csv"), index=False)
+
+
+def get_data(type):
     if type == "Normal":
         data = [['BERT-base (BERT12)', 100, 100, 100],
                 ['BERT-small (BERT4)', 26, 91, 100]]
         return append_frames(data)
     elif type == "Distillation":
-        data = [['DistilBERT (BERT6)', 66, 90, 62], ['BERT6-PKD (BERT6)', 62, 98, 52], ['BERT3-PKD (BERT3)', 41, 92, 27],
+        data = [['DistilBERT (BERT6)', 66, 90, 62], ['BERT6-PKD (BERT6)', 62, 98, 52],
+                ['BERT3-PKD (BERT3)', 41, 92, 27],
                 ['Aguilar (BERT6)', 62, 93, 100], ['BERT-48 (BERT12)', 1, 87, 1], [
-            'BERT-192 (BERTI2)', 17, 93, 4], ['TinyBERT (BERT4)', 13, 96, 10],
-            ['MobileBERT (BERT24)', 23, 100, 25], ['PD (BERT6)', 62, 98, '40%'], ['WaLDORf (BERT8)', 22, 93, 11], ['MiniLM (BERT6)', 60, 99, 50], ['MiniBERT (mBERT8)', 16, 98, 3], ['BiLSTM-soft (BiLSTMI)', 0.9, 91, 0.2]]
+                    'BERT-192 (BERTI2)', 17, 93, 4], ['TinyBERT (BERT4)', 13, 96, 10],
+                ['MobileBERT (BERT24)', 23, 100, 25], ['PD (BERT6)', 62, 98, '40%'], ['WaLDORf (BERT8)', 22, 93, 11],
+                ['MiniLM (BERT6)', 60, 99, 50], ['MiniBERT (mBERT8)', 16, 98, 3],
+                ['BiLSTM-soft (BiLSTMI)', 0.9, 91, 0.2]]
         return append_frames(data)
     elif type == "Quantization":
         data = [['Q-BERT-MP (BERT12)', 7, 98, 100], ['BERT-QAT (BERT12)',
@@ -43,42 +69,84 @@ def get_data(type):
         return append_frames(data)
 
 
+scatter_plot_fig = px.scatter(
+    scatter_plot_data,
+    x="Compression",
+    y="Performance",
+    color="Method",
+    size="ParametersNumber",
+    trendline="ols",
+)
+
+scatter_plot_fig.update_layout({
+    "title": "BERT Compression Performance",
+    "xaxis": {
+        "title": "Compression Factor",
+        "type": "log",
+
+    },
+    "yaxis": {
+        "title": "Performance",
+        "type": "log",
+    },
+    'plot_bgcolor': 'rgba(90, 144, 134, 0.2)',
+    'paper_bgcolor': 'rgba(0, 0, 0, 0)',
+    'autosize': True,
+    'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
+})
+
+scatter_plot = html.Div(
+    [
+        dcc.Graph(
+            id='model-size-graph',
+            figure=scatter_plot_fig,
+            config={"displayModeBar": False},
+        ),
+    ],
+    className="card-component", style={"width": "fit-content"}
+)
+
 content = html.Div([
     html.H3("How big should BERT be?"),
-
-    html.P("The size of the BERT model has a significant impact on the performance and the time required to complete the task."),
+    html.P(
+        "The size of the BERT model has a significant impact on the performance and the time required to complete the task."),
     html.P(["Too many BERT heads and layers can be harmful to the performance of downstream tasks. ",
-           html.A("[5]", id="t5-ref", href="#references")]),
-    html.P(["The disabling of certain heads in the architecture had a positive effect on machine translation and abstractive summarization. ",
-           html.A("[6", id="t6-ref", href="#references")]),  # TODO: elaborate a little on the texts here
+            html.A("[5]", id="t5-ref", href="#references")]),
+    html.P([
+        "The disabling of certain heads in the architecture had a positive effect on machine translation and abstractive summarization. ",
+        html.A("[6", id="t6-ref", href="#references")]),  # TODO: elaborate a little on the texts here
     html.P(["30-40 percent of weights can be pruned without any impact on downstream tasks. ",
-           html.A("[7]", id="t7-ref", href="#references")]),
-    html.P(["The following tabel shows many version of Tranformer with many options of comparsion and the related speed up. The values of size, performance and time are against the BERT base in percent",
-           html.A("[8]", id="t8-ref", href="#references")]),
+            html.A("[7]", id="t7-ref", href="#references")]),
+    html.P([
+        "The following tabel shows many version of Tranformer with many options of comparsion and the related speed up. The values of size, performance and time are against the BERT base in percent",
+        html.A("[8]", id="t8-ref", href="#references")]),
     # TODO: make toggle and hard-code the rest of tabel
 
     html.Div([
         dcc.Dropdown(['Normal', 'Distillation', 'Quantization', 'Pruning',
-                     'Other'], 'Normal', id='sizeplot-dropdown', clearable=False),
+                      'Other'], 'Normal', id='sizeplot-dropdown', clearable=False),
         # TODO: add callback to display content of each technique and add advance reader to each technique
         html.P("", id="depth_text")
 
     ]),
-    dcc.Graph(figure=go.Figure(data=[go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")['Size'], name="Size", base=0, width=0.9,),
-                                     go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")[
-                                            'Performance'], name="Performance", base=0, width=0.6),
-                                     go.Bar(x=get_data("Normal")['Model'], y=get_data(
-                                         "Normal")['Time'], name="Time", base=0, width=0.3),
-                                     ],
-                               layout=go.Layout(
-                                   #yaxis = list(tickformat = "%"),
-                                   barmode='stack',
-                                   plot_bgcolor='rgba(0,0,0,0)',
-                                   yaxis={"ticksuffix": "%"}
-    ),
+    dcc.Graph(figure=go.Figure(
+        data=[go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")['Size'], name="Size", base=0, width=0.9, ),
+              go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")[
+                  'Performance'], name="Performance", base=0, width=0.6),
+              go.Bar(x=get_data("Normal")['Model'], y=get_data(
+                  "Normal")['Time'], name="Time", base=0, width=0.3),
+              ],
+        layout=go.Layout(
+            # yaxis = list(tickformat = "%"),
+            barmode='stack',
+            plot_bgcolor='rgba(0,0,0,0)',
+            yaxis={"ticksuffix": "%"}
+        ),
     ).update_yaxes(gridcolor='Black'),
-        id="size_plot",),
-    html.P(" It is often best to train a larger model and then compress it. The benefits of compression are that it can reduce the size of BERT without any impact on downstream tasks. Additionally, compression can make BERT more transferable."),
+              id="size_plot", ),
+    html.P(
+        " It is often best to train a larger model and then compress it. The benefits of compression are that it can reduce the size of BERT without any impact on downstream tasks. Additionally, compression can make BERT more transferable."),
+    scatter_plot,
     html.Hr()
 ])
 
@@ -106,37 +174,51 @@ def update_textt_size(value):
 )
 def update_output_size(value):
     if value == "Quantization":
-        return go.Figure(data=[go.Bar(x=get_data("Quantization")['Model'], y=get_data("Quantization")['Size'], name="Size", base=0, width=0.9,),
-                               go.Bar(x=get_data("Quantization")['Model'], y=get_data("Quantization")[
-                                      'Performance'], name="Performance", base=0, width=0.6),
-                               go.Bar(x=get_data("Quantization")['Model'], y=get_data(
-                                   "Quantization")['Time'], name="Time", base=0, width=0.3),
-                               ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(gridcolor='Black')
+        return go.Figure(data=[
+            go.Bar(x=get_data("Quantization")['Model'], y=get_data("Quantization")['Size'], name="Size", base=0,
+                   width=0.9, ),
+            go.Bar(x=get_data("Quantization")['Model'], y=get_data("Quantization")[
+                'Performance'], name="Performance", base=0, width=0.6),
+            go.Bar(x=get_data("Quantization")['Model'], y=get_data(
+                "Quantization")['Time'], name="Time", base=0, width=0.3),
+        ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(
+            gridcolor='Black')
     elif value == "Distillation":
-        return go.Figure(data=[go.Bar(x=get_data("Distillation")['Model'], y=get_data("Distillation")['Size'], name="Size", base=0, width=0.9,),
-                               go.Bar(x=get_data("Distillation")['Model'], y=get_data("Distillation")[
-                                      'Performance'], name="Performance", base=0, width=0.6),
-                               go.Bar(x=get_data("Distillation")['Model'], y=get_data(
-                                   "Distillation")['Time'], name="Time", base=0, width=0.3),
-                               ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(gridcolor='Black')
+        return go.Figure(data=[
+            go.Bar(x=get_data("Distillation")['Model'], y=get_data("Distillation")['Size'], name="Size", base=0,
+                   width=0.9, ),
+            go.Bar(x=get_data("Distillation")['Model'], y=get_data("Distillation")[
+                'Performance'], name="Performance", base=0, width=0.6),
+            go.Bar(x=get_data("Distillation")['Model'], y=get_data(
+                "Distillation")['Time'], name="Time", base=0, width=0.3),
+        ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(
+            gridcolor='Black')
     elif value == "Other":
-        return go.Figure(data=[go.Bar(x=get_data("Other")['Model'], y=get_data("Other")['Size'], name="Size", base=0, width=0.9,),
-                               go.Bar(x=get_data("Other")['Model'], y=get_data("Other")[
-                                      'Performance'], name="Performance", base=0, width=0.6),
-                               go.Bar(x=get_data("Other")['Model'], y=get_data(
-                                   "Other")['Time'], name="Time", base=0, width=0.3),
-                               ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(gridcolor='Black')
+        return go.Figure(
+            data=[go.Bar(x=get_data("Other")['Model'], y=get_data("Other")['Size'], name="Size", base=0, width=0.9, ),
+                  go.Bar(x=get_data("Other")['Model'], y=get_data("Other")[
+                      'Performance'], name="Performance", base=0, width=0.6),
+                  go.Bar(x=get_data("Other")['Model'], y=get_data(
+                      "Other")['Time'], name="Time", base=0, width=0.3),
+                  ],
+            layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(
+            gridcolor='Black')
     elif value == "Pruning":
-        return go.Figure(data=[go.Bar(x=get_data("Pruning")['Model'], y=get_data("Pruning")['Size'], name="Size", base=0, width=0.9,),
-                               go.Bar(x=get_data("Pruning")['Model'], y=get_data("Pruning")[
-                                      'Performance'], name="Performance", base=0, width=0.6),
-                               go.Bar(x=get_data("Pruning")['Model'], y=get_data(
-                                   "Pruning")['Time'], name="Time", base=0, width=0.3),
-                               ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(gridcolor='Black')
+        return go.Figure(data=[
+            go.Bar(x=get_data("Pruning")['Model'], y=get_data("Pruning")['Size'], name="Size", base=0, width=0.9, ),
+            go.Bar(x=get_data("Pruning")['Model'], y=get_data("Pruning")[
+                'Performance'], name="Performance", base=0, width=0.6),
+            go.Bar(x=get_data("Pruning")['Model'], y=get_data(
+                "Pruning")['Time'], name="Time", base=0, width=0.3),
+        ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(
+            gridcolor='Black')
     else:
-        return go.Figure(data=[go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")['Size'], name="Size", base=0, width=0.9,),
-                               go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")[
-                                      'Performance'], name="Performance", base=0, width=0.6),
-                               go.Bar(x=get_data("Normal")['Model'], y=get_data(
-                                   "Normal")['Time'], name="Time", base=0, width=0.3),
-                               ], layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(gridcolor='Black')
+        return go.Figure(
+            data=[go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")['Size'], name="Size", base=0, width=0.9, ),
+                  go.Bar(x=get_data("Normal")['Model'], y=get_data("Normal")[
+                      'Performance'], name="Performance", base=0, width=0.6),
+                  go.Bar(x=get_data("Normal")['Model'], y=get_data(
+                      "Normal")['Time'], name="Time", base=0, width=0.3),
+                  ],
+            layout=go.Layout(barmode='stack', plot_bgcolor='rgba(0,0,0,0)', yaxis={"ticksuffix": "%"})).update_yaxes(
+            gridcolor='Black')

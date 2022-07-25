@@ -16,13 +16,15 @@ tsne_dict = {
 for dataset in tsne_dict:
     #     add a new column called unique_id
     tsne_dict[dataset]['unique_id'] = tsne_dict[dataset].index
+    #     round the x and y values to 4 decimal places
+    tsne_dict[dataset]['x'] = (tsne_dict[dataset]['x'].round(4) * 10000).astype(int)
+    tsne_dict[dataset]['y'] = (tsne_dict[dataset]['y'].round(4) * 10000).astype(int)
 
 tsne_labels_dict = {
     "tsne_hate": ["hate", "no hate"],
     "tsne_offensive": ["offensive", "no offensive"],
     "tsne_sentiment": ["positive", "neutral", "negative"],
 }
-
 
 def draw_scatter_facet(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
@@ -33,11 +35,11 @@ def draw_scatter_facet(dataset):
                          'y': '',
                          'x': '',
                          'label': '',
-    },
-        opacity=0.8,
-        facet_col_spacing=0,
-        width=800, height=600,
-    )
+                     },
+                     opacity=0.8,
+                     facet_col_spacing=0,
+                     width=800, height=600,
+                     )
     fig.update_xaxes(showticklabels=False, showline=True, linewidth=1,
                      linecolor='#4d4d4d', mirror=True)
     fig.update_yaxes(showticklabels=False, scaleanchor="x", scaleratio=1,
@@ -73,9 +75,11 @@ content = html.Div([
     dbc.Offcanvas(
         [
             html.Ul([
-                html.Li("The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model. T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence between the two computed probability distributions in order to maintain the structure as much as possible with a low projection error rate."),
-                html.Li(["In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the progression of training. ",
-                         html.A("[10]", id="t10-ref", href="#references")])
+                html.Li(
+                    "The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model. T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence between the two computed probability distributions in order to maintain the structure as much as possible with a low projection error rate."),
+                html.Li([
+                            "In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the progression of training. ",
+                            html.A("[10]", id="t10-ref", href="#references")])
             ])
         ],
         id="tsne-canvas",
@@ -162,9 +166,12 @@ content = html.Div([
     ),
     html.P("The results of the following visualization hold two main observations:"),
     html.Ol([
-        html.Li("The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers."),
-        html.Li("The pattern and clustering of the different classes are primarily evident in higher layers of the model."),
-        html.Li("The pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively"),
+        html.Li(
+            "The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers."),
+        html.Li(
+            "The pattern and clustering of the different classes are primarily evident in higher layers of the model."),
+        html.Li(
+            "The pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively"),
     ]),
     html.Hr(),
 ])
