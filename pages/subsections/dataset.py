@@ -83,6 +83,7 @@ gen_avg_trans_learning = dbc.Row(
 text_content = html.Div(
     [
         html.H4("The Effect of Dataset Size"),
+        html.Br(),
         html.P(
             """
             When a model is fine-tuned on a specific task, its transferability to other tasks is usually enhanced. This is because the

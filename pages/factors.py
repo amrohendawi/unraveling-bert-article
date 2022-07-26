@@ -12,11 +12,17 @@ import pages.subsections.model_depth as model_depth
 # Text sections
 factors_section = html.Div([
     html.H3("What makes a model more transferable?"),
-    html.Div(html.Img(src="http://i1.sndcdn.com/artworks-000018461619-qq72il-original.jpg?77cede1", className="img_bert"),
-             title="http://i1.sndcdn.com/artworks-000018461619-qq72il-original.jpg?77cede1", className="img_holder_bert"),
-    html.P("We will first discuss the effect of the dataset used in the source and target task. The next section will discuss the size of BERT and its impact on the results. Then, the depth of the model and its relation to transfer learning will be explored."),
-    html.P("In the section \"Layer and epoch effect on transferability\", we will try to visualise the layer of the model against some epochs in multi setups."),
-    html.P("After that, the task task relevance will be highlighted with a heat-map. By the end, the techniques used during the fine tuning and its effect on the results will be considered."),
+    html.Br(),
+    html.Div(
+        html.Img(src="http://i1.sndcdn.com/artworks-000018461619-qq72il-original.jpg?77cede1", className="img_bert"),
+        title="http://i1.sndcdn.com/artworks-000018461619-qq72il-original.jpg?77cede1", className="img_holder_bert"),
+    html.P(
+        """
+        We will first discuss the effect of the dataset used in the source and target task. The next section will discuss the size of BERT and its impact on the results. Then, the depth of the model and its relation to transfer learning will be explored."),
+        In the section \"Layer and epoch effect on transferability\", we will try to visualise the layer of the model against some epochs in multi setups.
+        After that, the task task relevance will be highlighted with a heat-map. By the end, the techniques used during the fine tuning and its effect on the results will be considered.
+        """
+    ),
     html.Hr()
 ],
     id="factors"

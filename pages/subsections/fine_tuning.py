@@ -37,6 +37,7 @@ tasks = {k: list(d.keys()) for k, d in fine_tuning_dataframes.items()}
 text_content = html.Div(
     [
         html.H4("Fine-tuning"),
+        html.Br(),
         html.P(
             """
             Fine tuning is the process of tweaking a machine learning model to get better performance. This can involve changes to the

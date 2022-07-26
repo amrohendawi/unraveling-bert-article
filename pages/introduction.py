@@ -4,7 +4,8 @@ import dash_bootstrap_components as dbc
 text_content = html.Div(
     [
         html.H3("BERT and Transfer-Learning"),
-        html.Div(html.Img(src="https://editor.analyticsvidhya.com/uploads/444861_2vse-G3FKMT2D59NFWduMA.jpg",
+        html.Br(),
+        html.Div(html.Img(src="assets/transfer-learning.png",
                           className="img_tl",
                           title="https://editor.analyticsvidhya.com/uploads/444861_2vse-G3FKMT2D59NFWduMA.jpg"),
                  className="img_holder"),
@@ -53,8 +54,8 @@ layout = html.Div(
                     html.Li(
                         "The model can be fine-tuned for specific tasks by adding a task-specific layer on top of the pre-trained model. For example, to fine-tune Bert for text classification, a task-specific classification layer can be added.", ),
                     html.Li([
-                                "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
-                                html.A("[2]", id="bert-ref2", href="#references"), ])]), ),
+                        "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
+                        html.A("[2]", id="bert-ref2", href="#references"), ])]), ),
             ],
             id="modal-scroll",
             is_open=False,
@@ -78,9 +79,9 @@ layout = html.Div(
                 html.Li(
                     "The model can be fine-tuned for specific tasks by adding a task-specific layer on top of the pre-trained model. For example, to fine-tune Bert for text classification, a task-specific classification layer can be added.", ),
                 html.Li([
-                            "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
-                            html.A("[2]", id="bert-ref", href="#references"),
-                            ])]),
+                    "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
+                    html.A("[2]", id="bert-ref", href="#references"),
+                ])]),
             id="toggle-bert-offcanvas",
             title="BERT",
             is_open=False,
@@ -93,10 +94,10 @@ layout = html.Div(
                 html.Li(
                     "The main advantage of transfer learning is that it can be used to train a model on a dataset that is too small or too low quality to train a model from scratch. Additionally, transfer learning can be used to improve the performance of a machine learning model by using knowledge from a related task with less data and computional power."),
                 html.Li([
-                            "The main disadvantage of transfer learning is that it is difficult to control the amount of knowledge that is transferred from the source model to the target model. Additionally, transfer learning can only be used to improve the performance of a machine learning model if the source and target datasets are similar.",
-                            html.A("[3]", id="tl-ref", href="#references"),
-                            " One way to avoid this drawback is to freeze some of the weights. We will highlight this technique more in the next sections.",
-                            ])]),
+                    "The main disadvantage of transfer learning is that it is difficult to control the amount of knowledge that is transferred from the source model to the target model. Additionally, transfer learning can only be used to improve the performance of a machine learning model if the source and target datasets are similar.",
+                    html.A("[3]", id="tl-ref", href="#references"),
+                    " One way to avoid this drawback is to freeze some of the weights. We will highlight this technique more in the next sections.",
+                ])]),
             id="toggle-tl-offcanvas",
             title="Transfer Learning",
             is_open=False,
@@ -121,6 +122,7 @@ layout = html.Div(
 
 
 @callback(
+
     Output("modal-scroll", "is_open"),
     Input("open-scroll", "n_clicks"),
 )

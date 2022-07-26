@@ -235,12 +235,13 @@ def draw_network_graph(method):
                          )
         )
 
-    axis = dict(showbackground=False,
+    axis = dict(
+                showbackground=False,
                 showline=False,
                 zeroline=False,
                 showgrid=False,
                 showticklabels=False,
-                title=''
+                title='',
                 )
 
     graph_layout = go.Layout(
@@ -258,7 +259,8 @@ def draw_network_graph(method):
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'autosize': True,
         'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
-        'legend': {'y': 0.5},
+        # position legend on top of the plot and center it horizontally
+        'legend': {'x': 0.3, 'y': 1, 'orientation': 'h'},
     })
     return fig
 
@@ -293,6 +295,7 @@ network_graph = dbc.Row(
 text_content = html.Div(
     [
         html.H4("The Importance of Task Relevance"),
+        html.Br(),
         html.P(
             "Multitask transfer learning results in improved regularization and transfer compared to single-task learning. Transferability within the same domain returns better results with few exceptions. Cross-domain transfer learning also returns better results with few exceptions "),
         html.P(

@@ -59,7 +59,6 @@ sidebar = html.Div(
                                 min=0,
                                 max=max([HEADLINES[key]['index']
                                          for key in HEADLINES]),
-                                # read value from function called read_value
                                 value=0,
                                 step=1,
                                 marks={i: {'style': {
@@ -129,10 +128,6 @@ app.layout = html.Div(
             dbc.Col(body, width=7,
                     ),
         ],
-        style={
-            # "justifyContent": "center",
-        },
-
     )
 )
 
@@ -148,7 +143,6 @@ def update_value(n_clicks, *args):
     if ctx.triggered:
         prop_id = ctx.triggered[0]['prop_id'].split('.')[0]
         if prop_id in buttons_list:
-            print(HEADLINES[prop_id[:-7]]['index'])
             return HEADLINES[prop_id[:-7]]['index']
 
 

@@ -5,14 +5,29 @@ from dash import html, Output, Input, callback
 
 layout = html.Div(
     [
-        textBox(
-            """
-            ### TL;DR
-            In this work, we investigate the extent to which a BERT model trained on general natural language understanding can be transferred to downstream, more specific tasks. We find that the model is able to transfer its knowledge to new tasks to some extent, but that the amount of knowledge transfer varies depending on the similarity between the training and test tasks.\n
-            For example, the model is able to transfer more knowledge to a task that is similar to the task it was trained on than to a task that is dissimilar. This suggests that the model is able to learn general principles that can be applied to new tasks, but that the amount of knowledge that can be transferred is limited by the similarity between the tasks.\n
-            Furthermore, the results show that the effectiveness of the system increases with the number of layers, number of fine-tuning epochs, and dataset size used for the fine-tuning. In addition, a shallower BERT model transfers better than a deeper model.
-            """,
-            text_id="tldr"
+        html.Div(
+            [
+                html.H3("TL;DR"),
+                html.Br(),
+                html.P(
+                    """
+                    In this work, we investigate the extent to which a BERT model trained on general natural language understanding
+                    can be transferred to downstream, more specific tasks. We find that the model is able to transfer its knowledge
+                    to new tasks to some extent, but that the amount of knowledge transfer varies depending on the similarity between
+                    the training and test tasks.
+                    """,
+                ),
+                html.P(
+                    """
+                    For example, the model is able to transfer more knowledge to a task that is similar to the task it was trained on than to a task that is dissimilar. This suggests that the model is able to learn general principles that can be applied to new tasks, but that the amount of knowledge that can be transferred is limited by the similarity between the tasks.
+                    """
+                ),
+                html.P(
+                    """
+                    Furthermore, the results show that the effectiveness of the system increases with the number of layers, number of fine-tuning epochs, and dataset size used for the fine-tuning. In addition, a shallower BERT model transfers better than a deeper model.
+                    """
+                ),
+            ], id="tldr"
         ),
         html.Hr(),
         # TODO: Put the following in a component. Maybe instad of direction compnent (I think it is not necessary)
@@ -24,10 +39,15 @@ layout = html.Div(
             html.Ul([
                 html.Li(
                     "The SHAP (SHapley Additive exPlanations) framework is a tool for explaining the output of machine learning models."),
-                html.Li("It is based on the concept of Shapley values from game theory, and aims to provide explanations that are fair, consistent, and locally accurate."),
-                html.Li("SHAP values can be used to measure the importance of each feature to the model output, and can be used to explain individual predictions.", ),
-                html.Li("The SHAP framework has been implemented in a number of popular machine learning libraries, including XGBoost, LightGBM, and CatBoost.",),
-                html.Li(["When interpreting SHAP values, it is important to bear in mind that they represent the marginal contribution of a feature to the model output, rather than the absolute contribution. This means that the SHAP values for a given feature can vary depending on the values of other features. ", html.A("[1]", id="shap-ref", href="#references"), ])]),
+                html.Li(
+                    "It is based on the concept of Shapley values from game theory, and aims to provide explanations that are fair, consistent, and locally accurate."),
+                html.Li(
+                    "SHAP values can be used to measure the importance of each feature to the model output, and can be used to explain individual predictions.", ),
+                html.Li(
+                    "The SHAP framework has been implemented in a number of popular machine learning libraries, including XGBoost, LightGBM, and CatBoost.", ),
+                html.Li([
+                    "When interpreting SHAP values, it is important to bear in mind that they represent the marginal contribution of a feature to the model output, rather than the absolute contribution. This means that the SHAP values for a given feature can vary depending on the values of other features. ",
+                    html.A("[1]", id="shap-ref", href="#references"), ])]),
             id="toggle-shap-offcanvas",
             title="SHAP",
             is_open=False,
@@ -35,13 +55,14 @@ layout = html.Div(
         ),
         html.Div([
             html.H3("Fine-Tuning Effect Demo"),
-            html.P(["This demo showcases an explainable framework for sentiment analysis to demonstrate the effect of fine-tuning. The frame work ",
-                    html.A(
-                        "SHAP",
-                        id="toggle-shap",
-                        className="toggle-text",
-                    ),
-                    " visualizes the importance of each token and its attribution to the overall result. In the current set up, we would like to show the effect of fine-tuning using a base model and another model that is fine tuned to detect sentiment."]),
+            html.P([
+                "This demo showcases an explainable framework for sentiment analysis to demonstrate the effect of fine-tuning. The frame work ",
+                html.A(
+                    "SHAP",
+                    id="toggle-shap",
+                    className="toggle-text",
+                ),
+                " visualizes the importance of each token and its attribution to the overall result. In the current set up, we would like to show the effect of fine-tuning using a base model and another model that is fine tuned to detect sentiment."]),
             html.P("The demo can take some minutes to display the content"),
             html.Div([dbc.Input(id="input-on-submit", placeholder="Type a sentence here...", type="text"),
                       dbc.Button("Submit", color="info", className="me-1", id='submit-val', n_clicks=0)]),
