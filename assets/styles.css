@@ -76,20 +76,21 @@ blockquote {
 
 /* change anchor style */
 .toggle-text {
-    color: #1B416C;
+    color: #000000;
     cursor: pointer;
-    border-bottom: dashed 2px;
+    border-bottom: 1px solid #000000;
     text-decoration: none;
+    font-weight: 400;
+}
+
+.toggle-text:hover {
+    color: #37949CFF;
+    text-decoration: none;
+    border-bottom: 1px solid #37949CFF;
 }
 
 .ds_img {
     width: 90%;
-}
-
-.toggle-text {
-    color: #1B416C;
-    text-decoration: none;
-
 }
 
 .list-group-item {

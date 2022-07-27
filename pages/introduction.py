@@ -80,7 +80,6 @@ layout = html.Div(
                     "The model can be fine-tuned for specific tasks by adding a task-specific layer on top of the pre-trained model. For example, to fine-tune Bert for text classification, a task-specific classification layer can be added.", ),
                 html.Li([
                     "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
-                    html.A("[2]", id="bert-ref", href="#references"),
                 ])]),
             id="toggle-bert-offcanvas",
             title="BERT",
@@ -104,12 +103,15 @@ layout = html.Div(
             placement="end"
         ),
         text_content,
-        html.P([html.A(
-            "Transfer learning",
-            id="toggle-tl",
-            className="toggle-text",
-        ),
-            " is a machine learning technique where knowledge learned by a model is transferred to a new model. This is done in the context of Machine Learning by taking the weights and biases from a trained model and using them as initial values for a new model. The new model is then trained on a new dataset, which can be much smaller than the original dataset. This technique can be used to quickly train new models without having to retrain the entire original model."]),
+        html.P([
+            html.A(
+                "Transfer learning",
+                id="toggle-tl",
+                className="toggle-text",
+            ),
+            " is a machine learning technique where knowledge learned by a model is transferred to a new model. This is done in the context of Machine Learning by taking the weights and biases from a trained model and using them as initial values for a new model. The new model is then trained on a new dataset, which can be much smaller than the original dataset. This technique can be used to quickly train new models without having to retrain the entire original model.",
+            html.A("[2]", id="bert-ref", href="#references"),
+        ]),
 
         html.P(
             "The BERT model is a great example of a model that can be used for transfer learning. BERT was originally trained on a large corpus of English text. We can then use this model to perform tasks such as text classification, question answering, and machine translation."),
