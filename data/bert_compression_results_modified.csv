@@ -1,4 +1,4 @@
-Method,Name,Compression,Performance,Speedup,Model,Evaluation,ParametersNumber,ParametersAfterCompression
+Method,Name,Compression,Performance,Speedup,Model,Evaluation,#Parameters,ParametersAfterCompression
 Distillation,DistilBERT Sanh et al. (2019),1.5,0.9,1.6,BERT6,All GLUE tasks,67.0,44.6667
 Distillation,BERT6-PKD Sun et al. (2019),1.6,0.97,1.9,BERT6,No WNLI;CoLA and STS-B,67.0,41.875
 Distillation,BERT3-PKD Sun et al. (2019),2.4,0.92,3.7,BERT3,No WNLI;CoLA and STS-B,45.7,19.0417

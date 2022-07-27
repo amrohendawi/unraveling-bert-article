@@ -17,13 +17,12 @@ def append_frames(list):
 
 scatter_plot_data = pd.read_csv(DATA_PATH.joinpath("bert_compression_results_modified.csv"))
 
-
 # scatter_plot_data = pd.read_csv(DATA_PATH.joinpath("bert_compression_results.csv"))
 # # convert Performance column from string of format "99%" to float between 0 and 1
 # scatter_plot_data['Performance'] = scatter_plot_data['Performance'].apply(
-#     lambda x: float(x[:-1]) / 100)
-# # create a new column called ParametersNumber that is the number cut from the end of the model name
-# scatter_plot_data['ParametersNumber'] = scatter_plot_data['Model'].apply(
+#     lambda x: int(x[:-1]) / 100)
+# # create a new column called #Parameters that is the number cut from the end of the model name
+# scatter_plot_data['#Parameters'] = scatter_plot_data['Model'].apply(
 #     lambda x: int(x.split('BERT')[-1]) if 'BERT' in x else 93)
 # model_parameters_dict = {
 #     3: 45.7,
@@ -32,12 +31,11 @@ scatter_plot_data = pd.read_csv(DATA_PATH.joinpath("bert_compression_results_mod
 #     12: 110,
 #     24: 340,
 # }
-# # convert the ParametersNumber column using the model_parameters_dict dictionary
-# scatter_plot_data['ParametersNumber'] = scatter_plot_data['ParametersNumber'].apply(
+# # convert the #Parameters column using the model_parameters_dict dictionary
+# scatter_plot_data['#Parameters'] = scatter_plot_data['#Parameters'].apply(
 #     lambda x: model_parameters_dict[x] if x in model_parameters_dict.keys() else x)
-# # create a new column called ParametersAfterCompression that is the number of parameters divided by compression ratio
-# scatter_plot_data['ParametersAfterCompression'] = round(scatter_plot_data['ParametersNumber'] / scatter_plot_data['Compression'], 4)
-# # export the dataframe as csv file
+# scatter_plot_data['ParametersAfterCompression'] = round(
+#     scatter_plot_data['#Parameters'] / scatter_plot_data['Compression'], 4)
 # scatter_plot_data.to_csv(DATA_PATH.joinpath("bert_compression_results_modified.csv"), index=False)
 
 
@@ -74,8 +72,17 @@ scatter_plot_fig = px.scatter(
     x="Compression",
     y="Performance",
     color="Method",
-    size="ParametersNumber",
+    size="#Parameters",
     trendline="ols",
+    hover_data={
+        "Name": True,
+        "Performance": True,
+        "Speedup": True,
+        "#Parameters": True,
+        "Compression": True,
+        "Method": False,
+    },
+
 )
 
 scatter_plot_fig.update_layout({
@@ -89,11 +96,26 @@ scatter_plot_fig.update_layout({
         "title": "Performance",
         "type": "log",
     },
-    'plot_bgcolor': 'rgba(90, 144, 134, 0.2)',
+    'plot_bgcolor': 'rgba(77, 137, 110, 0.22)',
     'paper_bgcolor': 'rgba(0, 0, 0, 0)',
     'autosize': True,
-    'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
 })
+
+scatter_plot_fig.update_yaxes(tickformat='.0%')
+# convert x axis to a factor scale such as 1x, 2x, 3x, 4x, etc.
+# scatter_plot_fig.update_xaxes(
+#     #     for any number convert it to a string of format "1x", "2x", "3x", "4x", etc.
+#     tickvals=scatter_plot_data['Compression'],
+#     ticktext=scatter_plot_data['Compression'].apply(lambda x: str(x) + "x"),
+# #     keep it logarithmic
+#     type="log",
+#
+# )
+
+# update traces marker line width by the compression factor for each trace
+scatter_plot_fig.update_traces(marker=dict(
+    line=dict(width=scatter_plot_data['Compression'])
+))
 
 scatter_plot = html.Div(
     [

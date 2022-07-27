@@ -1,7 +1,7 @@
 import plotly.express as px
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output, callback
-from utils import textBox, DATA_PATH
+from utils import DATA_PATH
 from appServer import app
 
 import pandas as pd
@@ -12,11 +12,8 @@ tsne_dict = {
     "tsne_sentiment": pd.read_csv(DATA_PATH.joinpath("tsne_data/tsne_sentiment.csv")),
 }
 
-# for every tsne_dataset
 for dataset in tsne_dict:
-    #     add a new column called unique_id
     tsne_dict[dataset]['unique_id'] = tsne_dict[dataset].index
-    #     round the x and y values to 4 decimal places
     tsne_dict[dataset]['x'] = (tsne_dict[dataset]['x'].round(4) * 10000).astype(int)
     tsne_dict[dataset]['y'] = (tsne_dict[dataset]['y'].round(4) * 10000).astype(int)
 
@@ -25,6 +22,11 @@ tsne_labels_dict = {
     "tsne_offensive": ["offensive", "no offensive"],
     "tsne_sentiment": ["positive", "neutral", "negative"],
 }
+
+# for each dataframe in tsne_dict, update the label column with the corresponding labels from tsne_labels_dict
+for key, value in tsne_dict.items():
+    value['label'] = value['label'].apply(lambda x: tsne_labels_dict[key][x])
+
 
 def draw_scatter_facet(dataset):
     fig = px.scatter(tsne_dict[dataset], x="x", y="y", color="label",
@@ -35,6 +37,14 @@ def draw_scatter_facet(dataset):
                          'y': '',
                          'x': '',
                          'label': '',
+                     },
+                     hover_data={
+                         'epoch': False,
+                         'x': False,
+                         'y': False,
+                         'unique_id': False,
+                         'label': False,
+                         'layer': False,
                      },
                      opacity=0.8,
                      facet_col_spacing=0,
@@ -57,10 +67,6 @@ def draw_scatter_facet(dataset):
     return fig
 
 
-# for each dataframe in tsne_dict, update the label column with the corresponding labels from tsne_labels_dict
-for key, value in tsne_dict.items():
-    value['label'] = value['label'].apply(lambda x: tsne_labels_dict[key][x])
-
 tsne_figures = {}
 
 # for every dataframe in tsne_dict, draw a scatter plot
@@ -78,8 +84,8 @@ content = html.Div([
                 html.Li(
                     "The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model. T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence between the two computed probability distributions in order to maintain the structure as much as possible with a low projection error rate."),
                 html.Li([
-                            "In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the progression of training. ",
-                            html.A("[10]", id="t10-ref", href="#references")])
+                    "In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the progression of training. ",
+                    html.A("[10]", id="t10-ref", href="#references")])
             ])
         ],
         id="tsne-canvas",
