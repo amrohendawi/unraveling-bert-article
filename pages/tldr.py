@@ -31,12 +31,17 @@ layout = html.Div(
         ),
         html.Hr(),
         # TODO: Put the following in a component. Maybe instad of direction compnent (I think it is not necessary)
-        dbc.Tooltip(
-            "Lundberg, Scott M., and Su-In Lee. \"A unified approach to interpreting model predictions.\" Advances in neural information processing systems 30 (2017).",
-            target="shap-ref",
-        ),
         dbc.Offcanvas(
             html.Ul([
+                dbc.Tooltip(
+                    html.A("Lundberg, Scott M., and Su-In Lee. \"A unified approach to interpreting model predictions.\" Advances in neural information processing systems 30 (2017).",
+                           href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html",
+                           target="_blank"),
+                    target="ref-1",
+                    delay={"show": 0, "hide": 1000},
+                    placement='left',
+                    class_name="custom_tooltip",
+                ),
                 html.Li(
                     "The SHAP (SHapley Additive exPlanations) framework is a tool for explaining the output of machine learning models."),
                 html.Li(
@@ -47,7 +52,7 @@ layout = html.Div(
                     "The SHAP framework has been implemented in a number of popular machine learning libraries, including XGBoost, LightGBM, and CatBoost.", ),
                 html.Li([
                     "When interpreting SHAP values, it is important to bear in mind that they represent the marginal contribution of a feature to the model output, rather than the absolute contribution. This means that the SHAP values for a given feature can vary depending on the values of other features. ",
-                    html.A("[1]", id="shap-ref", href="#references"), ])]),
+                    html.P("[1]", id="ref-1", className="ref-link"), ])]),
             id="toggle-shap-offcanvas",
             title="SHAP",
             is_open=False,

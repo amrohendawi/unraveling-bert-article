@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from appServer import app
 from dash.exceptions import PreventUpdate
 import dash_dangerously_set_inner_html
-from pages import tldr, introduction, factors, directions, conclusion, references
+from pages import tldr, introduction, factors, directions, conclusion, references, contributions
 from utils import textBox
 import requests
 
@@ -96,13 +96,10 @@ sidebar = html.Div(
 body = html.Div([
     html.Div(
         [
-            textBox(
-                """
-                    # Unraveling BERT's Transferability
-                    """,
-                class_name="title",
-                style={"textAlign": "center", "width": "fit-content"}
-            ),
+            html.H1("Unraveling BERT's Transferability",
+                    className="title text-box card-component",
+                    style={"textAlign": "center", "width": "fit-content"}
+                    ),
         ],
         className="row",
         style={"marginTop": "25px"},
@@ -113,7 +110,7 @@ body = html.Div([
     directions.layout,
     conclusion.layout,
     references.layout,
-
+    contributions.layout,
 ], style={
     "padding": "2rem",
 })
@@ -141,7 +138,6 @@ buttons_list = [k + '-button' for k in HEADLINES]
 def update_value(n_clicks, *args):
     ctx = callback_context
     if ctx.triggered:
-        print(ctx)
         prop_id = ctx.triggered[0]['prop_id'].split('.')[0]
         if prop_id in buttons_list:
             return HEADLINES[prop_id[:-7]]['index']

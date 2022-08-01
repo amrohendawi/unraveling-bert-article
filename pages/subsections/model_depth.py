@@ -19,10 +19,19 @@ text_content = html.Div(
 
 content = html.Div([
     text_content,
+    dbc.Tooltip(
+        html.A("Liu, Nelson F., Matt Gardner, Yonatan Belinkov, Matthew E. Peters, and Noah A. Smith. \"Linguistic knowledge and transferability of contextual representations.\" arXiv preprint arXiv:1903.08855 (2019).",
+               href="https://arxiv.org/abs/1903.08855",
+               target="_blank"),
+        target="ref-9",
+        delay={"show": 0, "hide": 1000},
+        placement='top',
+        class_name="custom_tooltip",
+    ),
     html.P(
         [
             "The next plot shows BERTs with many numbers of layrs being analyzid to detect the most transferabel layers",
-            html.A("[9].", id="t9-ref", href="#references")
+            html.P("[9]", id="ref-9", className="ref-link")
         ]),
     html.Div([
         dcc.Dropdown(['ELMo (original)', 'ELMo (4-layer)', 'ELMo (transformer)', 'OpenAI transformer',
