@@ -3,6 +3,15 @@ import dash_bootstrap_components as dbc
 
 text_content = html.Div(
     [
+        dbc.Tooltip(
+            html.A("Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin. \"Attention is all you need.\" Advances in neural information processing systems 30 (2017).",
+                   href="https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+                   target="_blank"),
+            target="ref-2",
+            delay={"show": 0, "hide": 1000},
+            placement='top',
+            class_name="custom_tooltip",
+        ),
         html.H3("BERT and Transfer-Learning"),
         html.Br(),
         html.Div(html.Img(src="assets/transfer-learning.png",
@@ -16,6 +25,7 @@ text_content = html.Div(
                     className="toggle-text",
                 ),
                 " model has revolutionized the field of Natural Language Processing (NLP). BERT is a transformer-based machine learning model that is trained on a large corpus of text data in a self-supervised manner. BERT has achieved state-of-the-art results on a wide range of NLP tasks, such as text classification, question answering, and text generation. Importantly, BERT can be fine-tuned for specific tasks using just a small amount of training data.",
+                html.P("[2]", id="ref-2", className="ref-link")
                 ]),
     ],
     id="introduction"
@@ -25,6 +35,15 @@ layout = html.Div(
     [
         dbc.Offcanvas(
             html.Ul([
+                dbc.Tooltip(
+                    html.A("Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin. \"Attention is all you need.\" Advances in neural information processing systems 30 (2017).",
+                           href="https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
+                           target="_blank"),
+                    target="ref-2-offcanvas",
+                    delay={"show": 0, "hide": 1000},
+                    placement='left',
+                    class_name="custom_tooltip",
+                ),
                 html.Li(
                     "Bert is a transformer-based machine learning algorithm that was designed to pre-train deep bidirectional representations from natural language text by masking a percentage of the input tokens and training the network to predict the masked tokens."),
                 html.Li(
@@ -43,6 +62,7 @@ layout = html.Div(
                     "The model can be fine-tuned for specific tasks by adding a task-specific layer on top of the pre-trained model. For example, to fine-tune Bert for text classification, a task-specific classification layer can be added.", ),
                 html.Li([
                     "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
+                    html.P("[2]", id="ref-2-offcanvas", className="ref-link")
                 ])]),
             id="toggle-bert-offcanvas",
             title="BERT",
@@ -51,13 +71,22 @@ layout = html.Div(
         ),
         dbc.Offcanvas(
             html.Ul([
+                dbc.Tooltip(
+                    html.A("S. J. Pan and Q. Yang, \"A Survey on Transfer Learning,\" in IEEE Transactions on Knowledge and Data Engineering, vol. 22, no. 10, pp. 1345-1359, Oct. 2010, doi: 10.1109/TKDE.2009.191.",
+                           href="https://ieeexplore.ieee.org/abstract/document/5288526",
+                           target="_blank"),
+                    target="ref-3-offcanvas",
+                    delay={"show": 0, "hide": 1000},
+                    placement='left',
+                    class_name="custom_tooltip",
+                ),
                 html.Li(
                     "Transfer Learning is a technique that can be used to improve the performance of a machine learning model by using knowledge from a related task. The main idea is to transfer knowledge from a model that has been trained on a large and high-quality dataset to a model that is trained on a smaller and lower-quality dataset."),
                 html.Li(
                     "The main advantage of transfer learning is that it can be used to train a model on a dataset that is too small or too low quality to train a model from scratch. Additionally, transfer learning can be used to improve the performance of a machine learning model by using knowledge from a related task with less data and computional power."),
                 html.Li([
                     "The main disadvantage of transfer learning is that it is difficult to control the amount of knowledge that is transferred from the source model to the target model. Additionally, transfer learning can only be used to improve the performance of a machine learning model if the source and target datasets are similar.",
-                    html.A("[3]", id="tl-ref", href="#references"),
+                    html.P("[3]", id="ref-3-offcanvas", className="ref-link"),
                     " One way to avoid this drawback is to freeze some of the weights. We will highlight this technique more in the next sections.",
                 ])]),
             id="toggle-tl-offcanvas",
@@ -67,13 +96,22 @@ layout = html.Div(
         ),
         text_content,
         html.P([
+            dbc.Tooltip(
+                html.A("S. J. Pan and Q. Yang, \"A Survey on Transfer Learning,\" in IEEE Transactions on Knowledge and Data Engineering, vol. 22, no. 10, pp. 1345-1359, Oct. 2010, doi: 10.1109/TKDE.2009.191.",
+                       href="https://ieeexplore.ieee.org/abstract/document/5288526",
+                       target="_blank"),
+                target="ref-3",
+                delay={"show": 0, "hide": 1000},
+                placement='top',
+                class_name="custom_tooltip",
+            ),
             html.A(
                 "Transfer learning",
                 id="toggle-tl",
                 className="toggle-text",
             ),
             " is a machine learning technique where knowledge learned by a model is transferred to a new model. This is done in the context of Machine Learning by taking the weights and biases from a trained model and using them as initial values for a new model. The new model is then trained on a new dataset, which can be much smaller than the original dataset. This technique can be used to quickly train new models without having to retrain the entire original model.",
-            html.A("[2]", id="bert-ref", href="#references"),
+            html.P("[3]", id="ref-3", className="ref-link"),
         ]),
 
         html.P(
@@ -93,15 +131,6 @@ layout = html.Div(
 )
 def toggle_text(n1):
     return n1
-
-
-# @callback(
-#    Output("offcanvas-placement", "is_open"),
-#    Input("open-scroll2", "n_clicks"),
-# )
-# def toggle_text(n1):
-#    return n1
-
 
 @callback(
     Output("toggle-bert-offcanvas", "is_open"),
