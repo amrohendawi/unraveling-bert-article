@@ -201,3 +201,25 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 5%;
 }
 
+.tooltip-inner {
+    background-color: #E1E1F5 !important;
+    width: 100% ;
+    max-width: 100% ;
+}
+
+.tooltip-arrow::before{
+    border-left-color:#E1E1F5 !important;
+    border-top-color:#E1E1F5 !important;
+
+}
+
+.custom_tooltip{
+    width: 40% ;
+    max-width: 40% ;
+}
+.ref-link{
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+    display: inline-block;
+}
