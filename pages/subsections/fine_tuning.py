@@ -62,9 +62,18 @@ text_content = html.Div(
 
 fine_tuning_section = html.Div([
     text_content,
+    dbc.Tooltip(
+        html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+               href="https://arxiv.org/abs/2005.00770",
+               target="_blank"),
+        target="ref-4-4",
+        delay={"show": 0, "hide": 1000},
+        placement='top',
+        class_name="custom_tooltip",
+    ),
     html.P([
         "The following radar chart visualizes some of the techniques that can be used to fine-tune a machine learning model. ",
-        html.A("[4]", id="ds4-ref", href="#references")]),
+        html.P("[4]", id="ref-4-4", className="ref-link")]),
     html.Div(
         [
             dbc.Row(
