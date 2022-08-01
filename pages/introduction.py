@@ -11,13 +11,8 @@ text_content = html.Div(
                  className="img_holder"),
         html.P(["Since its release in late 2018, the Bidirectional Encoder Representations from Transformers ",
                 html.A(
-                    "(BERT OffCanvas)",
+                    "BERT",
                     id="toggle-bert",
-                    className="toggle-text",
-                ),
-                html.A(
-                    "(BERT Modal)",
-                    id="open-scroll",
                     className="toggle-text",
                 ),
                 " model has revolutionized the field of Natural Language Processing (NLP). BERT is a transformer-based machine learning model that is trained on a large corpus of text data in a self-supervised manner. BERT has achieved state-of-the-art results on a wide range of NLP tasks, such as text classification, question answering, and text generation. Importantly, BERT can be fine-tuned for specific tasks using just a small amount of training data.",
@@ -28,38 +23,6 @@ text_content = html.Div(
 
 layout = html.Div(
     [
-
-        dbc.Tooltip(
-            "Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin. \"Attention is all you need.\" Advances in neural information processing systems 30 (2017).",
-            target="bert-ref",
-        ),
-        dbc.Modal(
-            [
-                dbc.ModalHeader(dbc.ModalTitle("BERT")),
-                dbc.ModalBody(html.Ul([
-                    html.Li(
-                        "Bert is a transformer-based machine learning algorithm that was designed to pre-train deep bidirectional representations from natural language text by masking a percentage of the input tokens and training the network to predict the masked tokens."),
-                    html.Li(
-                        "BERT has been shown to be very successful at a wide range of natural language processing tasks such as question answering, text classification, and language modeling."),
-                    html.Li(
-                        "BERT comes in two version. The first one is the base model, which contains 12 layer and the large one, which has 24 layer "),
-                    html.Li(
-                        "The BERT architecture is based on the Transformer architecture, which is a self-attention based model. ", ),
-                    html.Li(
-                        "BERT is trained using two training objectives: Masked Language Modeling (MLM) and Next Sentence Prediction (NSP).", ),
-                    html.Li(
-                        "In MLM, a percentage of the input tokens are randomly masked and the model is trained to predict the masked tokens.", ),
-                    html.Li(
-                        "In NSP, the model is trained to predict whether two sentences are consecutive or not.", ),
-                    html.Li(
-                        "The model can be fine-tuned for specific tasks by adding a task-specific layer on top of the pre-trained model. For example, to fine-tune Bert for text classification, a task-specific classification layer can be added.", ),
-                    html.Li([
-                        "BERT is a very powerful model that has achieved state-of-the-art results on a wide range of natural language processing tasks.",
-                        html.A("[2]", id="bert-ref2", href="#references"), ])]), ),
-            ],
-            id="modal-scroll",
-            is_open=False,
-        ),
         dbc.Offcanvas(
             html.Ul([
                 html.Li(
