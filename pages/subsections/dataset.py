@@ -103,10 +103,19 @@ text_content = html.Div(
 )
 
 content = html.Div([
+    dbc.Tooltip(
+        html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+               href="https://arxiv.org/abs/2005.00770",
+               target="_blank"),
+        target="ref-4",
+        delay={"show": 0, "hide": 1000},
+        placement='top',
+        class_name="custom_tooltip",
+    ),
     text_content,
     html.P([
         "The heat map below provides a visualization of the effect of data set size on performance. The three set-ups shown represent different combinations of source and target data set sizes. The first set-up is a full size source task to full size target task, the second set-up shows the impact of a full size source data set size to a limited size target task, and finally the third set-up is limited to limited. ",
-        html.A("[4]", id="ds-ref", href="#references")]),
+        html.P("[4]", id="ref-4", className="ref-link")]),
     gen_avg_trans_learning,
     # TODO: speake about the methodolgy, how the result has been achived and maybe in each set up show a text at the bottem overviews the results
     html.Hr()
