@@ -294,6 +294,15 @@ network_graph = dbc.Row(
 
 text_content = html.Div(
     [
+        dbc.Tooltip(
+                html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+                       href="https://arxiv.org/abs/2005.00770",
+                       target="_blank"),
+                target="ref-4-2",
+                delay={"show": 0, "hide": 1000},
+                placement='top',
+                class_name="custom_tooltip",
+            ),
         html.H4("The Importance of Task Relevance"),
         html.Br(),
         html.P(
@@ -308,12 +317,21 @@ text_content = html.Div(
         html.P(
             "Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning."),
         html.P(["The following graph visualize the relativness of tasks within 3 domains. ",
-                html.A("[4]", id="ds2-ref", href="#references")]),
+              html.P("[4]", id="ref-4-2", className="ref-link")]),
     ],
     id="task-relevance",
 )
 
 content = html.Div([
+     dbc.Tooltip(
+                html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+                       href="https://arxiv.org/abs/2005.00770",
+                       target="_blank"),
+                target="ref-4-3",
+                delay={"show": 0, "hide": 1000},
+                placement='top',
+                class_name="custom_tooltip",
+            ),
     text_content,
     dcc.Dropdown(
         id="dropdown-graph-type",
@@ -328,7 +346,7 @@ content = html.Div([
     ),
     network_graph,
     html.P(["The following heatmap shows the transferability's performance between some tasks. ",
-            html.A("[4]", id="ds3-ref", href="#references")]),
+            html.P("[4]", id="ref-4-3", className="ref-link")]),
     task_to_task_trans_learning,
 
     html.Hr(),
