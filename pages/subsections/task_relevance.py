@@ -236,13 +236,13 @@ def draw_network_graph(method):
         )
 
     axis = dict(
-                showbackground=False,
-                showline=False,
-                zeroline=False,
-                showgrid=False,
-                showticklabels=False,
-                title='',
-                )
+        showbackground=False,
+        showline=False,
+        zeroline=False,
+        showgrid=False,
+        showticklabels=False,
+        title='',
+    )
 
     graph_layout = go.Layout(
         scene=dict(
@@ -295,14 +295,14 @@ network_graph = dbc.Row(
 text_content = html.Div(
     [
         dbc.Tooltip(
-                html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
-                       href="https://arxiv.org/abs/2005.00770",
-                       target="_blank"),
-                target="ref-4-2",
-                delay={"show": 0, "hide": 1000},
-                placement='top',
-                class_name="custom_tooltip",
-            ),
+            html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+                   href="https://arxiv.org/abs/2005.00770",
+                   target="_blank"),
+            target="ref-4-2",
+            delay={"show": 0, "hide": 1000},
+            placement='top',
+            class_name="custom_tooltip",
+        ),
         html.H4("The Importance of Task Relevance"),
         html.Br(),
         html.P(
@@ -317,21 +317,21 @@ text_content = html.Div(
         html.P(
             "Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning."),
         html.P(["The following graph visualize the relativness of tasks within 3 domains. ",
-              html.P("[4]", id="ref-4-2", className="ref-link")]),
+                html.P("[4]", id="ref-4-2", className="ref-link")]),
     ],
     id="task-relevance",
 )
 
 content = html.Div([
-     dbc.Tooltip(
-                html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
-                       href="https://arxiv.org/abs/2005.00770",
-                       target="_blank"),
-                target="ref-4-3",
-                delay={"show": 0, "hide": 1000},
-                placement='top',
-                class_name="custom_tooltip",
-            ),
+    dbc.Tooltip(
+        html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
+               href="https://arxiv.org/abs/2005.00770",
+               target="_blank"),
+        target="ref-4-3",
+        delay={"show": 0, "hide": 1000},
+        placement='top',
+        class_name="custom_tooltip",
+    ),
     text_content,
     dcc.Dropdown(
         id="dropdown-graph-type",
@@ -383,7 +383,7 @@ def task_info_on_hover(hoverData):
 )
 def update_tasks_category_dropdown(task_class):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class].keys()], \
-           list(task_to_task_transfer_learning_res[task_class].keys())[0]
+        list(task_to_task_transfer_learning_res[task_class].keys())[0]
 
 
 @app.callback(
@@ -398,8 +398,8 @@ def update_tasks_category_dropdown(task_class):
 )
 def update_tasks_category_dropdown(task_class, task_category):
     return [{'label': i, 'value': i} for i in task_to_task_transfer_learning_res[task_class][task_category].keys()], \
-           list(task_to_task_transfer_learning_res[task_class][task_category].keys())[
-               0]
+        list(task_to_task_transfer_learning_res[task_class][task_category].keys())[
+        0]
 
 
 @app.callback(
