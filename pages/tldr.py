@@ -31,10 +31,6 @@ layout = html.Div(
         ),
         html.Hr(),
         # TODO: Put the following in a component. Maybe instad of direction compnent (I think it is not necessary)
-        dbc.Tooltip(
-            "Lundberg, Scott M., and Su-In Lee. \"A unified approach to interpreting model predictions.\" Advances in neural information processing systems 30 (2017).",
-            target="shap-ref",
-        ),
         dbc.Offcanvas(
             html.Ul([
                 dbc.Tooltip(
