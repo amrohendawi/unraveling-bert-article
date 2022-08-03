@@ -74,10 +74,7 @@ for key, value in tsne_dict.items():
     tsne_figures[key] = draw_scatter_facet(key)
 
 content = html.Div([
-    dbc.Tooltip(
-        "Click to find more about t-SNE",
-        target="tsne-anchor",
-    ),
+ 
     dbc.Offcanvas(
         [
             dbc.Tooltip(
@@ -101,7 +98,6 @@ content = html.Div([
         title="What is t-SNE?",
         is_open=False,
         placement="end",
-        className="offcanvas-class",
     ),
 
 
