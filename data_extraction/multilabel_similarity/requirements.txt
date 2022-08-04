@@ -1,0 +1,14 @@
+flair
+sklearn
+transformers
+pandas
+emoji
+livelossplot
+seaborn
+sklearn
+torch
+matplotlib
+imageio
+opentsne
+ipython
+pytorchnlp @ git+https://github.com/PetrochukM/PyTorch-NLP.git
