@@ -5,7 +5,7 @@ import dash_bootstrap_components as dbc
 from appServer import app
 from dash.exceptions import PreventUpdate
 import dash_dangerously_set_inner_html
-from pages import tldr, introduction, factors, directions, conclusion, references, contributions
+from pages import tldr, introduction, factors, directions, conclusion, references
 from utils import textBox
 import requests
 
@@ -110,7 +110,6 @@ body = html.Div([
     directions.layout,
     conclusion.layout,
     references.layout,
-    contributions.layout,
 ], style={
     "padding": "2rem",
 })
