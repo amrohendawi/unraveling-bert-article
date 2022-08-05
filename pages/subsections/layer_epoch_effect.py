@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output, callback
 from utils import DATA_PATH
 from appServer import app
+import dash_mantine_components as dmc
 
 import pandas as pd
 
@@ -74,13 +75,13 @@ for key, value in tsne_dict.items():
     tsne_figures[key] = draw_scatter_facet(key)
 
 content = html.Div([
- 
     dbc.Offcanvas(
         [
             dbc.Tooltip(
-                html.A( "Van der Maaten, Laurens, and Geoffrey Hinton. \"Visualizing data using t-SNE.\" Journal of machine learning research 9, no. 11 (2008).",
-                       href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf?fbcl",
-                       target="_blank"),
+                html.A(
+                    "Van der Maaten, Laurens, and Geoffrey Hinton. \"Visualizing data using t-SNE.\" Journal of machine learning research 9, no. 11 (2008).",
+                    href="https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf?fbcl",
+                    target="_blank"),
                 target="ref-10",
                 delay={"show": 0, "hide": 1000},
                 placement='left',
@@ -91,7 +92,7 @@ content = html.Div([
                     "The t-SNE algorithm was applied in order to visualize the contextual sequence embeddings for each layer of the transformer model. T-SNE is a nonlinear dimensionality reduction technique that projects nearby points in a high-dimensional manifold closer together in a lower-dimensional space than non-neighboring points. The algorithm consists of two steps: first, assigning pairs of similar high-dimensional points with a higher probability than non-similar pairings; and second, minimizing the Kullback-Leibler divergence between the two computed probability distributions in order to maintain the structure as much as possible with a low projection error rate."),
                 html.Li([
                     "In the context of this transformer model, t-SNE was applied to the contextualized embeddings for each layer in order to visualize the patterns and boundaries that the model was learning. The t-SNE algorithm was initialized with a perplexity of 500 in order to preserve the distance between each point and its 500 closest neighbors. This allowed for a reasonable coverage of the global structure. T-SNE was also applied to the training data for each epoch in order to visualize the progression of training. ",
-                      html.P("[10]", id="ref-10", className="ref-link")])
+                    html.P("[10]", id="ref-10", className="ref-link")])
             ])
         ],
         id="tsne-canvas",
@@ -99,10 +100,6 @@ content = html.Div([
         is_open=False,
         placement="end",
     ),
-
-
-
-    
     html.Div(
         [
 
@@ -116,11 +113,27 @@ content = html.Div([
                       To demonstrate the layer and epoch effect on BERT's transferability, a BERT model is fine-tuned
                       to do classification task on 3 labels. Then, 
                        """,
-                    html.A(
-                        "t-SNE",
-                        id="tsne-anchor",
-                        className="toggle-text",
+                    dmc.Tooltip(
+                        label="Click to find more about t-SNE",
+                        transition="slide-up",
+                        transitionDuration=300,
+                        transitionTimingFunction="ease",
+                        children=[
+                            # clickable badge
+                            dmc.Button(
+                                "t-SNE",
+                                color="gray",
+                                variant="outline",
+                                id="tsne-anchor",
+                            )
+                            # dmc.Badge("t-SNE", color="gray", variant="outline", id="tsne-anchor"),
+                        ],
                     ),
+                    # html.A(
+                    #     "t-SNE",
+                    #     id="tsne-anchor",
+                    #     className="toggle-text",
+                    # ),
                     " is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.",
                 ]
             ),
@@ -149,35 +162,46 @@ content = html.Div([
         id="layer-epoch",
         className="text-box card-component"
     ),
-    dcc.Dropdown(
-        id="dropdown-dataset",
-        searchable=False,
-        clearable=False,
-        options=[
-            {
-                "label": "BERT base cased hate",
-                "value": "tsne_hate",
-            },
-            {
-                "label": "BERT base cased offensive",
-                "value": "tsne_offensive",
-            },
-            {
-                "label": "BERT base cased sentiment",
-                "value": "tsne_sentiment",
-            },
+    dmc.Accordion(
+        children=[
+            dmc.AccordionItem(
+                [
+                    dcc.Dropdown(
+                        id="dropdown-dataset",
+                        searchable=False,
+                        clearable=False,
+                        options=[
+                            {
+                                "label": "BERT base cased hate",
+                                "value": "tsne_hate",
+                            },
+                            {
+                                "label": "BERT base cased offensive",
+                                "value": "tsne_offensive",
+                            },
+                            {
+                                "label": "BERT base cased sentiment",
+                                "value": "tsne_sentiment",
+                            },
+                        ],
+                        placeholder="Select a dataset",
+                        value="tsne_sentiment",
+                    ),
+                    html.Br(),
+                    html.Div(
+                        [
+                            dcc.Loading(
+                                dcc.Graph(id='scatter-with-slider',
+                                          config={"displayModeBar": False},
+                                          )),
+                        ], className="card-component", style={"width": "fit-content"}
+                    ),
+                ],
+                label="Click here to reveal the visualization",
+            ),
         ],
-        placeholder="Select a dataset",
-        value="tsne_sentiment",
-    ),
-    html.Br(),
-    html.Div(
-        [
-            dcc.Loading(
-                dcc.Graph(id='scatter-with-slider',
-                          config={"displayModeBar": False},
-                          )),
-        ], className="card-component", style={"width": "fit-content"}
+    #     align symbol right
+        iconPosition="right",
     ),
     html.P("The results of the following visualization hold two main observations:"),
     html.Ol([
