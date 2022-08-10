@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
 from dash.exceptions import PreventUpdate
 
-from utils import textBox, DATA_PATH, df_to_matrix
+from utils import DATA_PATH, df_to_matrix
 from appServer import app
 
 import pandas as pd

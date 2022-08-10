@@ -63,7 +63,7 @@ def draw_scatter_facet(dataset):
         'plot_bgcolor': 'rgba(0, 0, 0, 0)',
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'autosize': True,
-        'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
+        'margin': {'t': 20, 'b': 0, 'l': 0, 'r': 0},
     })
     return fig
 
@@ -119,21 +119,14 @@ content = html.Div([
                         transitionDuration=300,
                         transitionTimingFunction="ease",
                         children=[
-                            # clickable badge
                             dmc.Button(
                                 "t-SNE",
                                 color="gray",
                                 variant="outline",
                                 id="tsne-anchor",
                             )
-                            # dmc.Badge("t-SNE", color="gray", variant="outline", id="tsne-anchor"),
                         ],
                     ),
-                    # html.A(
-                    #     "t-SNE",
-                    #     id="tsne-anchor",
-                    #     className="toggle-text",
-                    # ),
                     " is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.",
                 ]
             ),
@@ -197,7 +190,7 @@ content = html.Div([
                         ], className="card-component", style={"width": "fit-content"}
                     ),
                 ],
-                label="Click here to reveal the visualization",
+                label="Click here to reveal/hide the visualization",
             ),
         ],
     #     align symbol right

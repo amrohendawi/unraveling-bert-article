@@ -1,9 +1,8 @@
-from dash import html
-from utils import textBox
+from dash import html, dcc
 
 layout = html.Div(
     [
-        textBox(
+        dcc.Markdown(
             """
     ### Directions and Further Research
     There is still much research that needs to be done in order to fully understand how fine-tuning affects BERT's transferability.

@@ -1,9 +1,8 @@
-from dash import html
-from utils import textBox
+from dash import html, dcc
 
 layout = html.Div(
     [
-        textBox( #TODO: need to be updated
+        dcc.Markdown(
             """
     ### Conclusion
     

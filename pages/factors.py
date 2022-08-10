@@ -1,7 +1,5 @@
 from dash import html
 
-from utils import textBox
-
 import pages.subsections.layer_epoch_effect as layer_epoch_effect
 import pages.subsections.fine_tuning as fine_tuning
 import pages.subsections.task_relevance as task_relevance

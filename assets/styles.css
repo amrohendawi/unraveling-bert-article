@@ -193,31 +193,26 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 5%;
 }
 
-.mantine-v4lv9f {
-    background-color: #a4bcbe;
-    border-radius: 5px;
+.mantine-Accordion-item {
+    border-radius: 10px;
     width: fit-content;
     margin: 1rem auto;
 }
 
-.mantine-hgwlez {
-    color: #fbfbfe;
+.mantine-Accordion-itemTitle {
+    background-color: #9bbcbe;
 }
 
 .mantine-916gpk {
     color: #fbfbfe;
 }
 
-.mantine-hgwlez:hover {
-    color: #a4bcbe;
-}
-
 .mantine-916gpk:hover {
-    color: #a4bcbe !important;
+    background-color: #89b1b4;
 }
 
-.mantine-1m60vkq {
-    border-radius: 10px;
+.mantine-Button-root {
+    border-radius: 8px;
     height: fit-content !important;
     padding: 0;
 }
