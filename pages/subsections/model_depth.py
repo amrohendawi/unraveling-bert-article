@@ -1,7 +1,6 @@
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
 
-from utils import textBox, DATA_PATH, df_to_matrix
 from appServer import app
 
 text_content = html.Div(

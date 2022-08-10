@@ -2,10 +2,11 @@ import plotly.express as px
 import plotly.graph_objs as go
 import igraph as ig
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 from dash import dcc, html, Input, Output
 from dash.exceptions import PreventUpdate
 
-from utils import DATA_PATH, textBox, read_tasks_nested_tables, df_to_matrix
+from utils import DATA_PATH, read_tasks_nested_tables, df_to_matrix
 from appServer import app
 
 import pandas as pd
@@ -279,7 +280,9 @@ network_graph = dbc.Row(
             dcc.Loading(
                 dcc.Graph(id="network-graph", className="card-component",
                           style={"width": "auto"},
-                          config={"displayModeBar": False},
+                          config={"displayModeBar": False,
+                                  'doubleClick': 'autosize',
+                                  },
                           )
             ),
             width=6),
@@ -360,6 +363,11 @@ def task_info_on_hover(hoverData):
             [
                 html.H4("Select a task to see its description"),
                 html.P("Hover over a point on the graph to see its description."),
+                html.P(["Use ", dmc.Kbd("left mouse"), " button to rotate the graph."]),
+                html.P(["Use ", dmc.Kbd("right mouse"), " or ", dmc.Kbd("ctrl"), " / ", dmc.Kbd("⌘"), " + ",
+                        dmc.Kbd("trackpad touch"), " to drag the graph."]),
+                html.P(["Press ", dmc.Kbd("mouse wheel"), " or ", dmc.Kbd("two fingers scroll"),
+                        " on the trackpad to flip the graph clockwise or counter-clockwise."]),
             ]
         )
     try:

@@ -1,5 +1,3 @@
-from dash import html, dcc
-from utils import textBox
 import dash_bootstrap_components as dbc
 from dash import html, Output, Input, callback
 
@@ -11,20 +9,16 @@ layout = html.Div(
                 html.Br(),
                 html.P(
                     """
-                    In this work, we investigate the extent to which a BERT model trained on general natural language understanding
-                    can be transferred to downstream, more specific tasks. We find that the model is able to transfer its knowledge
-                    to new tasks to some extent, but that the amount of knowledge transfer varies depending on the similarity between
-                    the training and test tasks.
+                    This work evaluates the effectiveness of transfer learning on BERT (generic language model) and
+                    investigates the factors and trade-offs that influence the acquisition of a new downstream task
+                    based on the latest scientific research.
                     """,
                 ),
                 html.P(
                     """
-                    For example, the model is able to transfer more knowledge to a task that is similar to the task it was trained on than to a task that is dissimilar. This suggests that the model is able to learn general principles that can be applied to new tasks, but that the amount of knowledge that can be transferred is limited by the similarity between the tasks.
-                    """
-                ),
-                html.P(
-                    """
-                    Furthermore, the results show that the effectiveness of the system increases with the number of layers, number of fine-tuning epochs, and dataset size used for the fine-tuning. In addition, a shallower BERT model transfers better than a deeper model.
+                    The study found that the model's performance is highly influenced by the size of the training data,
+                    the similarity between the tasks, the amount of fine-tuning, and the optimization method used.
+                    In terms of layer depth, the study found that the knowledge contained in the middle layers is the most transferable and vital.
                     """
                 ),
             ], id="tldr"
@@ -34,9 +28,10 @@ layout = html.Div(
         dbc.Offcanvas(
             html.Ul([
                 dbc.Tooltip(
-                    html.A("Lundberg, Scott M., and Su-In Lee. \"A unified approach to interpreting model predictions.\" Advances in neural information processing systems 30 (2017).",
-                           href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html",
-                           target="_blank"),
+                    html.A(
+                        "Lundberg, Scott M., and Su-In Lee. \"A unified approach to interpreting model predictions.\" Advances in neural information processing systems 30 (2017).",
+                        href="https://proceedings.neurips.cc/paper/2017/hash/8a20a8621978632d76c43dfd28b67767-Abstract.html",
+                        target="_blank"),
                     target="ref-1",
                     delay={"show": 0, "hide": 1000},
                     placement='left',

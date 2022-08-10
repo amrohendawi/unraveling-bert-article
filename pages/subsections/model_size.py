@@ -36,7 +36,7 @@ scatter_plot_fig.update_layout({
         "title": "Performance",
         "type": "log",
     },
-    'plot_bgcolor': 'rgba(77, 137, 110, 0.22)',
+    'plot_bgcolor': 'rgba(89, 151, 129, 0.25)',
     'paper_bgcolor': 'rgba(0, 0, 0, 0)',
     'autosize': True,
 })

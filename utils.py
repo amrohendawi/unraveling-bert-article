@@ -2,21 +2,37 @@ from dash import dcc, html
 import pandas as pd
 import pathlib
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 
 # get relative data folder
 PATH = pathlib.Path(__file__).parent
 DATA_PATH = PATH.joinpath("data").resolve()
 
 
-def textBox(text, style=None, class_name="", text_id="", dangerously_allow_html=False):
-    return html.Div(dcc.Markdown(
-        text,
-        dangerously_allow_html=dangerously_allow_html,
-    ),
-        style=style,
-        className="text-box card-component " + class_name,
-        id=text_id,
+def add_tooltip(label, button_text, id, href=None):
+    return dmc.Tooltip(
+        label=label,
+        transition="slide-up",
+        transitionDuration=300,
+        transitionTimingFunction="ease",
+        children=[
+            dmc.Button(
+                button_text,
+                color="gray",
+                variant="outline",
+                id=id,
+            ) if href is None else dmc.Anchor(
+                dmc.Button(
+                    button_text,
+                    color="gray",
+                    variant="outline",
+                    id=id,
+                ),
+                href=href,
+            )
+        ],
     )
+
 
 def df_to_matrix(df):
     df_matrix = pd.DataFrame(columns=df['sourceTask'].unique())
