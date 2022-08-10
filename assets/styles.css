@@ -42,11 +42,12 @@
     padding: 1rem;
 }
 
-.offcanvas-class {
+.offcanvas {
     height: fit-content;
     margin: auto;
     width: fit-content;
     max-width: 50%;
+    border-radius: 0.5rem;
 }
 
 .tooltip.show {
@@ -213,4 +214,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .mantine-916gpk:hover {
     color: #a4bcbe !important;
+}
+
+.mantine-1m60vkq {
+    border-radius: 10px;
+    height: fit-content !important;
+    padding: 0;
+}
+
+.mantine-Button-label {
+    padding: 0.2rem;
+    margin: 0;
 }
