@@ -1,7 +1,7 @@
 import plotly.express as px
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output, callback
-from utils import DATA_PATH
+from utils import DATA_PATH, add_tooltip
 from appServer import app
 import dash_mantine_components as dmc
 
@@ -113,20 +113,10 @@ content = html.Div([
                       To demonstrate the layer and epoch effect on BERT's transferability, a BERT model is fine-tuned
                       to do classification task on 3 labels. Then, 
                        """,
-                    dmc.Tooltip(
-                        label="Click to find more about t-SNE",
-                        transition="slide-up",
-                        transitionDuration=300,
-                        transitionTimingFunction="ease",
-                        children=[
-                            dmc.Button(
+                    add_tooltip("Click to find more about t-SNE",
                                 "t-SNE",
-                                color="gray",
-                                variant="outline",
-                                id="tsne-anchor",
-                            )
-                        ],
-                    ),
+                                "tsne-anchor"
+                                ),
                     " is applied on the output to reduce its dimensionality from 768 to 2 dimensions for human readability.",
                 ]
             ),

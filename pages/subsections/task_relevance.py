@@ -363,11 +363,21 @@ def task_info_on_hover(hoverData):
             [
                 html.H4("Select a task to see its description"),
                 html.P("Hover over a point on the graph to see its description."),
-                html.P(["Use ", dmc.Kbd("left mouse"), " button to rotate the graph."]),
-                html.P(["Use ", dmc.Kbd("right mouse"), " or ", dmc.Kbd("ctrl"), " / ", dmc.Kbd("⌘"), " + ",
-                        dmc.Kbd("trackpad touch"), " to drag the graph."]),
-                html.P(["Press ", dmc.Kbd("mouse wheel"), " or ", dmc.Kbd("two fingers scroll"),
-                        " on the trackpad to flip the graph clockwise or counter-clockwise."]),
+                dmc.List(
+                    [
+                        dmc.ListItem(
+                            ["Use ", dmc.Kbd("left mouse"), " button to rotate the graph."]
+                        ),
+                        dmc.ListItem(
+                            ["Use ", dmc.Kbd("right mouse"), " or ", dmc.Kbd("ctrl"), " / ", dmc.Kbd("⌘"), " + ",
+                             dmc.Kbd("trackpad touch"), " to drag the graph."]
+                        ),
+                        dmc.ListItem(
+                            ["Press ", dmc.Kbd("mouse wheel"), " or ", dmc.Kbd("two fingers scroll"),
+                             " on the trackpad to flip the graph clockwise or counter-clockwise."]
+                        ),
+                    ]
+                ),
             ]
         )
     try:
