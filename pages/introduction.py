@@ -2,15 +2,16 @@ from dash import html, Output, Input, callback
 import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
 from utils import add_tooltip
+from pages.references import references_dict
 
 offCanvases = [
     dbc.Offcanvas(
         html.Ul([
             dbc.Tooltip(
                 html.A(
-                    "Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, and Illia Polosukhin. \"Attention is all you need.\" Advances in neural information processing systems 30 (2017).",
-                    href="https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html",
-                    target="_blank"),
+                    references_dict[1]['title'],
+                    href=references_dict[1]['href'],
+                ),
                 target="ref-2-offcanvas",
                 delay={"show": 0, "hide": 1000},
                 placement='left',
@@ -90,14 +91,10 @@ text_content = html.Div(
                 """,
                 # TODO: customize max width of reference text
                 #  maybe we can define a general style for all references
-                add_tooltip("""
-                            Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez,
-                            Łukasz Kaiser, and Illia Polosukhin. \"Attention is all you need.\" Advances in neural
-                            information processing systems 30 (2017).
-                            """,
+                add_tooltip(references_dict[1]['title'],
                             "2",
                             "ref-2",
-                            href="https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html"
+                            href=references_dict[1]['href'],
                             ),
                 ]),
     ],
@@ -109,19 +106,19 @@ layout = html.Div(
         *offCanvases,
         text_content,
         html.P([
-            dbc.Tooltip(
-                html.A(
-                    "S. J. Pan and Q. Yang, \"A Survey on Transfer Learning,\" in IEEE Transactions on Knowledge and Data Engineering, vol. 22, no. 10, pp. 1345-1359, Oct. 2010, doi: 10.1109/TKDE.2009.191.",
-                    href="https://ieeexplore.ieee.org/abstract/document/5288526",
-                    target="_blank"),
-                target="ref-3",
-                delay={"show": 0, "hide": 1000},
-                placement='top',
-                class_name="custom_tooltip",
-            ),
             add_tooltip("Click to learn more about transfer-learning.", "Transfer learning", "toggle-tl"),
-            " is a machine learning technique where knowledge learned by a model is transferred to a new model. This is done in the context of Machine Learning by taking the weights and biases from a trained model and using them as initial values for a new model. The new model is then trained on a new dataset, which can be much smaller than the original dataset. This technique can be used to quickly train new models without having to retrain the entire original model.",
-            html.P("[3]", id="ref-3", className="ref-link"),
+            """
+            is a machine learning technique where knowledge learned by a model is transferred to a new model.
+            This is done in the context of Machine Learning by taking the weights and biases from a trained
+            model and using them as initial values for a new model. The new model is then trained on a new
+            dataset, which can be much smaller than the original dataset. This technique can be used to quickly
+            train new models without having to retrain the entire original model.
+            """,
+            add_tooltip(references_dict[2]['title'],
+                        "3",
+                        "ref-3",
+                        href=references_dict[2]['href'],
+                        ),
         ]),
 
         html.P(
