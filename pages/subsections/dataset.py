@@ -234,25 +234,25 @@ def task_group_info_on_hover(hoverData):
     Output('clickable-heatmap', 'figure'),
     Input("dropdown-task", "value"))
 def update_figure(experiment):
-    max_val = gen_avg_trans_learn_dict[experiment].max(
-    ).max()
-    min_val = gen_avg_trans_learn_dict[experiment].min(
-    ).min()
+    max_val = gen_avg_trans_learn_dict[experiment].max().max()
+    min_val = gen_avg_trans_learn_dict[experiment].min().min()
     fig = px.imshow(gen_avg_trans_learn_dict[experiment],
                     labels={"x": "Target Task", "y": "Source Task"},
-                    contrast_rescaling='minmax',
+                    color_continuous_scale=px.colors.diverging.Geyser_r,
                     )
+    fig.update_traces(xgap=1, selector=dict(type='heatmap'))
+    fig.update_traces(ygap=1, selector=dict(type='heatmap'))
+
     fig.update_coloraxes(colorbar_orientation="h")
     fig.update_layout(
         title={
-            'text': "Average transfer learning results",
+            'text': "<b>Average transfer learning results</b>",
             'font_size': 13,
             'y': 0.9,
             'x': 0.5,
             'xanchor': 'center',
         },
         coloraxis={
-            'colorscale': 'viridis',
             'colorbar': dict(
                 ticktext=['worst', 'best'],
                 tickvals=[min_val + 10, max_val - 10],
