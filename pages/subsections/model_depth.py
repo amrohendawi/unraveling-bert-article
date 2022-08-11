@@ -10,9 +10,9 @@ text_content = html.Div(
         html.Br(),
         html.P(
             """
-            Although the transferability of BERT models seems to be depth-agnostic, i.e. shallower or deeper BERT models
-            can be transferred to new tasks with comparable performances, research has found that in some cases,
-            transfer learning with shallower BERT models can be more effective than with deeper BERT models.
+            Although the transferability of BERT models appears to be depth-agnostic, i.e. shallower or deeper BERT
+            models can be transferred to new tasks with comparable performance, research has found that the layers play
+            different roles in encoding information in the model.
             """),
     ],
     id="model-depth"
@@ -59,6 +59,14 @@ content = html.Div([
             ]
         ),
     ]),
+    html.P(
+        """
+        Understanding the differences between the layers of different language models can be helpful in other factors
+        that affect the transferability of models.
+        For example, depending on the task, knowing which weights in which layers to freeze during fine-tuning can
+        have a significant impact on the final performance of the model.
+        """
+    ),
     html.Hr()
 ],
 )
