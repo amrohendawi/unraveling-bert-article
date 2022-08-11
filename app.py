@@ -83,13 +83,9 @@ sidebar = html.Div(
                     ], style={"paddingLeft": "0px"}
                 ),
             ],
-            style={"padding": "1rem"},
         )
     ],
-    className="sidebar card-component",
-    style={
-        "marginLeft": "2rem",
-    },
+    className="sidebar",
 )
 
 body = html.Div([

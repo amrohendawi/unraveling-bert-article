@@ -37,8 +37,8 @@ def create_heatmap(task_class, task_category, dataset_size):
             'colorscale': 'viridis_r',
             'showscale': True,
             'colorbar': dict(
-                ticktext=['worst', 'best'],
-                tickvals=[min_val + 5, max_val - 5],
+                ticktext=[f'worst({min_val})', f'best({max_val})'],
+                tickvals=[min_val + 10, max_val - 10],
             )
         },
 
@@ -310,7 +310,7 @@ text_content = html.Div(
             "Multitask transfer learning results in improved regularization and transfer compared to single-task learning. Transferability within the same domain returns better results with few exceptions. Cross-domain transfer learning also returns better results with few exceptions "),
         html.P(
             "BERT models can be fine-tuned for multiple tasks such as natural language understanding (NLU) and natural language generation (NLG). BERT's performance on NLU tasks can be improved by fine-tuning on NLG tasks. This indicates that BERT's representations are general enough to be transferable to different tasks."),
-        # TODO: check refernce and text
+        # TODO: check reference and text
         html.P(
             "Taskonomy can be used to improve the performance of BERT models. Taskonomy can be used to select the most relevant tasks for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
         html.P(
@@ -389,7 +389,7 @@ def task_info_on_hover(hoverData):
             html.P(task_desc)
         ])
 
-    except Exception as error:
+    except Exception:
         raise PreventUpdate
 
 
@@ -437,14 +437,12 @@ def update_figure(task_class, task_category, dataset_size):
     Input("clickable-heatmap2", "hoverData")
 )
 def task_info_on_hover(hoverData):
-    if hoverData is None:
-        if hoverData is None:
-            return html.Div(
-                [
-                    html.H4("Select a task to see its description"),
-                    html.P("Hover over a cell on the heatmap to see its description."),
-                ]
-            )
+    if hoverData is None or "x" not in hoverData["points"][0].keys():
+        return dmc.Alert(
+            "Each cell represents a task. Hover over a cell on the heatmap to see its description.",
+            title="Usage",
+            color="teal",
+        )
     try:
         source_id = hoverData["points"][0]["x"]
         target_id = hoverData["points"][0]["y"]

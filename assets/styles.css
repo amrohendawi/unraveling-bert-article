@@ -111,8 +111,10 @@ h1, h2, h3, h4, h5, h6 {
     top: 0;
     bottom: 0;
     position: fixed;
+    right: 80%;
     background-color: #fbfbfe;
     height: fit-content;
+    margin: auto 0 auto 2rem;
 }
 
 .nav-link:hover {
@@ -148,25 +150,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .img_tl {
     width: 50%;
-
 }
 
 .img_holder {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.img_holder_bert {
-    display: inline;
-
-}
-
-.img_bert {
-    right: auto;
-    width: 25%;
-    float: right;
-    margin-left: 4%;
 }
 
 .depth_footer {
@@ -182,7 +171,6 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     align-items: center;
     margin-top: 5%;
-
 }
 
 .depth_footer_holder {
@@ -223,5 +211,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .list-group-item {
+    display: list-item;
+}
+
+.mantine-List-item {
+    color: #3c4d5b;
     display: list-item;
 }

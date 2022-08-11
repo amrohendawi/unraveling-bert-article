@@ -200,7 +200,6 @@ content = html.Div([
 
 
 @callback(
-
     Output("tsne-canvas", "is_open"),
     Input("tsne-anchor", "n_clicks"),
 )

@@ -62,7 +62,8 @@ offCanvases = [
                 "The main disadvantage of transfer learning is that it is difficult to control the amount of knowledge that is transferred from the source model to the target model. Additionally, transfer learning can only be used to improve the performance of a machine learning model if the source and target datasets are similar.",
                 html.P("[3]", id="ref-3-offcanvas", className="ref-link"),
                 " One way to avoid this drawback is to freeze some of the weights. We will highlight this technique more in the next sections.",
-            ])]),
+            ])
+        ]),
         id="toggle-tl-offcanvas",
         title="Transfer Learning",
         is_open=False,
