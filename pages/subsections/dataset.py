@@ -34,6 +34,7 @@ gen_avg_trans_learning = dbc.Row(
     [
         dbc.Col(
             [
+                html.H6("Choose an experiment", style={"text-align": "center"}),
                 dcc.Dropdown(
                     id="dropdown-task",
                     searchable=False,
@@ -54,7 +55,8 @@ gen_avg_trans_learning = dbc.Row(
                     ],
                     placeholder="Select an experiment",
                     value="full-full",
-                    className="drop-down-component"
+                    className="drop-down-component",
+                    style={"margin-top": "0.5rem"},
                 ),
                 html.Br(),
                 html.Div(
@@ -184,6 +186,7 @@ text_content = html.Div(
 content = html.Div([
     *canvases,
     text_content,
+    html.Br(),
     gen_avg_trans_learning,
     # TODO: speake about the methodolgy, how the result has been achived and maybe in each set up show a text at the bottem overviews the results
     html.Hr()

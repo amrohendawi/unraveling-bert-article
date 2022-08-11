@@ -36,7 +36,8 @@ def create_heatmap(task_class, task_category, dataset_size):
             'font_size': 14,
             'y': 0.9,
             'x': 0.5,
-            'xanchor': 'center'},
+            'xanchor': 'center'
+        },
         coloraxis={
             'showscale': True,
             'colorbar': dict(

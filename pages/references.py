@@ -43,6 +43,10 @@ references_dict = [
         "href": "https://arxiv.org/abs/1903.08855",
     },
     {
+        "title": "Jawahar, Ganesh, Benoît Sagot, and Djamé Seddah. \"What does BERT learn about the structure of language?.\" In ACL 2019-57th Annual Meeting of the Association for Computational Linguistics. 2019.",
+        "href": "https://hal.inria.fr/hal-02131630/",
+    },
+    {
         "title": "Van der Maaten, Laurens, and Geoffrey Hinton. \"Visualizing data using t-SNE.\" Journal of machine learning research 9, no. 11 (2008).",
         "href": "https://www.jmlr.org/papers/volume9/vandermaaten08a/vandermaaten08a.pdf?fbcl",
     },

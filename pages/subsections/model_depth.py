@@ -1,6 +1,7 @@
 import dash_bootstrap_components as dbc
 from dash import dcc, html, Input, Output
-
+from pages.references import references_dict
+from utils import add_tooltip
 from appServer import app
 
 text_content = html.Div(
@@ -9,8 +10,9 @@ text_content = html.Div(
         html.Br(),
         html.P(
             """
-            The transferability of the bert model is affected by the depth of the model. The shallower the model,
-            the more transferable it is.
+            Although the transferability of BERT models seems to be depth-agnostic, i.e. shallower or deeper BERT models
+            can be transferred to new tasks with comparable performances, research has found that in some cases,
+            transfer learning with shallower BERT models can be more effective than with deeper BERT models.
             """),
     ],
     id="model-depth"
@@ -18,32 +20,45 @@ text_content = html.Div(
 
 content = html.Div([
     text_content,
-    dbc.Tooltip(
-        html.A("Liu, Nelson F., Matt Gardner, Yonatan Belinkov, Matthew E. Peters, and Noah A. Smith. \"Linguistic knowledge and transferability of contextual representations.\" arXiv preprint arXiv:1903.08855 (2019).",
-               href="https://arxiv.org/abs/1903.08855",
-               target="_blank"),
-        target="ref-9",
-        delay={"show": 0, "hide": 1000},
-        placement='top',
-        class_name="custom_tooltip",
-    ),
     html.P(
         [
-            "The next plot shows BERTs with many numbers of layrs being analyzid to detect the most transferabel layers",
-            html.P("[9]", id="ref-9", className="ref-link")
+            "The next visualizations help in illustrating the difference between the layers of different langauge models ",
+            add_tooltip(references_dict[9]['title'], "10", "ref-10-1", href=references_dict[9]['href']),
+            "."
         ]),
     html.Div([
         dcc.Dropdown(['ELMo (original)', 'ELMo (4-layer)', 'ELMo (transformer)', 'OpenAI transformer',
-                     'BERT (base, cased)', 'BERT (large, cased)'], 'BERT (base, cased)', id='depth-dropdown', clearable=False),
+                      'BERT (base, cased)', 'BERT (large, cased)'], 'BERT (base, cased)', id='depth-dropdown',
+                     clearable=False),
         html.Div(html.Img(src=app.get_asset_url('depth/bertb.png'),
-                 className="depth_img", id="depth_img"), className="depth_img_holder"),
+                          className="depth_img", id="depth_img"), className="depth_img_holder"),
         html.Div(html.Img(src=app.get_asset_url('depth/footer.png'),
-                 className="depth_footer"), className="depth_footer_holder"),
+                          className="depth_footer"), className="depth_footer_holder"),
     ]),
-    #html.Div(html.Img(src=app.get_asset_url('depth/bertb.png'), className="depth_img"), className="img_holder"),
-    #html.Div(html.Img(src=app.get_asset_url('depth/footer.png'),className="depth_img"), className="img_holder"),
-    # TODO: write more here
-    html.P("We could conclude that the middle layer are the most caplabe to transfer knowledge"),
+    html.P("Based on the study, the following conclusions were drawn:"),
+    html.Ul([
+        html.Li(
+            [
+                "The lower layers are more general and can be applied to a wider range of tasks ",
+                add_tooltip(references_dict[10]['title'], "11", "ref-11-1", href=references_dict[10]['href']),
+                "."
+            ]
+        ),
+        html.Li(
+            [
+                "The middle layers are more transferable and can be used for other tasks ",
+                add_tooltip(references_dict[9]['title'], "10", "ref-10-2", href=references_dict[9]['href']),
+                "."
+            ]
+        ),
+        html.Li(
+            [
+                "The final layers are the most task-specific ",
+                add_tooltip(references_dict[9]['title'], "10", "ref-10-3", href=references_dict[9]['href']),
+                "."
+            ]
+        ),
+    ]),
     html.Hr()
 ],
 )
