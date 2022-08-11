@@ -248,7 +248,7 @@ def update_figure(experiment):
         title={
             'text': "<b>Average transfer learning results</b>",
             'font_size': 13,
-            'y': 0.9,
+            'y': 0.92,
             'x': 0.5,
             'xanchor': 'center',
         },
@@ -257,6 +257,7 @@ def update_figure(experiment):
                 ticktext=['worst', 'best'],
                 tickvals=[min_val + 10, max_val - 10],
                 xpad=0,
+                y=0.74,
             ),
         },
     )

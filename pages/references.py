@@ -35,6 +35,10 @@ references_dict = [
         "href": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00349/96482/A-Primer-in-BERTology-What-We-Know-About-How-BERT",
     },
     {
+        "title": "Lan, Zhenzhong, Mingda Chen, Sebastian Goodman, Kevin Gimpel, Piyush Sharma, and Radu Soricut. \"Albert: A lite bert for self-supervised learning of language representations.\" arXiv preprint arXiv:1909.11942 (2019).",
+        "href": "https://arxiv.org/abs/1909.11942",
+    },
+    {
         "title": "Liu, Nelson F., Matt Gardner, Yonatan Belinkov, Matthew E. Peters, and Noah A. Smith. \"Linguistic knowledge and transferability of contextual representations.\" arXiv preprint arXiv:1903.08855 (2019).",
         "href": "https://arxiv.org/abs/1903.08855",
     },

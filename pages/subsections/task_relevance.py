@@ -349,8 +349,7 @@ content = html.Div([
     task_to_task_trans_learning,
 
     html.Hr(),
-]
-)
+])
 
 
 @app.callback(
@@ -359,9 +358,10 @@ content = html.Div([
 )
 def task_info_on_hover(hoverData):
     if hoverData is None:
-        return html.Div(
-            [
-                html.H4("Select a task to see its description"),
+        return dmc.Alert(
+            title="Usage",
+            color="teal",
+            children=[
                 html.P("Hover over a point on the graph to see its description."),
                 dmc.List(
                     [
