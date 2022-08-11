@@ -114,10 +114,8 @@ app.layout = html.Div(
     dbc.Row(
         [
             dcc.Location(id="url"),
-            dbc.Col(sidebar, width=3,
-                    ),
-            dbc.Col(body, width=7,
-                    ),
+            dbc.Col(sidebar, lg=3),
+            dbc.Col(body, lg=7, width=12, style={"border-left": "1px solid black"}),
         ],
     )
 )

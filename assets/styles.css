@@ -117,6 +117,12 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto 0 auto 2rem;
 }
 
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
 .nav-link:hover {
     color: #37949CFF;
 }
@@ -131,10 +137,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .rc-slider-dot-active {
     border-color: #37949c;
-}
-
-.col-7 {
-    border-left: 1px solid black;
 }
 
 .form-control {
