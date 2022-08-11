@@ -19,6 +19,7 @@ task_to_task_transfer_learning_res = read_tasks_nested_tables(
 def create_heatmap(task_class, task_category, dataset_size):
     fig = px.imshow(task_to_task_transfer_learning_res[task_class][task_category][dataset_size],
                     labels={"x": "Target Task", "y": "Source Task"},
+                    color_continuous_scale=px.colors.diverging.Geyser_r,
                     )
     fig.update_coloraxes(colorbar_orientation="h")
     max_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].max(
@@ -26,18 +27,20 @@ def create_heatmap(task_class, task_category, dataset_size):
     min_val = task_to_task_transfer_learning_res[task_class][task_category][dataset_size].min(
     ).min()
 
+    fig.update_traces(xgap=1, selector=dict(type='heatmap'))
+    fig.update_traces(ygap=1, selector=dict(type='heatmap'))
+
     fig.update_layout(
         title={
-            'text': "Task to Task transfer learning results",
-            'font_size': 15,
+            'text': "<b>Task to Task transfer learning results</b>",
+            'font_size': 14,
             'y': 0.9,
             'x': 0.5,
             'xanchor': 'center'},
         coloraxis={
-            'colorscale': 'viridis_r',
             'showscale': True,
             'colorbar': dict(
-                ticktext=[f'worst({min_val})', f'best({max_val})'],
+                ticktext=[f'worst <b>({min_val})</b>', f'best <b>({max_val})</b>'],
                 tickvals=[min_val + 10, max_val - 10],
             )
         },
@@ -65,9 +68,7 @@ tasks_groups_list = json.load(
 
 tasks_description = {}
 for key, value in tasks_groups_list.items():
-    # get tasks from value
     tasks = value['tasks']
-    # append every task to tasks_description dict
     tasks_description.update(tasks)
 
 task_to_task_trans_learning = html.Div(
@@ -260,7 +261,6 @@ def draw_network_graph(method):
         'paper_bgcolor': 'rgba(0, 0, 0, 0)',
         'autosize': True,
         'margin': {'t': 0, 'b': 0, 'l': 0, 'r': 0},
-        # position legend on top of the plot and center it horizontally
         'legend': {'x': 0.3, 'y': 1, 'orientation': 'h'},
     })
     return fig

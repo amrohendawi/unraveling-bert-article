@@ -19,8 +19,8 @@ for dataset in tsne_dict:
     tsne_dict[dataset]['y'] = (tsne_dict[dataset]['y'].round(4) * 10000).astype(int)
 
 tsne_labels_dict = {
-    "tsne_hate": ["hate", "no hate"],
-    "tsne_offensive": ["offensive", "no offensive"],
+    "tsne_hate": ["hate", "no_hate"],
+    "tsne_offensive": ["offensive", "not offensive"],
     "tsne_sentiment": ["positive", "neutral", "negative"],
 }
 
@@ -47,9 +47,20 @@ def draw_scatter_facet(dataset):
                          'label': False,
                          'layer': False,
                      },
-                     opacity=0.8,
+                     # opacity=0.8,
                      facet_col_spacing=0,
                      width=800, height=600,
+                     # set discrete colors to px.colors.qualitative.Set2
+                     color_discrete_map={
+                         'hate': px.colors.qualitative.Set2[1],
+                         'no_hate': px.colors.qualitative.Set2[0],
+                         'offensive': px.colors.qualitative.Bold[9],
+                         'not offensive': px.colors.qualitative.Bold[1],
+                         'positive': px.colors.qualitative.Alphabet[19],
+                         'neutral': px.colors.qualitative.Bold[1],
+                         'negative': px.colors.qualitative.Bold[9],
+                     },
+
                      )
     fig.update_xaxes(showticklabels=False, showline=True, linewidth=1,
                      linecolor='#4d4d4d', mirror=True)
@@ -183,7 +194,7 @@ content = html.Div([
                 label="Click here to reveal/hide the visualization",
             ),
         ],
-    #     align symbol right
+        #     align symbol right
         iconPosition="right",
     ),
     html.P("The results of the following visualization hold two main observations:"),
