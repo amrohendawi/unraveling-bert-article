@@ -1,8 +1,11 @@
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
+
 from dash import dcc, html
 import plotly.express as px
+from pages.references import references_dict
 
-from utils import DATA_PATH
+from utils import DATA_PATH, add_tooltip
 import pandas as pd
 
 scatter_plot_data = pd.read_csv(DATA_PATH.joinpath("bert_compression_results_modified.csv"))
@@ -22,19 +25,31 @@ scatter_plot_fig = px.scatter(
         "Compression": True,
         "Method": False,
     },
-
 )
 
 scatter_plot_fig.update_layout({
-    "title": "Language Model Compression/Performance Comparison",
+    "title": "<b>Language Model Compression/Performance Comparison</b>",
+    "title_y": 0.97,
+    "title_x": 0.5,
+    "font_size": 10,
+    "legend_title_text": '<b>Method</b>',
+    'margin': {'l': 0, 'r': 0},
+    "legend": {
+        "orientation": "h",
+        "yanchor": 'top',
+        "xanchor": 'center',
+        "y": 1.08,
+        "x": 0.5,
+    },
     "xaxis": {
         "title": "Compression Factor",
         "type": "log",
-
+        "title_font": {"size": 14},
     },
     "yaxis": {
         "title": "Performance",
         "type": "log",
+        "title_font": {"size": 14},
     },
     'plot_bgcolor': 'rgba(89, 151, 129, 0.25)',
     'paper_bgcolor': 'rgba(0, 0, 0, 0)',
@@ -50,62 +65,137 @@ scatter_plot_fig.update_traces(marker=dict(
 
 scatter_plot = html.Div(
     [
-        dcc.Graph(
-            id='model-size-graph',
-            figure=scatter_plot_fig,
-            config={"displayModeBar": False},
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Graph(
+                            id='model-size-graph',
+                            figure=scatter_plot_fig,
+                            config={"displayModeBar": False},
+                        ),
+                    ],
+                    width=8,
+                ),
+                dbc.Col(
+                    [
+                        dmc.Alert(
+                            title="Usage",
+                            color="teal",
+                            children=[
+                                dmc.List(
+                                    [
+                                        dmc.ListItem(
+                                            "The white circles represent the original size before compression."
+                                        ),
+                                        dmc.ListItem(
+                                            [dmc.Kbd("Click"), " to remove a legend from the graph"],
+                                        ),
+                                        dmc.ListItem(
+                                            [dmc.Kbd("Double click"), " a legend to focus on it."],
+                                        ),
+                                        dmc.ListItem(
+                                            [dmc.Kbd("Select"), " an area of the graph to zoom in."],
+                                        ),
+                                        dmc.ListItem(
+                                            [dmc.Kbd("Double click"), " on the graph to reset zoom."],
+                                        ),
+                                    ],
+                                    style={"font-size": "14px"},
+                                ),
+                            ],
+                            style={"margin-top": "5rem"},
+                        ),
+                    ],
+                    width=4,
+                ),
+            ],
+            className="card-component"
         ),
-    ],
-    className="card-component", style={"width": "fit-content"}
-)
+        dmc.Alert(
+            title="Observations",
+            color="dark",
+            variant="outline",
+            children=[
+                dmc.List(
+                    [
+                        dmc.ListItem(
+                            [
+                                "BERT can be efficiently compressed with little to no accuracy loss ",
+                                add_tooltip(references_dict[7]['title'], "8", "ref-7-3",
+                                            href=references_dict[7]['href']),
+                                "."
+                            ]
+                        ),
+                        dmc.ListItem(
+                            "After a certain threshold in compression factor, the performance starts to drop rapidly.",
+                        ),
+                        dmc.ListItem(
+                            [
+                                "In some cases, the performance has improved after compression as in ",
+                                add_tooltip(references_dict[8]['title'], "ALBERT-xxlarge", "ref-8-1",
+                                            href=references_dict[8]['href']),
+                                "."
+                            ]
+                        ),
+                    ],
+                ),
+            ],
+            style={"width": "fit-content", "margin": "0 auto"},
+        ),
+    ])
 
 text_content = html.Div(
     [
-        dbc.Tooltip(
-            html.A(
-                "Kao, Wei-Tsung, Tsung-Han Wu, Po-Han Chi, Chun-Cheng Hsieh, and Hung-Yi Lee. \"BERT's output layer recognizes all hidden layers? Some Intriguing Phenomena and a simple way to boost BERT.\" arXiv preprint arXiv:2001.09309 (2020).",
-                href="https://arxiv.org/abs/2001.09309",
-                target="_blank"),
-            target="ref-5",
-        ),
-        dbc.Tooltip(
-            html.A(
-                "Michel, Paul, Omer Levy, and Graham Neubig. \"Are sixteen heads really better than one?.\" Advances in neural information processing systems 32 (2019).",
-                href="https://proceedings.neurips.cc/paper/2019/hash/2c601ad9d2ff9bc8b282670cdd54f69f-Abstract.html",
-                target="_blank"),
-            target="ref-6",
-        ),
-        dbc.Tooltip(
-            "Gordon, Mitchell A., Kevin Duh, and Nicholas Andrews. \"Compressing bert: Studying the effects of weight pruning on transfer learning.\" arXiv preprint arXiv:2002.08307 (2020).",
-            target="ref-7",
-        ),
         html.H4("How big should BERT be?"),
         html.Br(),
-        html.P(
-            "The size of the BERT model has a significant impact on the performance and the time required to complete the task."),
-        html.P(["Too many BERT heads and layers can be harmful to the performance of downstream tasks. ",
-                html.P("[5]", id="ref-5", className="ref-link")]),
-        html.P([
-            "The disabling of certain heads in the architecture had a positive effect on machine translation and abstractive summarization. ",
-            html.P("[6]", id="ref-6", className="ref-link")]),  # TODO: elaborate a little on the texts here
-        html.P(["30-40 percent of weights can be pruned without any impact on downstream tasks. ",
-                html.P("[7]", id="ref-7")]),
+        html.P("""
+        The size of the BERT model has a significant impact on the performance and the time required to complete
+        the task. In this section, several scientific studies have been aggregated to reach the following conclusions:
+        """),
+        html.Ul([
+            html.Li(
+                [
+                    """
+                    Too many BERT heads and layers can be harmful to the performance of downstream tasks.
+                    """,
+                    add_tooltip(references_dict[4]['title'], "5", "ref-5-1", href=references_dict[4]['href']),
+                ]
+            ),
+            html.Li(
+                [
+                    """
+                    The disabling of certain heads in the architecture had a positive effect on machine translation and
+                    abstractive summarization.
+                    """,
+                    add_tooltip(references_dict[5]['title'], "6", "ref-6-1", href=references_dict[5]['href']),
+                ]
+            ),
+            html.Li(
+                [
+                    """
+                    30-40 percent of weights can be pruned without any impact on downstream tasks.
+                    """,
+                    add_tooltip(references_dict[6]['title'], "7", "ref-7-1", href=references_dict[6]['href']),
+                ]
+            ),
+            html.Li(
+                [
+                    """
+                    It is often best to train a larger model and then compress it. The benefits of compression are that it
+                    can reduce the size of BERT without any impact on downstream tasks. Additionally, compression can make
+                    BERT more transferable.
+                    """,
+                    add_tooltip(references_dict[7]['title'], "8", "ref-7-2", href=references_dict[7]['href']),
+                ]
+            ),
+        ]),
     ],
     id="model-size"
 )
 
 content = html.Div([
     text_content,
-    html.P([
-        dbc.Tooltip(
-            "Rogers, A., Kovaleva, O. and Rumshisky, A., 2020. A primer in bertology: What we know about how bert works. Transactions of the Association for Computational Linguistics, 8, pp.842-866.",
-            target="ref-8",
-        ),
-        "The following table shows many version of Tranformer with many options of comparsion and the related speed up. The values of size, performance and time are against the BERT base in percent",
-        html.P("[8]", id="ref-8", className="ref-link")]),
-
-    html.P(
-        " It is often best to train a larger model and then compress it. The benefits of compression are that it can reduce the size of BERT without any impact on downstream tasks. Additionally, compression can make BERT more transferable."),
     scatter_plot,
     html.Hr()
 ])

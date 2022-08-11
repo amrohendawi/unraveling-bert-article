@@ -36,7 +36,8 @@ def create_heatmap(task_class, task_category, dataset_size):
             'font_size': 14,
             'y': 0.9,
             'x': 0.5,
-            'xanchor': 'center'},
+            'xanchor': 'center'
+        },
         coloraxis={
             'showscale': True,
             'colorbar': dict(
@@ -349,8 +350,7 @@ content = html.Div([
     task_to_task_trans_learning,
 
     html.Hr(),
-]
-)
+])
 
 
 @app.callback(
@@ -359,9 +359,10 @@ content = html.Div([
 )
 def task_info_on_hover(hoverData):
     if hoverData is None:
-        return html.Div(
-            [
-                html.H4("Select a task to see its description"),
+        return dmc.Alert(
+            title="Usage",
+            color="teal",
+            children=[
                 html.P("Hover over a point on the graph to see its description."),
                 dmc.List(
                     [
