@@ -35,7 +35,6 @@
 }
 
 .text-box {
-    margin-top: 2rem;
     margin-bottom: 2rem;
     background-color: #fbfbfe;
     padding: 1rem;
@@ -150,7 +149,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .img_tl {
-    width: 50%;
+    width: 30%;
 }
 
 .img_holder {

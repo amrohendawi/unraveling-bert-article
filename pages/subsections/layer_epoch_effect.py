@@ -197,15 +197,38 @@ content = html.Div([
         #     align symbol right
         iconPosition="right",
     ),
-    html.P("The results of the following visualization hold two main observations:"),
-    html.Ol([
-        html.Li(
-            "The data points of different classes are highly mixed, and no pattern or discrimination boundaries are yet developed at the beginning of the training loop. As the training progresses, an apparent clustering of the different classes starts to establish itself in some layers."),
-        html.Li(
-            "The pattern and clustering of the different classes are primarily evident in higher layers of the model."),
-        html.Li(
-            "The pre-trained Bert model has a low or non-existing understanding of unseen data, but after a proper fine-tuning procedure, it can generalize and adapt to new domains effectively"),
-    ]),
+    dmc.Alert(
+        title="Observations from the visualizations",
+        color="dark",
+        variant="outline",
+        children=[
+            dmc.List(
+                [
+                    dmc.ListItem(
+                        [
+                            """
+                            The pre-trained Bert model has a low or non-existing understanding of unseen data, but after
+                            a proper fine-tuning procedure, it can generalize and adapt to new domains effectively.
+                            """,
+                        ]
+                    ),
+                    dmc.ListItem(
+                        """
+                        The data points of different classes are highly mixed, and no pattern or discrimination boundaries
+                        are yet developed at the beginning of the training loop. As the training progresses, an apparent
+                        clustering of the different classes starts to establish itself in some layers.
+                        """,
+                    ),
+                    dmc.ListItem(
+                        [
+                            "The pattern and clustering of the different classes are primarily evident in higher layers of the model.",
+                        ]
+                    ),
+                ],
+            ),
+        ],
+        style={"width": "fit-content", "margin": "0 auto"},
+    ),
     html.Hr(),
 ])
 

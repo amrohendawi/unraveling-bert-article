@@ -1,6 +1,8 @@
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 from dash import dcc, html, Input, Output
-from utils import read_tasks_nested_tables, df_to_matrix
+from utils import read_tasks_nested_tables, df_to_matrix, add_tooltip
+from pages.references import references_dict
 from appServer import app
 import plotly.graph_objs as go
 import pandas as pd
@@ -60,20 +62,38 @@ text_content = html.Div(
     id="fine-tuning"
 )
 
-fine_tuning_section = html.Div([
+content = html.Div([
     text_content,
-    dbc.Tooltip(
-        html.A("Vu, Tu, Tong Wang, Tsendsuren Munkhdalai, Alessandro Sordoni, Adam Trischler, Andrew Mattarella-Micke, Subhransu Maji, and Mohit Iyyer. \"Exploring and predicting transferability across NLP tasks.\" arXiv preprint arXiv:2005.00770 (2020).",
-               href="https://arxiv.org/abs/2005.00770",
-               target="_blank"),
-        target="ref-4-4",
-        delay={"show": 0, "hide": 1000},
-        placement='top',
-        class_name="custom_tooltip",
+    html.P(
+        """
+        Different Fine-tuning techniques can have a different effect on the transferability of BERT models.
+        Hyperparameter tuning can help optimize a model for a specific task, while layer freezing can improve the
+        stability of a model and prevent overfitting. Feature engineering can also help improve the performance of a
+        model by extracting syntactic and semantic features that are relevant to the task at hand.
+        """
     ),
     html.P([
-        "The following radar chart visualizes some of the techniques that can be used to fine-tune a machine learning model. ",
-        html.P("[4]", id="ref-4-4", className="ref-link")]),
+        "The following radar chart visualizes the efficacy of applying three different variations of layer freezing"
+        "based on Vu et al's work ",
+        add_tooltip(references_dict[3]["title"], "4", "ref-4-4", references_dict[3]["href"]),
+        ". These are:",
+    ]),
+    dmc.List(
+        [
+            dmc.ListItem(
+                [
+                    html.B("Full-Frozen: "), "Freeze some layers and use full dataset for fine-tuning",
+                ]),
+            dmc.ListItem(
+                [
+                    html.B("Full-Unfrozen: "), "Freeze no layer and use full dataset for fine-tuning"
+                ]),
+            dmc.ListItem(
+                [
+                    html.B("Limited-Unfrozen: "), "Freeze no layer and use a limited dataset for fine-tuning"
+                ]),
+        ]),
+    html.Br(),
     html.Div(
         [
             dbc.Row(
@@ -126,11 +146,6 @@ fine_tuning_section = html.Div([
     ), html.Hr()
 ],
     className="card-component",
-)
-
-content = html.Div([
-    fine_tuning_section,
-]
 )
 
 
