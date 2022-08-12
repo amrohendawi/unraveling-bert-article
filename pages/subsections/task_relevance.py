@@ -6,7 +6,8 @@ import dash_mantine_components as dmc
 from dash import dcc, html, Input, Output
 from dash.exceptions import PreventUpdate
 
-from utils import DATA_PATH, read_tasks_nested_tables, df_to_matrix
+from utils import DATA_PATH, read_tasks_nested_tables, df_to_matrix, add_tooltip
+from pages.references import references_dict
 from appServer import app
 
 import pandas as pd
@@ -318,8 +319,15 @@ text_content = html.Div(
             "Taskonomy can also be used to select the most relevant layers for fine-tuning a BERT model. For example, if a BERT model is fine-tuned on a task that is not relevant to the target task, the model's performance on the target task will be worse than if the model was not fine-tuned at all."),
         html.P(
             "Overall, taskonomy can be used to improve the performance of BERT models by carefully selecting the tasks and layers for fine-tuning."),
-        html.P(["The following graph visualize the relativness of tasks within 3 domains. ",
-                html.P("[4]", id="ref-4-2", className="ref-link")]),
+        html.P(["The following graph based on Vu et al.'s work ",
+                add_tooltip(references_dict[3]['title'],
+                            "4",
+                            "ref-4-13",
+                            href=references_dict[3]['href'],
+                            ),
+                " visualizes the tasks relativity within 3 domains."
+                ]
+               ),
     ],
     id="task-relevance",
 )
@@ -333,20 +341,33 @@ content = html.Div([
         target="ref-4-3",
     ),
     text_content,
-    dcc.Dropdown(
-        id="dropdown-graph-type",
-        searchable=False,
-        clearable=False,
-        options=[
-            {"label": k, "value": k}
-            for k in network_graph_data.keys()],
-        placeholder="Select an embedding extraction method",
-        value=list(network_graph_data.keys())[0],
-        className="drop-down-component"
-    ),
+    dbc.Row(
+        [
+            dbc.Col(
+                html.P("Pick an evaluation method: ", style={
+                    "fontWeight": "bold"}),
+                width=4,
+            ),
+            dbc.Col(
+                dcc.Dropdown(
+                    id="dropdown-graph-type",
+                    searchable=False,
+                    clearable=False,
+                    options=[
+                        {"label": k, "value": k}
+                        for k in network_graph_data.keys()],
+                    placeholder="Select an embedding extraction method",
+                    value=list(network_graph_data.keys())[0],
+                    className="drop-down-component"
+                ),
+                width=4,
+            ),
+        ]),
     network_graph,
-    html.P(["The following heatmap shows the transferability's performance between some tasks. ",
-            html.P("[4]", id="ref-4-3", className="ref-link")]),
+    html.P([
+        "The following heatmap shows the achieved performance after transfering-learning from source tasks to target tasks.",
+        add_tooltip(references_dict[3]['title'], "4", "ref-4-14", references_dict[3]['href']),
+    ]),
     task_to_task_trans_learning,
 
     html.Hr(),

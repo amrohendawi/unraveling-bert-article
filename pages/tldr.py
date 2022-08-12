@@ -55,6 +55,7 @@ layout = html.Div(
         ),
         html.Div([
             html.H3("Fine-Tuning Effect Demo"),
+            html.Br(),
             html.P([
                 "This demo showcases an explainable framework for sentiment analysis to demonstrate the effect of fine-tuning. The frame work ",
                 html.A(
@@ -78,7 +79,7 @@ layout = html.Div(
             html.Div(id='demo-container', children=''),
             html.Hr()
 
-        ], className="card-component")
+        ], className="card-component text-box")
     ],
 )
 
