@@ -3,8 +3,10 @@
 This is a demo of the Dash interactive Python framework developed by [Plotly](https://plot.ly/).
 
 Dash abstracts away all of the technologies and protocols required to build an interactive web-based application and is a simple and effective way to bind a user interface around your Python code.
+To learn more check out this [documentation](https://plot.ly/dash).
 
-To learn more check out our [documentation](https://plot.ly/dash).
+## Demo
+![demo](screenshots/demo.gif)
 
 ## Getting Started
 
@@ -32,35 +34,22 @@ Run the app
 python app.py
 ```
 
-## Working on the implementation
+### Working on the implementation
 
 Before you push to heroku make sure to update the dependencies in the requirements.txt file in case of new additions.
+Heroku will automatically deploy the latest version of the app after every commit to the master branch.
 
 ```bash
 pip freeze > requirements.txt
 ```
 
-
-## About the app
-
-This Dash app adapts the excellent [NY Times report A 3-D View of a Chart That Predicts The Economic Future: The Yield Curve](https://www.nytimes.com/interactive/2015/03/19/upshot/3d-yield-curve-economic-growth.html) as a base project.
-
 ## Built With
 
 - [Dash](https://dash.plot.ly/) - Main server and interactive components
 - [Plotly Python](https://plot.ly/python/) - Used to create the interactive plots
+- [Dash Bootstrap Components](https://dash-bootstrap-components.opensource.faculty.ai/) - Simplifies the creation of UI components
+- [Dash Mantine Components](https://www.dash-mantine-components.com/) - Similar to Bootstrap components but with a different style and more options
 
 ## Heroku DevOps
 
 You can push the project to production by simply creating a new app on heroku and connecting it to your github repo within 60 seconds.
-
-
-## Screenshots
-
-The following are screenshots for the app in this repo:
-
-![screenshot](screenshots/screenshot_welcome.png)
-
-![screenshot](screenshots/screenshot_content.png)
-<!-- 
-![animated](screenshots/dash-yield-curve-demo.gif) -->
