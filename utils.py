@@ -15,6 +15,8 @@ def add_tooltip(label, button_text, id, href=None):
         transition="slide-up",
         transitionDuration=300,
         transitionTimingFunction="ease",
+        wrapLines=True,
+        withArrow=True,
         children=[
             dmc.Button(
                 button_text,

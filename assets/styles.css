@@ -48,16 +48,12 @@
     border-radius: 0.5rem;
 }
 
+.mantine-14yytvl {
+    max-width: 500px;
+}
+
 .tooltip.show {
     opacity: 1;
-}
-
-.tooltip-inner {
-    background-color: #3c8288;
-}
-
-.tooltip-arrow::before {
-    border-left-color: #3c8288 !important;
 }
 
 blockquote {
