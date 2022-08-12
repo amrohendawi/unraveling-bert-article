@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from dash import html, Output, Input, callback
+from dash import html, Output, Input, callback, dcc
 
 layout = html.Div(
     [
@@ -63,15 +63,25 @@ layout = html.Div(
                     className="toggle-text",
                 ),
                 " visualizes the importance of each token and its attribution to the overall result. In the current set up, we would like to show the effect of fine-tuning using a base model and another model that is fine tuned to detect sentiment."]),
-            html.P("The demo can take some minutes to display the content"),
-            html.Div([dbc.Input(id="input-on-submit", placeholder="Type a sentence here...", type="text"),
-                      dbc.Button("Submit", color="info", className="me-1", id='submit-val', n_clicks=0)]),
-            html.Div(id='container-button-basic', children=''),
+            dcc.Dropdown(
+                ['love, what for a beautiful weather today', 
+                'the picture was ugly, in addition the frame was bad', 
+                'the film was very cool and the players were perfect',
+                'the tree is very good but the nest is very bad',
+                'fear leads to anger, anger leads to hate, hate leads to suffering',
+                ],
+                value = "love, what for a beautiful weather today",
+                searchable=False,
+                clearable=False,
+                id = "demo-dropdown"
+            ),
+            html.Div(id='demo-container', children=''),
             html.Hr()
 
         ], className="card-component")
     ],
 )
+
 
 
 @callback(

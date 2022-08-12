@@ -115,7 +115,8 @@ app.layout = html.Div(
         [
             dcc.Location(id="url"),
             dbc.Col(sidebar, lg=3),
-            dbc.Col(body, lg=7, width=12, style={"border-left": "1px solid black"}),
+            dbc.Col(body, lg=7, width=12, style={
+                    "border-left": "1px solid black"}),
         ],
     )
 )
@@ -134,23 +135,38 @@ def update_value(n_clicks, *args):
         if prop_id in buttons_list:
             return HEADLINES[prop_id[:-7]]['index']
 
-
 @app.callback(
-    Output('container-button-basic', 'children'),
-    Input('submit-val', 'n_clicks'),
-    State('input-on-submit', 'value')
-
+    Output('demo-container', 'children'),
+    Input('demo-dropdown', 'value')
 )
-def update_output(n_clicks, value):
-    if value != None and n_clicks == 1:
-        url = "http://kadi.dnsfor.me:5020"
-        response = requests.post(url, json={'sentence': value})
-        return html.Div([
-            dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[0]),
-            dash_dangerously_set_inner_html.DangerouslySetInnerHTML(response.content.decode("utf-8").split("$")[1]),
-            html.P(
-                "When we compare the results of the fine-tuned model with the original model, we can see that some of the token values and importance have been adjusted.")
-        ])
+def update_output(value):
+    path = ""
+    explaination = ""
+    if value == 'love, what for a beautiful weather today':
+        path = 'demo/NI.html'
+        explaination = "As we can see, the importance of the tokens (love, beautiful)  has been adjusted in the fine-tuned model. However, the model is still not optimal, because we can see some negative adjustment for the tokens (what, for), which actually does not make much sense."
+    elif value == 'the picture was ugly, in addition the frame was bad':
+        path = 'demo/NI1.html'
+        explaination = "In the current setup, the token (bad) is wrongly high important for postive classification in the base model and the tokens (ugly, bad) have been correctly adjusted for negative contribution in the fine-tuned model.",
+    elif value == 'the film was very cool and the players were perfect':
+        path = 'demo/NI2.html'
+        explaination = "The tokens (cool, perfect) are important for negative classification in base model. However the tokens (cool, perfect) are assigned for the right classification, it is questionable, why the tokens (and, film) is so important for positive classsification, it could depend on the data used for fine-tuning."
+    elif value ==  'the tree is very good but the nest is very bad':
+        path = 'demo/NI3.html'
+        explaination = "In this example it is obivios, that the most related tokens for sentiment analysis tool such as  (good, bad) are corrected in fine-tuned model. it is remarkable, that the token (the) has postive importance in the postive part of the sentence and negative contribution in negative part of the sentence."
+    elif value == 'fear leads to anger, anger leads to hate, hate leads to suffering':
+        path = 'demo/NI4.html'
+        explaination = "This exapmple shows that the fine tuning does not destroy correct importance, the tokens (fear, anger, suffering) are negative in base model and higly impotant for negative classification in the fine-tiuned model: we could conclude, the fine tuning corrects the senstivty of a transformer classifier."
+    else:
+        path = 'demo/NI.html'
+        explaination = "As we can see, the importance of the tokens (love, beautiful)  has been adjusted in the fine-tuned model. However, the model is still not optimal, because we can see some negative adjustment for the tokens (what, for), which actually does not make much sense."
+
+    return html.Div([html.Iframe(
+            src=app.get_asset_url(path),
+            style={"height": "400px", "width": "100%"},
+        ),
+        html.P(explaination)])
+    
 
 
 # Run the Dash app
