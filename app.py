@@ -147,16 +147,16 @@ def update_output(value):
         explaination = "As we can see, the importance of the tokens (love, beautiful)  has been adjusted in the fine-tuned model. However, the model is still not optimal, because we can see some negative adjustment for the tokens (what, for), which actually does not make much sense."
     elif value == 'the picture was ugly, in addition the frame was bad':
         path = 'demo/NI1.html'
-        explaination = "In the current setup, the token (bad) is wrongly high important for postive classification in the base model and the tokens (ugly, bad) have been correctly adjusted for negative contribution in the fine-tuned model.",
+        explaination = "In the current setup, the token (bad) is wrongly high important for positive classification in the base model. The tokens (ugly, bad) have been correctly adjusted for negative contribution in the fine-tuned model.",
     elif value == 'the film was very cool and the players were perfect':
         path = 'demo/NI2.html'
-        explaination = "The tokens (cool, perfect) are important for negative classification in base model. However the tokens (cool, perfect) are assigned for the right classification, it is questionable, why the tokens (and, film) is so important for positive classsification, it could depend on the data used for fine-tuning."
+        explaination = "Although the tokens (cool, perfect) are important for negative classification in the base model, they have been adjusted in fine-tuned model. It is questionable why the tokens (and, film) are so important for positive classification. It could depend on the data used for fine-tuning."
     elif value ==  'the tree is very good but the nest is very bad':
         path = 'demo/NI3.html'
-        explaination = "In this example it is obivios, that the most related tokens for sentiment analysis tool such as  (good, bad) are corrected in fine-tuned model. it is remarkable, that the token (the) has postive importance in the postive part of the sentence and negative contribution in negative part of the sentence."
+        explaination = "In this example, it is obvious that the most related tokens for a sentiment analysis tool, such as (good, bad), are corrected in a fine-tuned model. It is remarkable that the token (the) has positive importance in the positive part of the sentence and negative contribution in the negative part of the sentence."
     elif value == 'fear leads to anger, anger leads to hate, hate leads to suffering':
         path = 'demo/NI4.html'
-        explaination = "This exapmple shows that the fine tuning does not destroy correct importance, the tokens (fear, anger, suffering) are negative in base model and higly impotant for negative classification in the fine-tiuned model: we could conclude, the fine tuning corrects the senstivty of a transformer classifier."
+        explaination = "This example demonstrates that the fine tuning does not destroy the correct importance of the tokens (fear, anger, suffering) which are negative in the base model and highly important for negative classification in the fine-tuned model. We could conclude that the fine tuning corrects the sensitivity of a transformer classifier."
     else:
         path = 'demo/NI.html'
         explaination = "As we can see, the importance of the tokens (love, beautiful)  has been adjusted in the fine-tuned model. However, the model is still not optimal, because we can see some negative adjustment for the tokens (what, for), which actually does not make much sense."
