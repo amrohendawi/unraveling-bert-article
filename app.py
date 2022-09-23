@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 # Import required libraries
-from dash import dcc, html, Input, Output, callback_context, State
+from dash import dcc, html, Input, Output, callback_context
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 from appServer import app
-from dash.exceptions import PreventUpdate
-import dash_dangerously_set_inner_html
 from pages import tldr, introduction, factors, directions, conclusion, references
-import requests
 
 server = app.server
 
@@ -44,8 +42,8 @@ for key in HEADLINES:
         )
     )
 
-sidebar = html.Div(
-    [
+sidebar = dmc.Container(
+    children=[
         html.H3("Content", className="display-4",
                 style={"fontStyle": "bold", "padding": "0rem 1rem 0rem 1rem"}),
         html.Hr(style={"margin": "0rem 1rem 0rem 1rem"}),
@@ -85,40 +83,42 @@ sidebar = html.Div(
             ],
         )
     ],
-    className="sidebar",
+    class_name="sidebar",
 )
 
-body = html.Div([
-    html.Div(
-        [
-            html.H1("Unraveling BERT's Transferability",
-                    className="title text-box card-component",
-                    style={"textAlign": "center", "width": "fit-content"}
-                    ),
-        ],
-        className="row",
-        style={"marginTop": "25px"},
-    ),
-    tldr.layout,
-    introduction.layout,
-    factors.layout,
-    directions.layout,
-    conclusion.layout,
-    references.layout,
-], style={
-    "padding": "2rem",
-})
+body = dmc.Container(
+    children=[
+        dmc.Container(
+            children=[
+                html.H1("Unraveling BERT's Transferability",
+                        className="title text-box card-component",
+                        style={"textAlign": "center", "width": "fit-content"}
+                        ),
+            ],
+            class_name="row",
+            style={"marginTop": "25px"},
+        ),
+        tldr.layout,
+        introduction.layout,
+        factors.layout,
+        directions.layout,
+        conclusion.layout,
+        references.layout,
+    ],
+)
 
 ################### App layout ###################
 app.layout = html.Div(
-    dbc.Row(
-        [
-            dcc.Location(id="url"),
-            dbc.Col(sidebar, lg=3),
-            dbc.Col(body, lg=7, width=12, style={
+    [
+        dcc.Location(id="url"),
+        dmc.Grid(
+            children=[
+                dmc.Col(sidebar, lg=3),
+                dmc.Col(body, lg=7, style={
                     "border-left": "1px solid black"}),
-        ],
-    )
+            ],
+        )
+    ]
 )
 
 buttons_list = [k + '-button' for k in HEADLINES]
@@ -134,6 +134,7 @@ def update_value(n_clicks, *args):
         prop_id = ctx.triggered[0]['prop_id'].split('.')[0]
         if prop_id in buttons_list:
             return HEADLINES[prop_id[:-7]]['index']
+
 
 @app.callback(
     Output('demo-container', 'children'),
@@ -151,7 +152,7 @@ def update_output(value):
     elif value == 'the film was very cool and the players were perfect':
         path = 'demo/NI2.html'
         explaination = "Although the tokens (cool, perfect) are important for negative classification in the base model, they have been adjusted in fine-tuned model. It is questionable why the tokens (and, film) are so important for positive classification. It could depend on the data used for fine-tuning."
-    elif value ==  'the tree is very good but the nest is very bad':
+    elif value == 'the tree is very good but the nest is very bad':
         path = 'demo/NI3.html'
         explaination = "In this example, it is obvious that the most related tokens for a sentiment analysis tool, such as (good, bad), are corrected in a fine-tuned model. It is remarkable that the token (the) has positive importance in the positive part of the sentence and negative contribution in the negative part of the sentence."
     elif value == 'fear leads to anger, anger leads to hate, hate leads to suffering':
@@ -162,11 +163,10 @@ def update_output(value):
         explaination = "As we can see, the importance of the tokens (love, beautiful)  has been adjusted in the fine-tuned model. However, the model is still not optimal, because we can see some negative adjustment for the tokens (what, for), which actually does not make much sense."
 
     return html.Div([html.Iframe(
-            src=app.get_asset_url(path),
-            style={"height": "400px", "width": "100%"},
-        ),
+        src=app.get_asset_url(path),
+        style={"height": "400px", "width": "100%"},
+    ),
         html.P(explaination)])
-    
 
 
 # Run the Dash app
