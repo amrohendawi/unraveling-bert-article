@@ -55,3 +55,6 @@ pip freeze > requirements.txt
 ## Heroku DevOps
 
 You can push the project to production by simply creating a new app on heroku and connecting it to your github repo within 60 seconds.
+
+## Updated at:
+2024-10-13T16:57:17.896-04:00
