@@ -15,7 +15,7 @@ To learn more check out this [documentation](https://plot.ly/dash).
 ### Running the app locally
 
 First, clone the git repo, then create a virtual environment for installing dependencies.
-Feel free to use conda or any other environment manager of your choice.
+Feel free to use conda or any other environment manager of your choice as long as python >= 3.10 is used.
 
 ```
 git clone https://github.com/amrohendawi/unraveling-bert-article
